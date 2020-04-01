@@ -8,12 +8,16 @@
 2.对于求字符串长度的函数：strlen/size/length的区别：
 
 //方法一：调用length()或size()
+```
 string strTest="test";
 strTest.length();			//结果为4
 strTest.size();				//结果为4
+```
 
 //方法二：转为C风格字符串，调用strlen()
+```
 strlen(strTest.c_str());	//结果为4
+```
 
 3.嵌套深度的计算方法：可以通过栈实现括号匹配来计算。
 
@@ -21,7 +25,7 @@ strlen(strTest.c_str());	//结果为4
 
 下面给出了括号序列 (()(())()) 在每一个字符处的嵌套深度：
 
-括号序列   ( ( ) ( ( ) ) ( ) )
+*括号序列   ( ( ) ( ( ) ) ( ) )
 
 下标编号   0 1 2 3 4 5 6 7 8 9
 
