@@ -92,3 +92,38 @@ int StrToInt2(string str)
  LMaxi = (Ci-1)/2 位置上的元素;
  RMini = Ci/2 位置上的元素;
  ```
+ 
+ ## No.5 最长回文子串
+ 1.反转一个字符串
+ ```
+ string s;
+ string reverse_s = s;
+ std::reverse(reverse_s.begin(),reverse_s.end());//可以将reverse_s反转；
+ ```
+ 2.初始化二维vector
+ ```
+ int length = s.length();
+ vector<vector<int>> dp(length,vector<int>(length));
+ ```
+ 3.输出一个字符串的子串
+ ```
+ int start = 0;//子串开始位置
+ int sub_length = 5;//子串长度
+ s.substr(start,sub_length)；//substr为子串函数
+ ```
+ 4.动态规划
+ ```
+ //从长度为3的子字符串开始动态寻找回文串
+        for(int l=3;l<length;l++){
+            for(int i = 0; i<length-l+1;i++){
+                int j = i+l-1;
+                //分析：dp[i][j]其实就是表示从i到j的子串是不是回文串（因为是从长度为2、3的子串开始累积往更长的子串计算的）
+                //分析：这里的dp[i+1][j-1]就是状态转移，如果在这个位置的上一个长度的子串是回文串，那么就可以继续累积下去，看更长的子串是不是回文串。
+                if(s[i] == s[j] && dp[i+1][j-1] == 1){
+                    dp[i][j] = 1;
+                    start = i;
+                    sub_length = l;
+                }
+            }
+        }
+ ```
