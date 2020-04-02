@@ -217,3 +217,81 @@ while(l1 != NULL && l2 != NULL){
 }
 result->next = l1 == NULL? l2:l1;//在这一步再将更长一些的链表补在result后面
 ```
+## 剑指Offer No.38 字符串的排列
+
+1.**set的使用**
+
+(1)set<T> 容器保存 T 类型的对象，而且保存的对象是唯一的（一般来说不可以重复）。同时保存的元素是有序的（平衡二叉树）
+  
+(2)set中添加元素用insert();删除元素用erase();访问元素可以用auto iter = s.find("a")
+  -----待完善
+  
+2.vector和set之间数据的转化方法
+```
+vector<string> result;//最终输出结果
+set<string> res;//使用set的性质去除重复字符串排列
+result = vector<string>(res.begin(),res.end());
+```
+3.void函数虽然没有返回值，但是**不要忘记最后return ！！**
+
+4.**回溯算法（递归实现）**
+  字符串的排列和数字的排列都属于回溯的经典问题
+  
+ 回溯算法框架：解决一个问题，实际上就是一个决策树的遍历过程：
+ 
+ (1).路径：做出的选择
+ 
+ (2).选择列表：当前可以做的选择
+ 
+ (3).结束条件：到达决策树底层，无法再做选择的条件
+ 
+  伪代码：
+ ```
+ result = []
+ def backtrack(路径，选择列表):
+      if 满足结束条件：
+          result.add(路径)
+         return
+      for 选择 in 选择列表:
+          做选择
+          backtrack(路径，选择列表)
+          撤销选择
+ ```
+  **核心是for循环中的递归，在递归调用之前“做选择”，在递归调用之后“撤销选择”。**
+  
+5.基于交换法的回溯算法（本题）
+(1)思路
+```
+ * 交换法 —— 回溯算法
+ *
+ * [a, [b, c]]
+ * [b, [a, c]] [c, [b, a]]
+ *
+ * 如上，对字符串"abc"分割，每次固定一个字符为一部分，
+ * 其他字符为另一部分，再将固定字符与其他字符进行交换，
+ * 依次遍历每个字符，再进行回溯递归。
+```
+**(2)具体实现细节**
+```
+/*
+     * 回溯函数
+     * 使用set函数对字符串字符进行去重，
+     * 使用swap函数交换两个字符
+     * */
+void backtrack2(std::string s, int start, std::set<std::string> &res) {
+    // 回溯结束条件
+    if(start == s.size()){
+        res.insert(s);
+        return;
+    }
+
+    for(int i = start; i < s.size(); i++){
+        // 做选择
+        std::swap(s[i], s[start]);
+        // 进入下一次决策树
+        backtrack2(s, start+1, res);
+        // 撤销选择
+        std::swap(s[i], s[start]);
+    }
+}
+```
