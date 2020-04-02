@@ -237,15 +237,16 @@ result = vector<string>(res.begin(),res.end());
 3.void函数虽然没有返回值，但是**不要忘记最后return ！！**
 
 4.**回溯算法（递归实现）**
+
  字符串的排列和数字的排列都属于回溯的经典问题
   
  回溯算法框架：解决一个问题，实际上就是一个决策树的遍历过程：
  
- (1).路径：做出的选择
+ (1)路径：做出的选择
  
- (2).选择列表：当前可以做的选择
+ (2)选择列表：当前可以做的选择
  
- (3).结束条件：到达决策树底层，无法再做选择的条件
+ (3)结束条件：到达决策树底层，无法再做选择的条件
  
  伪代码：
  ```
@@ -259,9 +260,25 @@ result = vector<string>(res.begin(),res.end());
           backtrack(路径，选择列表)
           撤销选择
  ```
+ 递归函数通常都是void类型的，所以要注意之前提到的问题。
+ 
   **核心是for循环中的递归，在递归调用之前“做选择”，在递归调用之后“撤销选择”。**
   
-5.基于交换法的回溯算法（本题）
+5.函数形参中的引用问题
+
+```
+void paixu(std::string s, int start, std::set<std::string> &res) {
+    // 回溯结束条件
+    if(start == s.size()){
+        res.insert(s);
+        return;
+    }
+```
+在函数paixu里面，一定要注意参数中set<string> &res，res一定要是引用的形式，因为函数本身没有返回值，res作为形参生命周期结束就会被销毁，
+  
+只有使用引用才能使得res的值在递归的时候不断更新。
+  
+6.基于交换法的回溯算法（本题）
 
 (1)思路
 ```
@@ -279,7 +296,7 @@ result = vector<string>(res.begin(),res.end());
      * 使用set函数对字符串字符进行去重，
      * 使用swap函数交换两个字符
      * */
-void backtrack2(std::string s, int start, std::set<std::string> &res) {
+void paixu(std::string s, int start, std::set<std::string> &res) {
     // 回溯结束条件
     if(start == s.size()){
         res.insert(s);
@@ -290,9 +307,10 @@ void backtrack2(std::string s, int start, std::set<std::string> &res) {
         // 做选择
         std::swap(s[i], s[start]);
         // 进入下一次决策树
-        backtrack2(s, start+1, res);
+        paixu(s, start+1, res);
         // 撤销选择
         std::swap(s[i], s[start]);
     }
 }
 ```
+
