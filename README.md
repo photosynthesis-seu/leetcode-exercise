@@ -163,3 +163,36 @@ int StrToInt2(string str)
         return R-L-1;
     }
  ```
+ ## No.206 反转链表
+ 
+ 1.单链表的简单声明
+ 
+ ```
+  struct ListNode {
+   int val;
+   ListNode *next;
+   ListNode(int x) : val(x), next(NULL) {}
+ ```
+ 2.双指针的迭代思路
+ 
+ (1)对于函数LListNode* reverseList(ListNode* head)，返回head即可；
+ 
+ (2)ListNode* cur = NULL;ListNode* pre = head;是两个链表，顺便当双指针用；
+ 
+ ```
+ ListNode* reverseList(ListNode* head) {
+        if(head == NULL || head->next == NULL){
+            return head;
+        }
+        //双指针的思想，一个一个迭代遍历，改变指向。但是注意！cur、pre本身都是链表！！
+        ListNode* cur = NULL;
+        ListNode* pre = head;
+        while(pre != NULL){
+            ListNode* temp = pre->next;
+            pre->next = cur;
+            cur = pre;
+            pre = temp;//cur逐渐从NULL一步一步倒推，变成head链表的反转。head链表本身没有改变。
+        }
+        return cur;//注意！返回的是cur！不是*cur，因为函数类型本身就是ListNode*了
+    }
+ ```
