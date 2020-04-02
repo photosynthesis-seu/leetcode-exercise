@@ -127,3 +127,38 @@ int StrToInt2(string str)
             }
         }
  ```
+ 5.**中心拓展法**
+ 回文子串以中心字符为基准左右对称。那么可以根据以中心两个字符为基准（偶数串）或以中心一个字符为基准（奇数串），来向两边进行拓展。
+ 
+ 通过遍历字符串的2n-1种可能性：n（奇数串，每个字符都可以是中心）+n-1（偶数串，以字符串的空隙为中心）= 2n-1，来确定最长回文子串
+ 
+ ```
+  for(int i=0;i<len;i++)
+        {
+            int len1=expendaroundcenter(s,i,i);//一个元素为中心
+            int len2=expendaroundcenter(s,i,i+1);//两个元素为中心
+            mlen=max(max(len1,len2),mlen);
+            if(mlen>end-start+1)
+            {
+                start=i-(mlen-1)/2;
+                end=i+mlen/2;
+            }
+        }
+        return s.substr(start,mlen);
+
+ ```
+ 回文字符串的判断方法：
+ ```
+  int expendaroundcenter(string s,int left,int right)
+    //计算以left和right为中心的回文串长度
+    {
+        int L=left;
+        int R=right;
+        while(L>=0 && R<s.length() && s[R]==s[L])
+        {
+            L--;
+            R++;
+        }
+        return R-L-1;
+    }
+ ```
