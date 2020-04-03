@@ -356,6 +356,7 @@ unordered_map<string, vector<string>> table = {
 state = table[state][get_col(c)];//使用两个下表来进行访问，第一个访问键，第二个访问值中的不同元素
 ```
 3.**判断字符串中字符为空格和数字的方法**
+
 (1)方法一：使用isspace()和isdigit()函数
 ```
 char c;
@@ -369,7 +370,7 @@ for(int i = 0; i<str.length(); i++){
     if(str[i] >= '0'&& str[i] <= '9'){...}//判断是否为整数
 }
 ```
-关注**str[i] >= '0'&& str[i] <= '9'**
+关注**guanzhu**
 
 4.字符串转数字
 ```
