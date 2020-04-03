@@ -228,7 +228,7 @@ result->next = l1 == NULL? l2:l1;//在这一步再将更长一些的链表补在
 
   -----待完善
   
-2.vector和set之间数据的转化方法
+2.**vector和set之间数据的转化方法**
 ```
 vector<string> result;//最终输出结果
 set<string> res;//使用set的性质去除重复字符串排列
