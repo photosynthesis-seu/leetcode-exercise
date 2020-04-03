@@ -376,3 +376,13 @@ for(int i = 0; i<str.length(); i++){
 ```
 int digit =str[i] - '0';
 ```
+## No.15 三数之和
+
+**此题自己的暴力递归方法存在一些问题，待解决**
+
+1.vector容器中所有元素求和的函数：accmulate()
+```
+vector<int> res;
+int sum = accumulate(res.begin(),res.end(),0);
+```
+2.vector中的pop操作，直接就是res.pop_back();
