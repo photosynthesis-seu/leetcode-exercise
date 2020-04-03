@@ -387,7 +387,7 @@ int sum = accumulate(res.begin(),res.end(),0);
 ```
 2.vector中的pop操作，直接就是res.pop_back();
 
-3.**三数之和/若干数之和的问题典型解决思路**
+**3.三数之和/若干数之和的问题典型解决思路**
 
    **双指针！！+排序！！**
    
@@ -410,3 +410,7 @@ int sum = accumulate(res.begin(),res.end(),0);
     + 若和大于 0，说明*nums[R]* 太大，R 左移。
       
     + 若和小于 0，说明*nums[L]* 太小，L 右移。
+
+4.vector中sort函数可以实现排序
+
+sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个参数默认升序排列
