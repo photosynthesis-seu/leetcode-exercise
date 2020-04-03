@@ -313,4 +313,65 @@ void paixu(std::string s, int start, std::set<std::string> &res) {
     }
 }
 ```
+## No.8 字符串转整数
 
+1.C++中ostringstream、istringstream、stringstream三个类
+
+istringstream类用于执行C++风格的串流的输入操作; ostringstream类用于执行C风格的串流的输出操作; strstream类同时可以支持C风格的串流的输入输出操作。
+
+**istringstream对象 可以绑定一行字符串，然后以空格为分隔符把该行分隔开来**
+
+```
+#include<iostream>  
+#include<sstream>        //istringstream 必须包含这个头文件
+#include<string>  
+using namespace std;  
+int main()  
+{  
+    string str="i an a boy";  
+    istringstream is(str);  
+    string s;  
+    while(is>>s)  
+    {  
+        cout<<s<<endl;  
+    }  
+} 
+```
+输出是
+```
+i
+am
+a
+boy
+```
+2.uordered_map
+用来存储键和值，面对嵌套vector时的访问，可以用下面的例子来展示：
+```
+unordered_map<string, vector<string>> table = {
+        {"start", {"start", "signed", "in_number", "end"}},
+        {"signed", {"end", "end", "in_number", "end"}},
+        {"in_number", {"end", "end", "in_number", "end"}},
+        {"end", {"end", "end", "end", "end"}}
+    };//键是string，值是vector<string>
+state = table[state][get_col(c)];//使用两个下表来进行访问，第一个访问键，第二个访问值中的不同元素
+```
+3.**判断字符串中字符为空格和数字的方法**
+(1)方法一：使用isspace()和isdigit()函数
+```
+char c;
+int i = isspace(c);//是否为空格的判断函数
+int j = isdigit(c);//是否为数字的判断函数
+```
+(2)方法二：直接判断
+```
+for(int i = 0; i<str.length(); i++){
+    if(str[i] == " "){...}//判断是否为空格
+    if(str[i] >= '0'&& str[i] <= '9'){...}//判断是否为整数
+}
+```
+关注**str[i] >= '0'&& str[i] <= '9'**
+
+4.字符串转数字
+```
+int digit =str[i] - '0';
+```
