@@ -452,4 +452,31 @@ int trap(vector<int>& height) {
     }  
 ```
 
+## No.72 编辑两个单词的距离
+
+1.题目要求：
+```
+输入: word1 = "horse", word2 = "ros"
+输出: 3
+解释: 
+horse -> rorse (将 'h' 替换为 'r')
+rorse -> rose (删除 'r')
+rose -> ros (删除 'e')
+```
+2.分析（**使用动态规划！！**）
+
+我们可以把大问题拆分为小问题，**定义cost[i][j]** 为word1的前i个字符变为word2的前j个字符时需要消耗的步骤。我们假定了此题单词的转化是按顺序进行的！
+
++ 替换的情况：当word1中的前i-1个就可以变换为word2中的前j-1个，那么我们只要根据word1中的第i个是否等于word2中的第j个字符进行判断，如果相等，那么
+
+cost[i][j]=cost[i-1][j-1];否则，cost[i][j]=cost[i-1][j-1]+1,加的1就是我们将word1中第i个字符替换为word2中第j个的消耗。
++ 删除的情况：当word1中的前i-1个就可以变换为word2中的前j个时，我们需要将word1中的第i个字符删除，cost[i][j]=cost[i-1][j]+1
++ 增加的情况：当word1中的前i个可以变换为word2中的前j-1个时，我们需要将word1中的第i个字符后面增加一个，cost[i][j]=cost[i][j-1]+1
++ **注意**，cost数组索引均是从1开始，而word中索引是0开始的，所以word1[i-1] == word2[j-1]，就是在判断word1中的第i个字符是否等于word2中第j个字符。
+
+所以，cost[i][j]取上列的最小值即可。
+
+3.展示horse如何转化为ros
+
+![image]()
 
