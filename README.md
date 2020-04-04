@@ -414,3 +414,42 @@ int sum = accumulate(res.begin(),res.end(),0);
 4.vector中sort函数可以实现排序
 
 sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个参数默认升序排列
+
+## No42. 接雨水问题
+
+1.思路分析：
+
+对于数组中的每个元素，我们找出下雨后水能达到的最高位置，等于两边最大高度的较小值减去当前高度的值。
+
++ 找到数组中从下标 i 到最左端最高的条形块高度 *left_max*。
++ 找到数组中从下标 i 到最右端最高的条形块高度 *right_max*。
++ 扫描数组 *height* 并更新答案：
+  - 累加 *result += min(Left_Max[i],Right_Max[i]) - height[i]*
+  
+2.动态规划的实现（**注意利用备忘录！！**）
+
+```
+int trap(vector<int>& height) {
+        if(height.size() == 0 ||height.size() == 1||height.size() == 2){
+            return 0;
+        }
+        int result = 0;
+        int size = height.size();
+        vector<int>Left_Max(size);//动态规划，两个备忘录
+        vector<int>Right_Max(size);//存放每个柱子左边和右边的最大高度
+        Left_Max[0] = height[0];
+        for(int i = 1; i < size-1;i++){
+                Left_Max[i] = max(Left_Max[i-1],height[i]);
+            }//注意算柱子左边最高的柱子时，是从1开始遍历到size-1
+        Right_Max[size-1] = height[size-1];
+        for(int i = size - 2; i > 0; i--){
+                Right_Max[i] = max(Right_Max[i+1],height[i]);
+            }//柱子右边最高的柱子时是从size-2开始遍历的，i--。要注意左右区分
+        for(int i = 1;i < size-1;i++ ){
+        result += min(Left_Max[i],Right_Max[i]) - height[i]; //木桶效应
+        }
+         return result;
+    }  
+```
+
+
