@@ -555,7 +555,7 @@ for (int k = 2; k <= K; k++) { // 遍历所有鸡蛋、楼层高度可能，然�
         return middleResults[K][N];
 ```
 3.一种使用二分查找+动态规划的方法：
-![image]()
+![image](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/images/50768703-58887400-12bc-11e9-881b-92ceb12c9cfe.png)
 ```
 class Solution {
     Map<Integer, Integer> cache = new HashMap<>();
