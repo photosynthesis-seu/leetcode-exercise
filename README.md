@@ -509,3 +509,34 @@ int minDistance(string word1, string word2) {
     }
 ```
 
+## 难-No.887 鸡蛋掉落
+
+1.**典型的动态规划**
+
++ 对动态规划问题，直接套框架即可：这个问题有什么「状态」，有什么「选择」，然后穷举。
+
++ 「状态」很明显，就是当前拥有的鸡蛋数 K 和需要测试的楼层数 N。随着测试的进行，鸡蛋个数可能减少，楼层的搜索范围会减小，这就是状态的变化。
+
++ 「选择」其实就是去选择哪层楼扔鸡蛋。线性扫描选择一层层向上测试。不同的选择会造成状态的转移。
+
+  明确了「状态」和「选择」，动态规划的基本思路就形成了：肯定是个二维的 dp 数组或者带有两个状态参数的 dp 函数来表示状态转移；外加一个 for 循环来遍历所有选择，择最优的选择更新状态：
+```
+class Solution {
+    public int superEggDrop(int K, int N) {
+        return Solution.recursive(K, N);
+    }
+    
+    public static int recursive(int K, int N) {
+        if (N == 0 || N == 1 || K == 1) {
+            return N;
+        }
+
+        int minimun = N;
+        for (int i = 1; i <= N; i++) {
+            int tMin = Math.max(Solution.recursive(K - 1, i - 1), Solution.recursive(K, N - i));
+            minimun = Math.min(minimun, 1 + tMin);
+        }
+        return minimun;
+    }
+};
+```
