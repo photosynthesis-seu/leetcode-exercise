@@ -540,3 +540,57 @@ class Solution {
     }
 };
 ```
+2.一种暴力的带备忘录的动态规划
+```
+for (int k = 2; k <= K; k++) { // 遍历所有鸡蛋、楼层高度可能，然后使用备忘录记录每种可能的最优解
+            for (int n = 1; n <= N; n++) {
+                int tMinDrop = N * N;
+                for (int x = 1; x <= n; x++) {
+                    tMinDrop = Math.min(tMinDrop, 1 + Math.max(middleResults[k - 1][x - 1], middleResults[k][n - x]));
+                }
+                middleResults[k][n] = tMinDrop;//备忘录记录结果
+            }
+        }
+
+        return middleResults[K][N];
+```
+3.一种使用二分查找+动态规划的方法：
+![image]()
+```
+class Solution {
+    Map<Integer, Integer> cache = new HashMap<>();
+    
+    public int superEggDrop(int K, int N) {
+        if (N == 0)
+            return 0;
+        else if (K == 1)
+            return N;
+
+        Integer key = N * 1000 + K; // K <= 100
+        if (cache.containsKey(key))
+            return cache.get(key);
+
+        int low = 1, high = N;
+        while (low + 1 < high) {
+            int middle = (low + high) / 2;
+            int lowVal = superEggDrop(K - 1, middle - 1);
+            int highVal = superEggDrop(K, N - middle);
+
+            if (lowVal < highVal)
+                low = middle;
+            else if (lowVal > highVal)
+                high = middle;
+            else
+                low = high = middle;
+        }
+        int minimum = 1 + Math.min(
+                Math.max(superEggDrop(K - 1, low - 1), superEggDrop(K, N - low)),
+                Math.max(superEggDrop(K - 1, high - 1), superEggDrop(K, N - high))
+        );
+
+        cache.put(key, minimum);
+
+        return cache.get(key);
+    }
+};
+```
