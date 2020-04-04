@@ -467,9 +467,7 @@ rose -> ros (删除 'e')
 
 我们可以把大问题拆分为小问题，**定义cost[i][j]** 为word1的前i个字符变为word2的前j个字符时需要消耗的步骤。我们假定了此题单词的转化是按顺序进行的！
 
-+ 替换的情况：当word1中的前i-1个就可以变换为word2中的前j-1个，那么我们只要根据word1中的第i个是否等于word2中的第j个字符进行判断，如果相等，那么
-
-cost[i][j]=cost[i-1][j-1];否则，cost[i][j]=cost[i-1][j-1]+1,加的1就是我们将word1中第i个字符替换为word2中第j个的消耗。
++ 替换的情况：当word1中的前i-1个就可以变换为word2中的前j-1个，那么我们只要根据word1中的第i个是否等于word2中的第j个字符进行判断，如果相等，那么cost[i][j]=cost[i-1][j-1];否则，cost[i][j]=cost[i-1][j-1]+1,加的1就是我们将word1中第i个字符替换为word2中第j个的消耗。
 + 删除的情况：当word1中的前i-1个就可以变换为word2中的前j个时，我们需要将word1中的第i个字符删除，cost[i][j]=cost[i-1][j]+1
 + 增加的情况：当word1中的前i个可以变换为word2中的前j-1个时，我们需要将word1中的第i个字符后面增加一个，cost[i][j]=cost[i][j-1]+1
 + **注意**，cost数组索引均是从1开始，而word中索引是0开始的，所以word1[i-1] == word2[j-1]，就是在判断word1中的第i个字符是否等于word2中第j个字符。
@@ -478,5 +476,36 @@ cost[i][j]=cost[i-1][j-1];否则，cost[i][j]=cost[i-1][j-1]+1,加的1就是我�
 
 3.展示horse如何转化为ros
 
-![image]()
+![image](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/images/QQ%E5%9B%BE%E7%89%8720200404171329.png)
+
+4.实现
+```
+int minDistance(string word1, string word2) {
+        // 对于每个状态下，都有三种选择，替换、删除、插入
+        int m = word1.size();
+        int n = word2.size();
+        vector<vector<int>> cost(m+1, vector<int>(n+1,0));
+        // 必须具有0->0 ，消耗为0，这里索引是从1开始的。
+        // word1:1..m  ; word2:1..n
+        for(int i=0;i<=m;i++){
+            cost[i][0] = i;// word2是0，那么word1中的i个要全部删除
+        }
+        for(int j=0;j<=n;j++){
+            cost[0][j] = j;// word1是0，那么word1增加每一个word2的字符个数j
+        }
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                int min_ = 1999;
+                if(word1[i-1] == word2[j-1]){
+                    // 因为i和j是从1开始计数，对于word索引要-1
+                    min_ = cost[i-1][j-1];
+                }
+                min_ = min(min_, cost[i-1][j-1]+1);// i替换j
+                min_ = min(min_, cost[i-1][j]+1);// 删除i
+                cost[i][j] = min(min_, cost[i][j-1]+1);// 增加
+            }
+        }
+        return cost[m][n];
+    }
+```
 
