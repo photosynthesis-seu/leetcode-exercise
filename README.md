@@ -595,3 +595,54 @@ class Solution {
     }
 };
 ```
+## No.460-LFU缓存
+
+1.首先需要定义一个缓存的数据结构
+```
+struct Node {
+    int cnt;//缓存使用频率
+    int time;//缓存使用时间
+    int key, value;
+    
+    // 我们需要实现一个 Node 类的比较函数
+    // 将 cnt（使用频率）作为第一关键字，time（最近一次使用的时间）作为第二关键字
+    // 下面是 C++ 语言的一个比较函数的例子
+    bool operator< (const Node& rhs) const {
+        return cnt == rhs.cnt ? time < rhs.time : cnt < rhs.cnt;
+    }
+};
+```
+2.比较直观的想法就是用哈希表 key_table 以键 key 为索引存储缓存，建立一个平衡二叉树 S 来保持缓存。在 C++ 中，可以使用 STL 提供的 std::set 类，set 背后的实现是红黑树：
+
++ 对于 get(key) 操作，只要查看一下哈希表 key_table 是否有 key 这个键即可，有的话需要同时更新哈希表和集合中该缓存的使用频率以及使用时间，否则返回 -1。
++ 对于 put(key, value) 操作，首先需要查看 key_table 中是否已有对应的键值。如果有的话操作基本等同于 get(key)，不同的是需要更新缓存的 value 值。如果没有的话相当于是新插入一个缓存，这时候需要先查看是否达到缓存容量 capacity，如果达到了的话，需要删除最近最少使用的缓存，即平衡二叉树中最左边的结点，同时删除 key_table 中对应的索引，最后向 key_table 和 S 插入新的缓存信息即可。
+```
+class LFUCache {
+    // 缓存容量，时间戳
+    int capacity, time;
+    unordered_map<int, Node> key_table;
+    set<Node> S;
+public:
+    LFUCache(int _capacity) {
+        capacity = _capacity; time = 0;key_table.clear(); S.clear();
+    }
+    
+    int get(int key) {
+        if (capacity == 0) return -1;
+        auto it = key_table.find(key);
+        // 如果哈希表中没有键 key，返回 -1
+        if (it == key_table.end()) return -1;
+        // 从哈希表中得到旧的缓存
+        Node cache = it -> second;
+        // 从平衡二叉树中删除旧的缓存
+        S.erase(cache);
+        // 将旧缓存更新
+        cache.cnt += 1;
+        cache.time = ++time;
+        // 将新缓存重新放入哈希表和平衡二叉树中
+        S.insert(cache);
+        it -> second = cache;
+        return cache.value;
+    }......
+ }
+```
