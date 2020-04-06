@@ -731,3 +731,8 @@ sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
         return x == revertedNumber || x == revertedNumber/10;
     }
 ```
+## No.300 最长递增子序列（经典动态规划）
+
+1.关键在于(1)如何定义dp[i]是什么，也就是确定最优子结构；(2)如何建立状态转移方程；
+
+这个是[!最长递增子序列](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1%EF%BC%9A%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97.md)的解答
