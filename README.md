@@ -654,6 +654,15 @@ public:
 
 只有当我们向上移动到最上面的行或向下移动到最下面的行时，当前方向才会发生改变。
 
+2.一种遍历字符串和字符串vector中字符串的方法：
+
+```
+string s;
+vector<string> rows;
+for (char c : s) {...}
+for (string row : rows){...}
+```
+
 2.具体实现
 ```
 class Solution {
