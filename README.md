@@ -735,4 +735,32 @@ sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
 
 1.关键在于(1)如何定义dp[i]是什么，也就是确定最优子结构；(2)如何建立状态转移方程；
 
-这个是[!最长递增子序列](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1%EF%BC%9A%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97.md)的解答
+这个是[最长递增子序列](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1%EF%BC%9A%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97.md)的解答
+
+2.我们可以看到：
+
++ 定义：dp[i] 表示以 nums[i] 这个数结尾的最长递增子序列的长度，这样设计可能算法上有点重叠，但是比较简练，且每个子问题肯定是最优解。
++ 状态转移：例如nums={1,4,3,4,2,3}，假设已知dp[0]~dp[4](**类似数学归纳法**),求dp[5]。既然是递增子序列，nums[5]=3,我们只要找到前面那些结尾比 3 小的子序列，然后把 3 接到最后，就可以形成一个新的递增子序列，而且这个新的子序列长度加1。
+
+当然，可能形成很多种新的子序列，但是我们只要最长的，把最长子序列的长度作为 dp[5] 的值即可。
+
+3.代码实现
+```
+public int lengthOfLIS(int[] nums) {
+    int[] dp = new int[nums.length];
+    // dp 数组全都初始化为 1
+    Arrays.fill(dp, 1);
+    for (int i = 0; i < nums.length; i++) {
+        for (int j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) 
+                dp[i] = Math.max(dp[i], dp[j] + 1);
+        }
+    }
+    
+    int res = 0;
+    for (int i = 0; i < dp.length; i++) {
+        res = Math.max(res, dp[i]);
+    }
+    return res;
+}
+```
