@@ -687,3 +687,22 @@ public:
     }
 };
 ```
+## No.7 整数反转
+
+1.字符串转整数的函数
+
+C 库函数 int atoi(const char *str) 把参数 str 所指向的字符串转换为一个整数（类型为 int 型）。
+
+**Linux内核中只有atoi()函数，被包含在stdlib.h头文件中，而没有itoa()函数**
+
+2.整数转字符串的函数
+
+char *itoa( int value, char *string,int radix);
+
+原型说明：value：欲转换的数据;string：目标字符串的地址。radix：转换后的进制数，可以是10进制、16进制等。
+
+**itoa()并不是一个标准的C函数**，它是Windows特有的.如果要写跨平台的程序，标准库中有sprintf，用法跟printf类似：
+```
+char str[255];
+sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
+```
