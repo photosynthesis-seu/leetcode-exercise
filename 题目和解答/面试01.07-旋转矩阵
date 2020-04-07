@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int N = matrix[0].size();
+        if(N==0 || N==1){
+            return;
+        }
+        vector<vector<int>> res(N,vector<int>(N));
+        //vector<vector<int>> res;
+        for(int i = 0; i<N; i++){
+            for(int j = N-1; j>=0; j--){
+                res[i].push_back(matrix[j][i]);//必须用下面代码，此行代码的问题是由于已经初始化，push_back会从res[0][N]开始装填，导致前面res[0][0]~res[0][N-1]全是0.
+                res[i][N-1-j]=matrix[j][i];
+            }
+        }
+        //matrix.clear();
+        matrix = res;
+    }
+};
