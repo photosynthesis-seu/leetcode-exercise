@@ -844,4 +844,59 @@ public:
 }
 };
 ```
+## No.1143 最长公共子序列
 
+1.题目要求
+```
+输入: str1 = "abcde", str2 = "ace" 
+输出: 3  
+解释: 最长公共子序列是 "ace"，它的长度是 3
+```
+
+2.**一道典型的动态规划题目**
+
+[!具体解答看这篇文章](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97.md)
+
+3.最长公共子序列（Longest Common Subsequence，简称 LCS）是一道非常经典的面试题目，因为它的解法是典型的二维动态规划，大部分比较困难的字符串问题都和这个问题一个套路，比如说No.72 编辑距离。而且，这个算法稍加改造就可以用于解决其他问题，所以说 LCS 算法是值得掌握的。
+
+4.**第一步**，一定要明确**dp 数组的含义**。对于两个字符串的动态规划问题，套路是通用的。比如说对于字符串 s1 和 s2，一般来说都要构造一个这样的 DP table.
+
+**第二步**，定义 base case。我们专门让索引为 0 的行和列表示空串，dp[0][..] 和 dp[..][0] 都应该初始化为 0，这就是 base case。
+
+比如说，按照刚才 dp 数组的定义，dp[0][3]=0 的含义是：对于字符串 "" 和 "bab"，其 LCS 的长度为 0。因为有一个字符串是空串，它们的最长公共子序列的长度显然应该是 0。
+
+**第三步**，找状态转移方程。这是动态规划最难的一步，不过好在这种字符串问题的套路都差不多，权且借这道题来聊聊处理这类问题的思路。
+
+状态转移说简单些就是做选择，比如说这个问题，是求 s1 和 s2 的最长公共子序列，不妨称这个子序列为 lcs。那么对于 s1 和 s2 中的每个字符，有什么选择？很简单，两种选择，要么在 lcs 中，要么不在。还是看代码最直观：
+```
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int length1 = text1.length();
+        int length2 = text2.length();
+        //构建 DP table 和 base case
+        vector<vector<int>> dp(length1+1,vector<int>(length2+1));
+        for(int i = 0;i<length1+1;i++){
+            dp[i][0] = 0;
+        }
+        for(int i = 0;i<length2+1;i++){
+            dp[0][i] = 0;
+        }
+        if(length1 == 0 || length2 == 0){
+            return 0;
+        }
+        //进行状态转移
+        for(int i = 1;i<length1+1;i++ ){
+            for(int j =1;j<length2+1;j++){
+                if(text1[i-1] == text2[j-1]){//找到一个 lcs 中的字符
+                    dp[i][j] = dp[i-1][j-1] +1;
+                }
+                else{
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+        return dp[length1][length2];
+    }
+};
+```
