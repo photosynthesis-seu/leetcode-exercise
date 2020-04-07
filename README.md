@@ -769,3 +769,29 @@ public int lengthOfLIS(int[] nums) {
 4.循环里面第二个循环是for (int j = 0; j < i; j++)，因为不知道也不要计算j>i时的情况。
 
 此时的dp[j]不知道，且如果nums[j]大于nums[i]，因为是求递增子序列的缘故，自会有dp[j]在之后补充。
+
+## 面试01.07 旋转矩阵
+
+1.关于利用vector<vector<int>>  vec定义一个二维矩阵，如果想获取vec的行数和列数。可以使用：
+
+vec.size()和 vec[0].size()来分别获取行数和列数。
+
+2.**一定要注意二维vector初始化后的push_back问题**
+```
+void rotate(vector<vector<int>>& matrix) {
+        int N = matrix[0].size();
+        if(N==0 || N==1){
+            return;
+        }
+        vector<vector<int>> res(N,vector<int>(N));
+        //vector<vector<int>> res;
+        for(int i = 0; i<N; i++){
+            for(int j = N-1; j>=0; j--){
+                //res[i].push_back(matrix[j][i]);//必须用下面代码，此行代码的问题是由于已经初始化，push_back会从res[0][N]开始装填，导致前面res[0][0]~res[0][N-1]全是0.
+                res[i][N-1-j]=matrix[j][i];
+            }
+        }
+        //matrix.clear();
+        matrix = res;
+    }
+```
