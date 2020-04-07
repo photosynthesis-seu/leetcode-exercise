@@ -821,5 +821,27 @@ void rotate(vector<vector<int>>& matrix) {
     - 底边宽度：相比S(i,j) 更短。因此所有消去的状态的面积都S(i,j)。
 通俗的讲，我们每次向内移动短板，所有的消去状态都不会导致丢失面积最大值 。
 
+2.算法实现
 
+**双指针算法，关键点在于如何制定双指针的移动规则**
+```
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+    int res = 0;
+    int i = 0;
+    int j = height.size() - 1;
+    while (i < j) {
+        int area = (j - i) * min(height[i], height[j]);
+        res = max(res, area);
+        if (height[i] < height[j]) {
+            i++;
+        } else {
+            j--;
+        }
+    }
+    return res;
+}
+};
+```
 
