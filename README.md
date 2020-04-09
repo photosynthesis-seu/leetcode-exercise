@@ -1050,4 +1050,49 @@ bool decision(string cur){
         return balance == 0;
     }
 ```
+4.使用递归算法的实现（偏暴力）
 
+可以直接看代码，注意递归的跳出条件、如何遍历每一种可能性；
+
+```
+void useful(vector<string>& res,string& cur,int left,int right,int n){
+        if(cur.size() == 2*n){
+            if(decision(cur)){
+                res.push_back(cur);
+            }
+            return;
+        }
+        if(left<n){
+            cur += '(';
+            useful(res,cur,left+1,right,n);
+            cur.pop_back();//关注string类型的元素添加和删除
+        }
+         if(right<left){
+            cur += ')';
+            useful(res,cur,left,right+1,n);
+            cur.pop_back();
+        }
+        return;
+    }
+```
+5.使用二叉树结构的DFS
+```
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        int lc = 0, rc = 0;
+        dfs(res, "", n, lc, rc);
+        return res;
+    }
+    void dfs(vector<string>& res, string path, int n, int lc, int rc) {
+        if (rc > lc || lc > n || rc > n) return;
+        if (lc == rc && lc == n) {
+            res.push_back(path);
+            return;
+        }
+        dfs(res, path + '(', n, lc + 1, rc);
+        dfs(res, path + ')', n, lc, rc + 1);
+    }
+};
+```
