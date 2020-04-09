@@ -1077,11 +1077,13 @@ void useful(vector<string>& res,string& cur,int left,int right,int n){
 ```
 5.**使用二叉树结构的DFS**
 
-这种方法和上面的代码异曲同工，利用了二叉树结构，更简便一些，详细请看[这篇解析](https://leetcode-cn.com/problems/generate-parentheses/solution/ru-men-ji-bie-de-hui-su-fa-xue-hui-tao-lu-miao-don/)
+(1)这种方法和上面的代码异曲同工，利用了二叉树结构，更简便一些，详细请看[这篇解析](https://leetcode-cn.com/problems/generate-parentheses/solution/ru-men-ji-bie-de-hui-su-fa-xue-hui-tao-lu-miao-don/)
 
-注意函数参数是否引用的区别！
+(2)**把有效括号的判断，简化成了这么短短的几句！ if (rc > lc || lc > n || rc > n) return;if (lc == rc && lc == n)...**
 
-**把有效括号的判断，简化成了这么短短的几句！ if (rc > lc || lc > n || rc > n) return;if (lc == rc && lc == n)...**
+(3)注意函数参数是否引用的区别！dfs(vector<string>& res, string cur, int n, int lc, int rc)和useful(vector<string>& res,string& cur,int left,int right,int n)
+  
+ 用operator+的时候, 是按值传入的, 沒有改变cur. 而push_back()时, 改变了cur。 
 ```
 class Solution {
 public:
