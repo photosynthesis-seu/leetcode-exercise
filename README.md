@@ -1015,3 +1015,39 @@ int longestPalindromeSubseq(string s) {
     return dp[0][n - 1];
 }
 ```
+## No.22 括号的生成
+
+1.题目描述：
+```
+数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+输入: 3
+输出:
+["((()))","(()())","(())()","()(())","()()()"]
+```
+
+2.注意**string类型添加和删除元素,和vector不一样**：
+```
+string s;
+s.push_back('s');
+s.pop_back('s');
+```
+
+3.如何判断生成的括号是否有效？
+
+思路核心在于左括号与右括号数量一定要相等，并且**从左往右遍历字符串时，右括号数量一定不能多于左括号数量**,经典算法如下：
+```
+bool decision(string cur){
+        int balance = 0;
+        for(int i = 0;i<cur.size();i++){
+            if(cur[i] == '('){
+                balance++;
+            }
+            else {
+                if(balance<0) return false;
+                balance--;
+            }
+        }
+        return balance == 0;
+    }
+```
+
