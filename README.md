@@ -1143,6 +1143,7 @@ void backtrack(vector<string>& ans, string cur, int open, int close, int n) {
   - f(i) = G(i-1) * G(n-i)
 + 综合两个公式可以得到 **卡特兰数** 公式：
   - G(n) = G(0) * G(n-1)+G(1) * (n-2)+...+G(n-1) * G(0)
+  
 3.实现
 ```
 int numTrees(int n) {
