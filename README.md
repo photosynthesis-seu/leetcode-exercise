@@ -1075,9 +1075,11 @@ void useful(vector<string>& res,string& cur,int left,int right,int n){
         return;
     }
 ```
-5.使用二叉树结构的DFS
+5.**使用二叉树结构的DFS**
 
 这种方法和上面的代码异曲同工，利用了二叉树结构，更简便一些，详细请看[这篇解析](https://leetcode-cn.com/problems/generate-parentheses/solution/ru-men-ji-bie-de-hui-su-fa-xue-hui-tao-lu-miao-don/)
+
+**把有效括号的判断，简化成了这么短短的几句！ if (rc > lc || lc > n || rc > n) return;if (lc == rc && lc == n)...**
 ```
 class Solution {
 public:
