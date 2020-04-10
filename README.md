@@ -1168,9 +1168,30 @@ int numTrees(int n) {
 + 从序列 1 ..n 中取出数字 i，作为当前树的树根。于是，剩余 i - 1 个元素可用于左子树，n - i 个元素用于右子树。
 如 前文所述，这样会产生 G(i - 1) 种左子树 和 G(n - i) 种右子树，其中 G 是卡特兰数。
 + 对序列 1 ... i - 1 重复上述过程，以构建所有的左子树；然后对 i + 1 ... n 重复，以构建所有的右子树。
+
 这样，我们就有了树根 i 和可能的左子树、右子树的列表。
 
 3.实现
+```
+vector<TreeNode*> helper(int start,int end){
+        vector<TreeNode*> ret;
+        if(start > end)
+            ret.push_back(nullptr);
+        
+        for(int i=start;i<=end;i++){
+            vector<TreeNode*> left = helper(start,i-1);
+            vector<TreeNode*> right = helper(i+1,end);
+            for(auto l : left){
+                for(auto r : right){
+                    TreeNode* root = new TreeNode(i);
+                    root -> left = l;
+                    root -> right = r;
+                    ret.push_back(root);
+                }
+            }
+        }
+        return ret;
+```
 
 
 
