@@ -1157,3 +1157,13 @@ int numTrees(int n) {
     }
     return dp[n];
 ```
+## No.151 反转字符串里的单词
+
+1.题目
+```
+给定一个字符串，逐个翻转字符串中的每个单词。
+输入: "  hello world!  "
+输出: "world! hello"
+输入: "a good   example"
+输出: "example good a"
+```
