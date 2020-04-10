@@ -1167,3 +1167,48 @@ int numTrees(int n) {
 输入: "a good   example"
 输出: "example good a"
 ```
+2.**stack栈的一些操作**
+```
+empty() 堆栈为空则返回真；
+pop() 移除栈顶元素 ;pop_back移除栈尾元素；
+push() 在栈顶增加元素 （增加）；
+size() 返回栈中元素数目；
+top() 返回栈顶元素，不删除（获取）；
+```
+**需要注意的是**当字符串为空时""，它也可以被压入堆栈，并且占用一个堆栈内存空间，这一点一定要注意！！
+
+3.实现简单来说是利用栈后进先出的特点实现，难点在于如何排除空格的影响。具体代码如下：
+```
+tring reverseWords(string s) {
+        stack<string> res;
+        string cur;
+        string result;
+        int length = s.size();
+        if(length == 0){
+            return result = "";
+        }
+        for(int i = 0;i<length;i++){
+            if(s[i] == ' '){
+                continue; 
+            }
+            else{
+                cur += s[i];
+            }
+            if(s[i] != ' '&&s[i+1] == ' '){
+                res.push(cur);
+                cur = "";
+            }
+        }
+        //res.push(cur);
+        if(cur != ""||res.size() == 0){
+            res.push(cur);
+         }//这个判断是为了应对s="   "；
+        while(!res.empty()){
+            string temp = res.top()+" ";
+            result += temp;
+            res.pop();
+        }
+        result.pop_back();
+        return result;
+    }
+```
