@@ -1202,13 +1202,13 @@ tring reverseWords(string s) {
         //res.push(cur);
         if(cur != ""||res.size() == 0){
             res.push(cur);
-         }//这个判断是为了应对s="   "；
+         }//这个判断是为了应对s="   "
         while(!res.empty()){
             string temp = res.top()+" ";
             result += temp;
             res.pop();
         }
-        result.pop_back();
+        result.pop_back();//可以把字符串末尾的空格pop掉。
         return result;
     }
 ```
