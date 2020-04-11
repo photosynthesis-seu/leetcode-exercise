@@ -1266,6 +1266,16 @@ line2 = {1, 1}, {0, -1}
 当斜率不存在时： 1). 两条线段斜率都不存在 2). 有一条线段斜率存在
 当斜率均存在时：1) 两条线段斜率相等 2) 两条线段斜率不相等
 ```
++ 利用直线方程求交点：
+```
+//求解斜率与纵截距
+ vector<double> getLine(vector<int> st, vector<int> ed) {
+        double k = (double) (st[1] - ed[1]) / (st[0] - ed[0]), b = st[1] - k * (double) st[0];
+        return {k, b};
+    }
+// 求交点
+ double x = (line2[1] - line1[1]) / (line1[0] - line2[0]), y = line1[0] * x + line1[1];
+```
 + 具体分情况讨论：
 ```
 1. 斜率不存在: eg. x = a;
