@@ -1292,3 +1292,6 @@ line2 = {1, 1}, {0, -1}
    2.2 两条斜率不相等
        正常求解。
 ```
+3.利用数学技巧的通用解法
+
+[确定两点之间线段的算法](https://leetcode-cn.com/problems/intersection-lcci/solution/wo-jue-de-wo-yi-jing-hen-nu-li-liao-ke-yi-jiao-zhu/)
