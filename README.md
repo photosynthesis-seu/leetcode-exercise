@@ -1311,7 +1311,7 @@ res[i] = res[i-1]+res[i-2];
 ```
 3.**排序函数sort()**
 
-**关注！**sort() 只能接受 array、vector、deque 或标准数组中的元素。
+**关注** sort() 只能接受 array、vector、deque 或标准数组中的元素。
 
 sort()默认是升序排列，可以使用great()参数实现降序排序。
 ```
