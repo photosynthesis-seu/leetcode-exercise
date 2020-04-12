@@ -1,3 +1,4 @@
+//二分查找的典型写法！！
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
