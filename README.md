@@ -1294,4 +1294,4 @@ line2 = {1, 1}, {0, -1}
 ```
 3.利用数学技巧的通用解法
 
-[确定两点之间线段的算法](https://leetcode-cn.com/problems/intersection-lcci/solution/wo-jue-de-wo-yi-jing-hen-nu-li-liao-ke-yi-jiao-zhu/)
+[确定两点之间线段的公式模型和算法](https://leetcode-cn.com/problems/intersection-lcci/solution/wo-jue-de-wo-yi-jing-hen-nu-li-liao-ke-yi-jiao-zhu/)
