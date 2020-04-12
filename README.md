@@ -1295,3 +1295,29 @@ line2 = {1, 1}, {0, -1}
 3.利用数学技巧的通用解法
 
 [确定两点之间线段的公式模型和算法](https://leetcode-cn.com/problems/intersection-lcci/solution/wo-jue-de-wo-yi-jing-hen-nu-li-liao-ke-yi-jiao-zhu/)
+
+## NO.215 数组中第k个最大元素
+
+1.题目
+```
+在未排序的数组中找到第 k 个最大的元素。请注意，你需要找的是数组排序后的第 k 个最大的元素，而不是第 k 个不同的元素。
+输入: [3,2,3,1,2,4,5,5,6] 和 k = 4
+输出: 4
+```
+2.注意一维vector的初始化和重新赋值：
+```
+vector<int> res(n+1,0);
+res[i] = res[i-1]+res[i-2];
+```
+3.**排序函数sort()**
+
+**关注！**sort() 只能接受 array、vector、deque 或标准数组中的元素。
+
+sort()默认是升序排列，可以使用great()参数实现降序排序。
+```
+ int findKthLargest(vector<int>& nums, int k) {
+        int len = nums.size();
+        sort(nums.begin(),nums.end(),greater());
+        return nums[k-1];
+    }
+```
