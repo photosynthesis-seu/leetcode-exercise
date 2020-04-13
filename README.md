@@ -1591,3 +1591,27 @@ while(!pri_queue.empty()){
         return dummy.next;  
     }
 ```
+5.两两合并的方法
+```
+ // 合并两个有序链表
+    ListNode* merge(ListNode* p1, ListNode* p2){
+        if(!p1) return p2;
+        if(!p2) return p1;
+        if(p1->val <= p2->val){
+            p1->next = merge(p1->next, p2);
+            return p1;
+        }else{
+            p2->next = merge(p1, p2->next);
+            return p2;
+        }
+    }
+
+     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        if(lists.size() == 0) return nullptr;
+        ListNode* head = lists[0];
+        for(int i = 1; i<lists.size(); ++i){
+            if(lists[i]) head = merge(head, lists[i]);
+        }
+        return head;  
+    }
+```
