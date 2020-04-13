@@ -1510,3 +1510,64 @@ priority_queue	不支持迭代器
   2->6 ]
 输出: 1->1->2->3->4->4->5->6
 ```
+2.**优先队列priority_queue**
++ priority_queue 容器适配器定义了一个元素有序排列的队列。每次弹出优先级最高的元素。
+  - priority_queue 模板有 3 个参数，其中两个有默认的参数；第一个参数是存储对象的类型，第二个参数是存储元素的底层容器，第三个参数是函数对象，它定义了一个用来决定元素顺序的断言。
+  - 模板是：
+  ```
+  template <typename T, typename Container=std::vector<T>, typename Compare=std::less<T>> class priority_queue
+  ```
++ priority_queue优先队列的实质还是堆排序，默认的优先队列是以大顶堆构造，即序列中最大数的优先级最高，通过top()可以访问当前优先级最高的数，pop()来弹出当前优先级最高的数。
+  - priority_queue的比较函数的意义与sort函数的比较函数相类似，均是当比较函数返回true时，将第一个参数放在第二个参数前面。默认比较函数为less<T>,和小于操作符的作用一样，即让较小的数放在前面。
+  - 当你调用pop()时，实际上是弹出优先队列的序列中的最后一个数(back)，而这个被弹出的数也就是priority_queue的top()。也就是说，我们所认为的top()和pop()是获取、弹出优先级最高的数，实际上这个数就是当前优先队列序列中的最后一个数。
+  - 这似乎也就不难解释cmp比较函数与优先队列返回的最大值之间的关系了：以默认的比较函数less<T>为例，它的作用是将较小的数放在前面，因此最大的数肯定就位于序列的末尾了，当调用top()函数时，返回末尾的数，也就是序列中最大的数，而pop()则弹出这个数，而这个数，通常被认为是“优先级最高”的数。
++ **自定义priority_queue的比较函数**
+  - 重载小于操作符
+  ```
+  //从小到大排列，先弹出末尾的大数，构建的是较大数优先的大根堆
+  bool operator<(const stu &p)const
+    {
+        return age<p.age;
+    }
+  ```
+  - 自定义仿函数
+  ```
+  //从大到小排列，先弹出末尾的小数，构建的是较小数优先的小根堆
+  struct cmp
+   {
+    operator ()(const stu &q,const stu &p)
+    {
+        return q.num>p.num;
+    }
+
+  ```
+[具体可以参考这篇文章](https://blog.csdn.net/qq_28114615/article/details/86495567)
+
+3.优先队列的方法
+
+建立优先队列，不需要全部元素一次性入队；只需要让链表头元素入队即可，弹出该元素后，该链表往后移。
+```
+ // 小根堆的回调函数
+    struct cmp{  
+       bool operator()(ListNode *a,ListNode *b){
+          return a->val > b->val;
+       }
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue<ListNode*, vector<ListNode*>, cmp> pri_queue;
+        // 建立大小为k的小根堆
+        for(auto elem : lists){
+            if(elem) pri_queue.push(elem);
+        }
+        // 可以使用哑节点/哨兵节点
+        ListNode dummy(-1);
+        ListNode* p = &dummy;
+        // 开始出队
+        while(!pri_queue.empty()){
+            ListNode* top = pri_queue.top(); pri_queue.pop();
+            p->next = top; p = top;
+            if(top->next) pri_queue.push(top->next);
+        }
+        return dummy.next;  
+    }
+```
