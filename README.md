@@ -1425,6 +1425,53 @@ struct Node {
 
   简单的理解，就是 emplace() 在插入元素时，是在容器的指定位置直接构造元素，而不是先单独生成，再将其复制（或移动）到容器中。因此，在实际使用中，推荐大家优先使用 emplace()。
 
+5.iterator
+
+6.实现
+
+选择有代表性的两个函数：
+```
+ void postTweet(int userId, int tweetId) {
+        if (user.find(userId) == user.end()) {
+            init(userId);
+        }
+        // 达到限制，剔除链表末尾元素
+        if (user[userId].tweet.size() == recentMax) {
+            user[userId].tweet.pop_back();//user是unordered_map
+        }
+        user[userId].tweet.push_front(tweetId);
+        tweetTime[tweetId] = ++time;
+    }
+    
+    vector<int> getNewsFeed(int userId) {
+        vector<int> ans; ans.clear();
+        for (list<int>::iterator it = user[userId].tweet.begin(); it != user[userId].tweet.end(); ++it) {
+            ans.emplace_back(*it);
+        }
+        for (int followeeId: user[userId].followee) {
+            if (followeeId == userId) continue; // 可能出现自己关注自己的情况
+            vector<int> res; res.clear();
+            list<int>::iterator it = user[followeeId].tweet.begin();
+            int i = 0;
+            // 线性归并
+            while (i < (int)ans.size() && it != user[followeeId].tweet.end()) {
+                if (tweetTime[(*it)] > tweetTime[ans[i]]) {
+                    res.emplace_back(*it);
+                    ++it;
+                } else {
+                    res.emplace_back(ans[i]);
+                    ++i;
+                }
+                // 已经找到这两个链表合起来后最近的 recentMax 条推文
+                if ((int)res.size() == recentMax) break;
+            }
+            for (; i < (int)ans.size() && (int)res.size() < recentMax; ++i) res.emplace_back(ans[i]);
+            for (; it != user[followeeId].tweet.end() && (int)res.size() < recentMax; ++it) res.emplace_back(*it);
+            ans.assign(res.begin(),res.end());
+        }
+        return ans;
+    }
+```
 
 ## No.324 摆动排序
 
