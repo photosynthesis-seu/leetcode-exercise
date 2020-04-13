@@ -1,5 +1,9 @@
 # leetcode-exercise
 # C++题目总结
+```
+已做题目：
+No.4 寻找两个数组的中位数 No.5 最长回文子串 No.1111 有效括号的嵌套深度
+```
 ## No.1111 有效括号的嵌套深度
 
 1.vector<int>等容器在声明时，**最好进行初始化** eg:vector<int> result(seq.size())；容器一般都有size()操作；
