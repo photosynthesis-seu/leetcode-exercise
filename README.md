@@ -1427,6 +1427,19 @@ struct Node {
 
 5.iterator
 
+[这里的总结很详细，一定要看！](http://c.biancheng.net/view/338.html)
+```
+容器	迭代器功能
+vector	随机访问
+deque	随机访问
+list	双向
+set / multiset	双向
+map / multimap	双向
+stack	不支持迭代器
+queue	不支持迭代器
+priority_queue	不支持迭代器
+```
+
 6.实现
 
 选择有代表性的两个函数：
