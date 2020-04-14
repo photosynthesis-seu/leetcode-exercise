@@ -1678,7 +1678,7 @@ while (l1) {
         }
         int carry = 0;
         ListNode* ans = nullptr;
-        while (!s1.empty() or !s2.empty() or carry != 0) {
+        while (!s1.empty() || !s2.empty() || carry != 0) {//排除进位和数字长度不一干扰的关键性判断！
             int a = s1.empty() ? 0 : s1.top();
             int b = s2.empty() ? 0 : s2.top();
             if (!s1.empty()) s1.pop();
