@@ -1650,7 +1650,7 @@ ListNode* curnode = new ListNode(cur);
         }
         return ans;
 ```
-+ 一种简单的遍历链表所有元素的写法:**while(l1)**
++ 一种简单的遍历链表所有元素的写法**while(l1)**
 ```
 ListNode* l1;
 stack<int> s1;
