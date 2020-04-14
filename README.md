@@ -1640,3 +1640,13 @@ while(!pri_queue.empty()){
         }
  return res->next;
 ```
++ 还有一种**尾部哨兵节点**的例子，从后往前构建链表！
+```
+ListNode* ans = nullptr;
+......
+ListNode* curnode = new ListNode(cur);
+          curnode -> next = ans;
+          ans = curnode;
+        }
+        return ans;
+```
