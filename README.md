@@ -1641,6 +1641,8 @@ while(!pri_queue.empty()){
  return res->next;
 ```
 + 还有一种**尾部哨兵节点**的例子，从后往前构建链表！
+
+**注意**尾节点可以这么定义，还不占用内存 ListNode* ans = nullptr;
 ```
 ListNode* ans = nullptr;
 ......
