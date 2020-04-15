@@ -1707,6 +1707,71 @@ while (l1) {
   - 是一种很强的约束，更好地保证程序的正确语义不被破坏。
   - 编译器可以在编译期对constexpr的代码进行非常大的优化，比如将用到的constexpr表达式都直接替换成最终结果等。
   - 相比宏来说，没有额外的开销，但更安全可靠
+  
+3.BFS方法
++ 我们可以从 00 的位置开始进行 广度优先搜索。广度优先搜索可以找到从起点到其余所有点的 最短距离，因此如果我们从 00 开始搜索，每次搜索到一个 11，就可以得到 00 到这个 11 的最短距离，也就离这个 11 最近的 00 的距离了（因为矩阵中只有一个 00）。
+
++ 思路：
+  - 对于 「Tree 的 BFS」 （典型的「单源 BFS」） 大家都已经轻车熟路了：
+    - 首先把 root 节点入队，再一层一层无脑遍历就行了。
+  - 对于 「图 的 BFS」 （「多源 BFS」） 做法其实也是一样滴～，与 「Tree 的 BFS」的区别注意以下两条就 ok 辣～
+    - Tree 只有 1 个 root，而图可以有多个源点，所以首先需要把多个源点都入队；
+    - Tree 是有向的因此不需要标识是否访问过，而对于无向图来说，必须得标志是否访问过哦！并且为了防止某个节点多次入队，需要在其入队之前就将其设置成已访问！【 看见很多人说自己的 BFS 超时了，坑就在这里哈哈哈
+
++ 举例来看
+```
+假设矩阵中有两个0，剩余的1我们用短横线表示:
+_ _ _ _ 
+_ 0 _ _   ==> 
+_ _ 0 _
+_ _ _ _
+
+_ 1 _ _         2 1 2 _         2 1 2 3
+1 0 1 _   ==>   1 0 1 2   ==>   1 0 1 2
+_ 1 0 1         2 1 0 1         2 1 0 1
+_ _ 1 _         _ 2 1 2         3 2 1 2
+```
++ 实现：
+```
+class Solution {
+private:
+    static constexpr int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        int m = matrix.size(), n = matrix[0].size();
+        vector<vector<int>> dist(m, vector<int>(n));
+        vector<vector<int>> seen(m, vector<int>(n));
+        queue<pair<int, int>> q;
+        // 将所有的 0 添加进初始队列中
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (matrix[i][j] == 0) {
+                    q.emplace(i, j);
+                    seen[i][j] = 1;
+                }
+            }
+        }
+        // 广度优先搜索
+        while (!q.empty()) {
+            auto [i, j] = q.front();
+            q.pop();
+            for (int d = 0; d < 4; ++d) {
+                int ni = i + dirs[d][0];
+                int nj = j + dirs[d][1];
+                if (ni >= 0 && ni < m && nj >= 0 && nj < n && !seen[ni][nj]) {
+                    dist[ni][nj] = dist[i][j] + 1;
+                    q.emplace(ni, nj);
+                    seen[ni][nj] = 1;
+                }
+            }
+        }
+    return dist;
+    }
+};
+```
+4.动态规划方法
+
++ 
 
 ## No.324 摆动排序
 
