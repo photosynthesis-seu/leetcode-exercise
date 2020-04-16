@@ -1878,6 +1878,7 @@ if (intervals.size() == 0) {
  res[0].push_back(5);//是对的，但是赋值位置在res[0][cols]
  res[0][0]=5;//是对的
  ```
++ vector中也有front()和back()，分别表示vector中的第一个和最后一个元素。
 
 3.分析
 + 排序后比较右端点数大小。我们用数组 merged 存储最终的答案。
