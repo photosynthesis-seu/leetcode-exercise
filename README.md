@@ -1845,6 +1845,45 @@ public:
     }
 };
 ```
+## No.56 合并区间
+
+1.题目
+```
+给出一个区间的集合，请合并所有重叠的区间。区间集合的顺序是不规则的。
+输入: [[1,3],[2,6],[8,10],[15,18]]
+输出: [[1,6],[8,10],[15,18]]
+解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+```
+2.**空 vector和vector初始化的一些知识**
+
+3.分析
++  方法一：排序后比较右端点数大小。我们用数组 merged 存储最终的答案。
+  - 首先，我们将列表中的区间**按照左端点升序排序**。然后我们将第一个区间加入 merged 数组中，并按顺序依次考虑之后的每个区间：
+  - 如果**当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合**，我们可以直接将这个区间加入数组 merged 的末尾；
+  - 否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
++ 实现：
+```
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        if (intervals.size() == 0) {
+            return {};
+        }
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>> merged;
+        for (int i = 0; i < intervals.size(); ++i) {
+            int L = intervals[i][0], R = intervals[i][1];
+            if (!merged.size() || merged.back()[1] < L) {
+                merged.push_back({L, R});
+            }
+            else {
+                merged.back()[1] = max(merged.back()[1], R);
+            }
+        }
+        return merged;
+    }
+};
+```
 
 
 ## No.324 摆动排序
