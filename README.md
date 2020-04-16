@@ -1865,12 +1865,19 @@ if (intervals.size() == 0) {
 ```
 + vector初始化的一些问题
   - **如果声明vector时没有进行初始化，那么后面的赋值操作只可以有push_back，而不可以用"="赋值**
-  且赋值时，vector变量后面不可以加下标!
+  
+  并且赋值时，vector变量后面不可以加下标!
   ```
   vector<vector<int>> res;
   res.push_back(intervals[i]);//这样是可以的！
   res[i].push_back(intervals[i]);//这样是错误的！因为没初始化，不可以在res后添加下标 
   ```
+ - 如果声明时vector进行了初始化，**那么push_back操作将会在原初始化大小的后面添加元素；想改变初始化大小内的元素需要用"="!**
+ ```
+ vector<vector<int>> res(rows,vector<int>(cols));//rows X cols的二维vector，里面元素没赋值时，初始化为0
+ res[0].push_back(5);//是对的，但是赋值位置在res[0][cols]
+ res[0][0]=5;//是对的
+ ```
 
 3.分析
 + 排序后比较右端点数大小。我们用数组 merged 存储最终的答案。
