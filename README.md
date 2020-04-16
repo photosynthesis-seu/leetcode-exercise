@@ -1858,11 +1858,19 @@ public:
 + 空vector的判断和返回:
 
 ```
-vector<vector<int>>& intervals
+vector<vector<int>> intervals;
 if (intervals.size() == 0) {
             return {};
         }
 ```
++ vector初始化的一些问题
+  - **如果声明vector时没有进行初始化，那么后面的赋值操作只可以有push_back，而不可以用"="赋值**
+  且赋值时，vector变量后面不可以加下标!
+  ```
+  vector<vector<int>> res;
+  res.push_back(intervals[i]);//这样是可以的！
+  res[i].push_back(intervals[i]);//这样是错误的！因为没初始化，不可以在res后添加下标 
+  ```
 
 3.分析
 + 排序后比较右端点数大小。我们用数组 merged 存储最终的答案。
