@@ -1855,6 +1855,14 @@ public:
 解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
 ```
 2.**空 vector和vector初始化的一些知识**
++ 空vector的判断和返回:
+
+```
+vector<vector<int>>& intervals
+if (intervals.size() == 0) {
+            return {};
+        }
+```
 
 3.分析
 + 排序后比较右端点数大小。我们用数组 merged 存储最终的答案。
