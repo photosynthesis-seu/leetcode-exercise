@@ -2061,6 +2061,19 @@ public:
         return false;
     }
 ```
+3.**还有一种更极致的判断方法！**
+```
+bool canJump(vector<int>& nums) 
+{
+	int k = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (i > k) return false;
+		k = max(k, i + nums[i]);
+	}
+	return true;
+}
+```
 
 ## No.324 摆动排序
 
