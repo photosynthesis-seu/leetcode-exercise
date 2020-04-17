@@ -2039,6 +2039,28 @@ public:
 输出: true
 解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。
 ```
+2.分析
++ 可以使用贪心算法
+  - 依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。对于当前遍历到的位置 xx，如果它在**最远可以到达**的位置的范围内，那么我们就可以从起点通过若干次跳跃到达该位置，因此我们可以用**x+nums[x] 更新最远可以到达**的位置。
+  - 在遍历的过程中，如果**最远可以到达的位置大于等于数组中的最后一个位置**，那就说明最后一个位置可达，我们就可以直接返回 True 作为答案。反之，如果在遍历结束后，最后一个位置仍然不可达，我们就返回 False 作为答案。
++ 实现
+```
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        int rightmost = 0;
+        for (int i = 0; i < n; ++i) {
+            if (i <= rightmost) {
+                rightmost = max(rightmost, i + nums[i]);
+                if (rightmost >= n - 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+```
 
 ## No.324 摆动排序
 
