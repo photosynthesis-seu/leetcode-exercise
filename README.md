@@ -2124,7 +2124,56 @@ public:
   - left_sum 为最大子数组前 n/2 个元素，在索引为 (left + right) / 2 的元素属于左子数组。
   - right_sum 为最大子数组的右子数组，为最后 n/2 的元素。
   - cross_sum 是包含左右子数组且含索引 (left + right) / 2 的最大值。
++ 实现：
+```
+class Solution
+{
+public:
+    int maxSubArray(vector<int> &nums)
+    {
+        //类似寻找最大最小值的题目，初始值一定要定义成理论上的最小最大值
+        int result = INT_MIN;
+        int numsSize = int(nums.size());
+        result = maxSubArrayHelper(nums, 0, numsSize - 1);
+        return result;
+    }
+    int maxSubArrayHelper(vector<int> &nums, int left, int right)
+    {
+        if (left == right)
+        {
+            return nums[left];
+        }
+        int mid = (left + right) / 2;
+        int leftSum = maxSubArrayHelper(nums, left, mid);
+        //注意这里应是mid + 1，否则left + 1 = right时，会无限循环
+        int rightSum = maxSubArrayHelper(nums, mid + 1, right);
+        int midSum = findMaxCrossingSubarray(nums, left, mid, right);
+        int result = max(leftSum, rightSum);
+        result = max(result, midSum);
+        return result;
+    }
+    int findMaxCrossingSubarray(vector<int> &nums, int left, int mid, int right)
+    {
+        int leftSum = INT_MIN;
+        int sum = 0;
+        for (int i = mid; i >= left; i--)
+        {
+            sum += nums[i];
+            leftSum = max(leftSum, sum);
+        }
 
+        int rightSum = INT_MIN;
+        sum = 0;
+        //注意这里i = mid + 1，避免重复用到nums[i]
+        for (int i = mid + 1; i <= right; i++)
+        {
+            sum += nums[i];
+            rightSum = max(rightSum, sum);
+        }
+        return (leftSum + rightSum);
+    }
+};
+```
 
 
 ## No.324 摆动排序
