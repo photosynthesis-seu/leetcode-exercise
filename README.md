@@ -2283,6 +2283,35 @@ int getMaxRepetitions(string s1, int n1, string s2, int n2) {
 输出: 1
 解释: 移除 [1,3] 后，剩下的区间没有重叠。
 ```
+2.思路
++ 正确的思路其实很简单，可以分为以下三步：
+  - 从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。
+  - 把所有与 x 区间相交的区间从区间集合 intvs 中删除。
+  - 重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。
+  - 把这个思路实现成算法的话，可以按每个区间的 end 数值升序排序，因为这样处理之后实现步骤 1 和步骤 2 都方便很多。
++ 代码
+```
+ static bool cmp(vector<int>& a,vector<int>& b){
+            return a[1]<b[1];
+        }
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+        int len = intervals.size();
+        if(len==0) return 0;
+        sort(intervals.begin(),intervals.end(),cmp);
+        int count = 1;
+        int end = intervals[0][1];
+        for(int i = 0;i<len;i++){
+            if(intervals[i][0]>=end){
+                count++;
+                end = intervals[i][1];
+            }
+        }
+        int res = len - count;
+        return res;
+    }
+```
+
+
 
 ## No.324 摆动排序
 
