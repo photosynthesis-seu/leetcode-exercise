@@ -2283,7 +2283,14 @@ int getMaxRepetitions(string s1, int n1, string s2, int n2) {
 输出: 1
 解释: 移除 [1,3] 后，剩下的区间没有重叠。
 ```
-2.思路
+2.vector中自定义sort函数的比较函数
+```
+static bool cmp(vector<int>& a,vector<int>& b){
+            return a[1]<b[1];//以一维数组第二个元素比较大小
+        };
+```
+
+3.思路
 + 正确的思路其实很简单，可以分为以下三步：
   - 从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。
   - 把所有与 x 区间相交的区间从区间集合 intvs 中删除。
