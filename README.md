@@ -2189,7 +2189,11 @@ s2 ="ab",n2 = 2
 ```
 2.**map中find()和count()的区别——如何判断unordered_map 判断某个键是否存在**
 + unordered_map c++ reference 是c++ 哈希表的实现模板，在头文件<unordered_map>中，存储key-value的组合，unordered_map可以在常数时间内，根据key来取到value值。
-+ 
++ find()函数
+  - 返回的是被查找元素的位置，没有则返回map.end()。。
+  - 因此可以通过map.find(key) == map.end()来判断，key是否存在于当前的unordered_map中。
++ count()函数
+ - count函数用以统计key值在unordered_map中出现的次数。实际上，c++ unordered_map不允许有重复的key。因此，如果key存在，则count返回1，如果不存在，则count返回0.
 
 
 3.分析
