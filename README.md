@@ -2284,6 +2284,8 @@ int getMaxRepetitions(string s1, int n1, string s2, int n2) {
 解释: 移除 [1,3] 后，剩下的区间没有重叠。
 ```
 2.vector中自定义sort函数的比较函数
+
+**注意是用vector数组第二个元素大小降序排列，且注意函数前加static**
 ```
 static bool cmp(vector<int>& a,vector<int>& b){
             return a[1]<b[1];//以一维数组第二个元素比较大小
