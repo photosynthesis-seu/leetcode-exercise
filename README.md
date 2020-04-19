@@ -2194,6 +2194,10 @@ s2 ="ab",n2 = 2
   - 因此可以通过map.find(key) == map.end()来判断，key是否存在于当前的unordered_map中。
 + count()函数
  - count函数用以统计key值在unordered_map中出现的次数。实际上，c++ unordered_map不允许有重复的key。因此，如果key存在，则count返回1，如果不存在，则count返回0.
++ map与unordered_map相比：
+  - map底层实现为红黑数，undered_map底层实现为哈希表，两者均不能有重复的建，均支持[]运算符
++ map与multimap相比：
+  - 两者底层实现均为红黑树，但是multimap支持重复的键，不支持[]运算符
 
 
 3.分析
