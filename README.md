@@ -18,6 +18,7 @@ No.516 最长回文子序列 难-No.887 鸡蛋掉落 No.1111 有效括号的嵌�
 
 剑指Offer No.38 字符串的排列
 ```
+[岛屿问题系列](https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/)
 ## No.1111 有效括号的嵌套深度
 
 1.vector<int>等容器在声明时，**最好进行初始化** eg:vector<int> result(seq.size())；容器一般都有size()操作；
