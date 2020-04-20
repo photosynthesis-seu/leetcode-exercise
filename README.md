@@ -2368,8 +2368,6 @@ res.push(make_pair(i,j));
 最终岛屿的数量就是我们进行广度优先搜索的次数。
  - 实现
  ```
-class Solution {
-public:
     int numIslands(vector<vector<char>>& grid) {
         int rows = grid.size();
         if(rows == 0){
@@ -2410,7 +2408,6 @@ public:
         }
         return count;
     }
-};
  ```
 
 ## No.324 摆动排序
