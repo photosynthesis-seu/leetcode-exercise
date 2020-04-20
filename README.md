@@ -2319,8 +2319,99 @@ static bool cmp(vector<int>& a,vector<int>& b){
         return res;
     }
 ```
+## No.200 岛屿数量
 
-
+1.题目
+```
+你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+此外，你可以假设该网格的四条边均被水包围。
+输入:
+11110
+11010
+11000
+00000
+输出: 1
+输入:
+11000
+11000
+00100
+00011
+输出: 3
+```
+2.一些技巧
++ **队列中嵌套pair的声明和赋值**：
+```
+queue<pair<int,int>> res;
+res.push(make_pair(i,j));
+```
++ **在二维vector里面判断空集时，一定要在调用vector下标前判断！！**
+ - 以下错误！
+ ```
+ int rows = grid.size();
+ int cols = grid[0].size();//这段代码因为为空，所以直接出错！
+ if(rows == 0){
+       return 0;
+        }
+ ```
+ - 以下正确！
+ ```
+  int rows = grid.size();
+  if(rows == 0){
+      return 0;
+        }
+  int cols = grid[0].size();
+ ```
+3.分析
++ BFS算法
+ -为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 11，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 11 都会被重新标记为 00。直到队列为空，搜索结束。
+最终岛屿的数量就是我们进行广度优先搜索的次数。
+ - 实现
+ ```
+ class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int rows = grid.size();
+        if(rows == 0){
+            return 0;
+        }
+        int cols = grid[0].size();
+        queue<pair<int,int>> res;
+        int count = 0;
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                if(grid[i][j] == '1'){
+                    count++;
+                    //queue<pair<int,int>> res;
+                    res.push(make_pair(i,j));
+                    grid[i][j] = '0';
+                    while(!res.empty()){
+                        auto [r,c] = res.front();
+                        res.pop();
+                        if(r-1>=0&&grid[r-1][c]=='1'){
+                            res.push(make_pair(r-1,c));
+                            grid[r-1][c]='0';
+                        }
+                        if(r+1<rows&&grid[r+1][c]=='1'){
+                            res.push(make_pair(r+1,c));
+                            grid[r+1][c]='0';
+                        }
+                        if(c-1>=0&&grid[r][c-1]=='1'){
+                            res.push(make_pair(r,c-1));
+                            grid[r][c-1]='0';
+                        }
+                        if(c+1<cols&&grid[r][c+1]=='1'){
+                            res.push(make_pair(r,c+1));
+                            grid[r][c+1]='0';
+                        }
+                    }   
+                }
+            }
+        }
+        return count;
+    }
+};
+ ```
 
 ## No.324 摆动排序
 
