@@ -2495,9 +2495,31 @@ public:
   ```
 + DFS思路
   - 求岛屿的周长其实有很多种方法，如果用 DFS 遍历来求的话，有一种很简单的思路：岛屿的周长就是岛屿方格和非岛屿方格相邻的边的数量。注意，这里的非岛屿方格，既包括水域方格，也包括网格的边界。
+  -  **关注这种方法下遍历岛屿方法与No.200的不同之处**
+  为了能够添加周长，这里把判断边界和访问海水块的判断条件单独拿了出来，用来添加周长。
+  ```
+  // 从一个岛屿方格走向网格边界，周长加 1
+    int dfs(vector<vector<int>>& grid, int r, int c) {
+    if (!(0 <= r && r < grid.length && 0 <= c && c < grid[0].length)) {
+        return 1;//正常遍历陆地的情况下是直接返回，没有返回值。
+    }
+    // 从一个岛屿方格走向水域方格，周长加 1
+    if (grid[r][c] == 0) {
+        return 1;//正常遍历陆地的情况下没有这个判断。
+    }
+    if (grid[r][c] != 1) {
+        return 0;//正常遍历陆地的情况下是直接返回，没有返回值。
+    }
+    grid[r][c] = 2;// 将方格标记为"已遍历"
+    return dfs(grid, r - 1, c)
+        + dfs(grid, r + 1, c)
+        + dfs(grid, r, c - 1)
+        + dfs(grid, r, c + 1);
+    }
+  ```
   - 实现
   ```
-  int islandPerimeter(vector<vector<int>>& grid) {
+   int islandPerimeter(vector<vector<int>>& grid) {
     for (int r = 0; r < grid.size(); r++) {
         for (int c = 0; c < grid[0].size(); c++) {
             if (grid[r][c] == 1) {
@@ -2507,23 +2529,8 @@ public:
         }
     }
     return 0;
-   }
-    int dfs(vector<vector<int>>& grid, int r, int c) {
-    if (!(0 <= r && r < grid.size() && 0 <= c && c < grid[0].size())) {
-        return 1;
     }
-    if (grid[r][c] == 0) {
-        return 1;
-    }
-    if (grid[r][c] != 1) {
-        return 0;
-    }
-    grid[r][c] = 2;
-    return dfs(grid, r - 1, c)
-        + dfs(grid, r + 1, c)
-        + dfs(grid, r, c - 1)
-        + dfs(grid, r, c + 1);
-    }
+    DFS定义社舍去
   ```
 
 
