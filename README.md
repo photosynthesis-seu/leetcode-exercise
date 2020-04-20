@@ -2365,10 +2365,10 @@ res.push(make_pair(i,j));
  ```
 3.分析
 + BFS算法
- -为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。直到队列为空，搜索结束。
+  - 为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。直到队列为空，搜索结束。
 最终岛屿的数量就是我们进行广度优先搜索的次数。
- - **一定要理解广度优先的本质含义，注意队列操作的位置！把队列的push和pop放在整个大循环的一个判断语句中！**
- - 实现
+  - **一定要理解广度优先的本质含义，注意队列操作的位置！把队列的push和pop放在整个大循环的一个判断语句中！**
+  - 实现
  ```
     int numIslands(vector<vector<char>>& grid) {
         int rows = grid.size();
@@ -2412,8 +2412,40 @@ res.push(make_pair(i,j));
     }
  ```
 + DFS算法(貌似使用的更多一些)
- - 我们可以将二维网格看成一个无向图，竖直或水平相邻的 1 之间有边相连。
+  - 我们可以将二维网格看成一个无向图，竖直或水平相邻的 1 之间有边相连。
 为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。
+  - 实现
+  ```
+  void dfs(vector<vector<char>>& grid, int r, int c) {
+        int nr = grid.size();
+        int nc = grid[0].size();
+
+        grid[r][c] = '0';
+        if (r - 1 >= 0 && grid[r-1][c] == '1') dfs(grid, r - 1, c);
+        if (r + 1 < nr && grid[r+1][c] == '1') dfs(grid, r + 1, c);
+        if (c - 1 >= 0 && grid[r][c-1] == '1') dfs(grid, r, c - 1);
+        if (c + 1 < nc && grid[r][c+1] == '1') dfs(grid, r, c + 1);
+    }
+
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int nr = grid.size();
+        if (!nr) return 0;
+        int nc = grid[0].size();
+
+        int num_islands = 0;
+        for (int r = 0; r < nr; ++r) {
+            for (int c = 0; c < nc; ++c) {
+                if (grid[r][c] == '1') {
+                    ++num_islands;
+                    dfs(grid, r, c);
+                }
+            }
+        }
+
+        return num_islands;
+    }
+  ```
 
 
 
