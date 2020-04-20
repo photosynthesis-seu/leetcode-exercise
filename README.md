@@ -2351,7 +2351,7 @@ res.push(make_pair(i,j));
  int rows = grid.size();
  int cols = grid[0].size();//这段代码因为为空，所以直接出错！
  if(rows == 0){
-       return 0;
+     return 0;
         }
  ```
  - 以下正确！
@@ -2364,11 +2364,11 @@ res.push(make_pair(i,j));
  ```
 3.分析
 + BFS算法
- -为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 11，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 11 都会被重新标记为 00。直到队列为空，搜索结束。
+ -为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。直到队列为空，搜索结束。
 最终岛屿的数量就是我们进行广度优先搜索的次数。
  - 实现
  ```
- class Solution {
+class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
         int rows = grid.size();
