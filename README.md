@@ -2552,6 +2552,27 @@ res.push(make_pair(i,j));
 **为(odd[i]−odd[i−1])∗(odd[i+k]−odd[i+k−1])**
 + 我们只要遍历一遍 \textit{odd}odd 数组即可求得最后的答案，注意边界的处理。
 
+3.实现
+```
+int numberOfSubarrays(vector<int>& nums, int k) {
+        vector<int> odd;//存储奇数坐标
+        odd.push_back(-1);
+        int count = 1;
+        int res=0;
+        for(int i = 0;i<nums.size();i++){
+            if(nums[i]%2==1){
+                odd.push_back(i);
+                count++;
+            }
+        }
+        odd.push_back(nums.size());
+        for(int j=1;j+k<odd.size();j++){
+            res += (odd[j]-odd[j-1])*(odd[j+k]-odd[j+k-1]);
+        }
+        return res;
+    }
+```
+
 
 ## No.324 摆动排序
 
