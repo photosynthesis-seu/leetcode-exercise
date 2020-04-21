@@ -2588,6 +2588,26 @@ sr = 1, sc = 1, newColor = 2
 + 将 color 置为目标像素初始颜色。我们从目标像素位置开始上色：若像素颜色和 color 相同则改变像素颜色为 newColor，然后再从四个方向进行上色，重复上述过程。
 + 我们可以使用 dfs 函数对目标像素进行渲染。
 
+3.实现
+```
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int color = image[sr][sc];
+        if(color != newColor){
+            dfs(image, sr, sc, color, newColor);
+        }
+        return image;
+    }
+    void dfs(vector<vector<int>>& image, int r, int c, int color, int newColor){
+        if(image[r][c] == color){
+            image[r][c] = newColor;
+            if (r >= 1) dfs(image, r-1, c, color, newColor);
+            if (c >= 1) dfs(image, r, c-1, color, newColor);
+            if (r+1 < image.size()) dfs(image, r+1, c, color, newColor);
+            if (c+1 < image[0].size()) dfs(image, r, c+1, color, newColor);
+        }
+    }
+```
+
 ## No.324 摆动排序
 
 1.题目
