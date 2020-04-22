@@ -2711,6 +2711,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   - 我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。
   - **因为使用队列对每一层遍历实现，因此在每一层的队列中，最后一个成员就是右视图能看到的结点**
   - 实现
+  
   ```
   public List<Integer> rightSideView(TreeNode root) {
         List<Integer> res = new ArrayList<>();
