@@ -2685,36 +2685,31 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 这样一来，我们可以存储在每个深度访问的第一个结点，一旦我们知道了树的层数，就可以得到最终的结果数组。
   - **注意一定要有一个记录深度的vector容器！**
   - 实现
+  ```
+  List<Integer> res = new ArrayList<>();
+    public List<Integer> rightSideView(TreeNode root) {
+        dfs(root, 0); // 从根节点开始访问，根节点深度是0
+        return res;
+    }
+    private void dfs(TreeNode root, int depth) {
+        if (root == null) {
+            return;
+        }
+        // 先访问 当前节点，再递归地访问 右子树 和 左子树。
+        if (depth == res.size()) {
+	// 如果当前节点所在深度还没有出现在res里，说明在该深度下当前节点是第一个被访问的节点，因此将当前节点加入res中。
+            res.add(root.val);
+        }
+        depth++;
+        dfs(root.right, depth);
+        dfs(root.left, depth);
+    }
+  ```
 + BFS
   - 我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。
   - **因为使用队列对每一层遍历实现，因此在每一层的队列中，最后一个成员就是右视图能看到的结点**
   - 实现
-  ```
-  public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-                if (i == size - 1) {  //将当前层的最后一个节点放入结果列表
-                    res.add(node.val);
-                }
-            }
-        }
-        return res;
-    }
-  ```
+  
 ## No.105 从前序与中序遍历序列构造二叉树
 1.题目
 ```
