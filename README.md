@@ -2626,39 +2626,28 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 + DFS方法
   - 我们对树进行深度优先搜索，在搜索过程中，我们总是先访问右子树。那么对于每一层来说，我们在这层见到的第一个结点一定是最右边的结点。
 这样一来，我们可以存储在每个深度访问的第一个结点，一旦我们知道了树的层数，就可以得到最终的结果数组。
+  - **注意一定要有一个记录深度的vector容器！**
   - 实现
   ```
-   vector<int> rightSideView(TreeNode* root) {
-        unordered_map<int, int> rightmostValueAtDepth;
-        int max_depth = -1;
-        stack<TreeNode*> nodeStack;
-        stack<int> depthStack;
-        nodeStack.push(root);
-        depthStack.push(0);
-        while (!nodeStack.empty()) {
-            TreeNode* node = nodeStack.top();nodeStack.pop();
-            int depth = depthStack.top();depthStack.pop();
-            if (node != NULL) {
-            	// 维护二叉树的最大深度
-                max_depth = max(max_depth, depth);
-                // 如果不存在对应深度的节点我们才插入
-                if (rightmostValueAtDepth.find(depth) == rightmostValueAtDepth.end()) {
-                    rightmostValueAtDepth[depth] =  node -> val;
-                }
-                nodeStack.push(node -> left);
-                nodeStack.push(node -> right);
-                depthStack.push(depth + 1);
-                depthStack.push(depth + 1);
-            }
-        }
+  List<Integer> res = new ArrayList<>();
 
-        vector<int> rightView;
-        for (int depth = 0; depth <= max_depth; ++depth) {
-            rightView.push_back(rightmostValueAtDepth[depth]);
-        }
+    public List<Integer> rightSideView(TreeNode root) {
+        dfs(root, 0); // 从根节点开始访问，根节点深度是0
+        return res;
+    }
 
-        return rightView;
-    }
+    private void dfs(TreeNode root, int depth) {
+        if (root == null) {
+            return;
+        }
+        // 先访问 当前节点，再递归地访问 右子树 和 左子树。
+        if (depth == res.size()) {   // 如果当前节点所在深度还没有出现在res里，说明在该深度下当前节点是第一个被访问的节点，因此将当前节点加入res中。
+            res.add(root.val);
+        }
+        depth++;
+        dfs(root.right, depth);
+        dfs(root.left, depth);
+    }
   ```
 
 
