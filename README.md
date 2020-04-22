@@ -2629,6 +2629,35 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
    (1) i++ 返回原来的值，++i 返回加1后的值。
    (2) i++ 不能作为左值，而++i 可以。
 + **在函数里面dfs(layer++)和dfs(layer+1)也不一样**。
+  - **需要注意的是，函数里的变量i++，变量值变成了i+1，但是在本次函数运行时变量值还是i。**
+  - 一个代码的例子：
+  ```
+  int test1(int a){
+    cout<<"test1 "<<a<<endl;
+   }
+   int test2(int a){
+    cout<<"test2 "<<a<<endl;
+	}
+   int main() {
+    int i = 0;
+    while(i<5){
+        test1(i++);
+        test2(i++);
+    }
+    return 0;
+    }
+  ```
+  输出：
+  ```
+  test1 0
+  test2 1
+  test1 2
+  test2 3
+  test1 4
+  test2 5
+  ```
+   
++ 实现
 ```
  vector<int> res;
     vector<int> rightSideView(TreeNode* root) {
