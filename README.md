@@ -2687,6 +2687,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   - 实现
   ```
   List<Integer> res = new ArrayList<>();
+  ```
     public List<Integer> rightSideView(TreeNode root) {
         dfs(root, 0); // 从根节点开始访问，根节点深度是0
         return res;
@@ -2709,6 +2710,32 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   - 我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。
   - **因为使用队列对每一层遍历实现，因此在每一层的队列中，最后一个成员就是右视图能看到的结点**
   - 实现
+  ```
+  public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+                if (i == size - 1) {  //将当前层的最后一个节点放入结果列表
+                    res.add(node.val);
+                }
+            }
+        }
+        return res;
+    }
+  ```
   
 ## No.105 从前序与中序遍历序列构造二叉树
 1.题目
