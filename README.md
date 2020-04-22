@@ -2627,7 +2627,27 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
    i++ 与 ++i 的主要区别有两个：
    (1) i++ 返回原来的值，++i 返回加1后的值。
    (2) i++ 不能作为左值，而++i 可以。
-+ 在函数里面dfs(layer++)和dfs(layer+1)也不一样。
++ **在函数里面dfs(layer++)和dfs(layer+1)也不一样**。
+```
+ vector<int> res;
+    vector<int> rightSideView(TreeNode* root) {
+        if(root == NULL){
+            return {} ;
+        }
+        vector<int> count(1000,0);
+        dfs(root,0,count);
+        return res;
+    }
+    void dfs(TreeNode* root,int layer,vector<int>& count){
+        if(count[layer] == 0){
+             res.push_back(root->val);
+             count[layer] = 1;
+        }
+        //layer++;
+        if (root->right != nullptr) dfs(root->right,layer+1,count);
+        if (root->left != nullptr) dfs(root->left,layer+1,count);
+    }
+```
 
 3.分析
 + DFS方法
