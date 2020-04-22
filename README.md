@@ -2686,7 +2686,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   - **注意一定要有一个记录深度的vector容器！**
   - 实现
   ```
-   List<Integer> res = new ArrayList<>();
+  List<Integer> res = new ArrayList<>();
 
     public List<Integer> rightSideView(TreeNode root) {
         dfs(root, 0); // 从根节点开始访问，根节点深度是0
@@ -2698,15 +2698,14 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
             return;
         }
         // 先访问 当前节点，再递归地访问 右子树 和 左子树。
-        if (depth == res.size()) {   // 如果当前节点所在深度还没有出现在res里，说明在该深度下当前节点是第一个被访问的节点，因此将     当前节点加入res中。
+        if (depth == res.size()) {// 如果当前节点所在深度还没有出现在res里，说明在该深度下当前节点是第一个被访问的节点，因此将当前节点加入res中。
             res.add(root.val);
         }
         depth++;
         dfs(root.right, depth);
         dfs(root.left, depth);
     }
-  ```
-  
+  ``` 
 + BFS
   - 我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。
   - **因为使用队列对每一层遍历实现，因此在每一层的队列中，最后一个成员就是右视图能看到的结点**
