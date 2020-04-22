@@ -2686,13 +2686,11 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   - **注意一定要有一个记录深度的vector容器！**
   - 实现
   ```
-  List<Integer> res = new ArrayList<>();
-
+    List<Integer> res = new ArrayList<>();
     public List<Integer> rightSideView(TreeNode root) {
         dfs(root, 0); // 从根节点开始访问，根节点深度是0
         return res;
     }
-
     private void dfs(TreeNode root, int depth) {
         if (root == null) {
             return;
@@ -2744,7 +2742,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 注意:
 你可以假设树中没有重复的元素。
 ```
-2.分析
+2.分析,详细见剑指offer面试题7
 + 先构造根节点，根节点是先序遍历的第一个节点
 + 寻找根节点在中序序列中的位置
 + 递归构建根节点的左右子树
