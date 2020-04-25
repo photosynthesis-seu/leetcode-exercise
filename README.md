@@ -18,7 +18,7 @@
   - [No.1162 地图分析](#地图分析)
   - [面试题08.11 硬币](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#硬币)//背包问题
 + DFS、BFS算法（回溯算法、分治算法->递归实现）
-  - [No.22 括号生成](#括号生成)
+  - [No.22 括号的生成](#括号生成)
   - [No.55 跳跃游戏](#跳跃游戏)
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
@@ -1959,7 +1959,260 @@ public:
 1.题目
 ```
 你现在手里有一份大小为 N x N 的「地图」（网格） grid，上面的每个「区域」（单元格）都用 0 和 1 标记好了。其中 0 代表海洋，1 代表陆地，请你找出一个海洋区域，这个海洋区域到离它最近的陆地区域的距离是最大的。
-我们这里说的距离是「曼哈顿
+我们这里说的距离是「曼哈顿距离」（ Manhattan Distance）：(x0, y0) 和 (x1, y1) 这两个区域之间的距离是 |x0 - x1| + |y0 - y1| 。
+如果我们的地图上只有陆地或者海洋，请返回 -1。
+```
+2.需要总结**三种最短路径算法**
++ Dijkstra算法
++ Floyd算法
++ SPFA算法
+
+3.研究**多源的BFS！**
+
+4.经典做法（BFS）
++ 考虑最朴素的方法，即求出每一个海洋区域（grid[i][j] == 0 的区域）的「最近陆地区域」，然后记录下它们的距离，然后在这些距离里面取一个最大值。
++ 对于一个给定的区域 (x,y) ，求它的「最近陆地区域」，可以使用宽度优先搜索思想。我们把每个区域的坐标作以及这个区域与(x,y) 的曼哈顿距离为搜索状态，即 Coordinate 结构体的 x、y 和 step 属性。findNearestLand 方法实现了宽度优先搜索的过程，用一个 vis[u][v] 数组记录(u,v) 区域是否被访问过.
++ 具体实现
+```
+class Solution {
+public:
+    static constexpr int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
+    static constexpr int MAX_N = 100 + 5;
+    struct Coordinate {
+        int x, y, step;
+    };
+    int n, m;
+    vector<vector<int>> a;
+    bool vis[MAX_N][MAX_N];
+    int findNearestLand(int x, int y) {
+        memset(vis, 0, sizeof vis);
+        queue <Coordinate> q;
+        q.push({x, y, 0});
+        vis[x][y] = 1;
+        while (!q.empty()) {
+            auto f = q.front(); q.pop();
+            for (int i = 0; i < 4; ++i) {
+                int nx = f.x + dx[i], ny = f.y + dy[i];
+                if (!(nx >= 0 && nx <= n - 1 && ny >= 0 && ny <= m - 1)) continue;
+                if (!vis[nx][ny]) {
+                    q.push({nx, ny, f.step + 1});
+                    vis[nx][ny] = 1;
+                    if (a[nx][ny]) return f.step + 1;
+                }
+            }
+        }
+        return -1;
+    }
+    int maxDistance(vector<vector<int>>& grid) {
+        this->n = grid.size();
+        this->m = grid.at(0).size();
+        a = grid;
+        int ans = -1;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                if (!a[i][j]) {
+                    ans = max(ans, findNearestLand(i, j));
+                }
+            }
+        }
+        return ans;
+    }
+};
+```
+5.多源BFS方法
+
+实现
+```
+class Solution {
+public:
+    static constexpr int MAX_N = 100 + 5;
+    static constexpr int INF = int(1E6);
+    static constexpr int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
+    int n;
+    int d[MAX_N][MAX_N];
+    struct Coordinate {
+        int x, y;
+    };
+    queue <Coordinate> q;
+    int maxDistance(vector<vector<int>>& grid) {
+        this->n = grid.size();
+        auto &a = grid;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                d[i][j] = INF;
+            }
+        }
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (a[i][j]) {
+                    d[i][j] = 0;
+                    q.push({i, j});
+                }
+            }
+        }
+        while (!q.empty()) {
+            auto f = q.front(); q.pop();
+            for (int i = 0; i < 4; ++i) {
+                int nx = f.x + dx[i], ny = f.y + dy[i];
+                if (!(nx >= 0 && nx <= n - 1 && ny >= 0 && ny <= n - 1)) continue;
+                if (d[nx][ny] > d[f.x][f.y] + 1) {
+                    d[nx][ny] = d[f.x][f.y] + 1;
+                    q.push({nx, ny});
+                }
+            }
+        }
+        int ans = -1;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (!a[i][j]) ans = max(ans, d[i][j]);
+            }
+        }
+        return (ans == INF) ? -1 : ans;
+    }
+};
+```
+## 跳跃游戏
+
+1.题目
+```
+给定一个非负整数数组，你最初位于数组的第一个位置。数组中的每个元素代表你在该位置可以跳跃的最大长度。
+判断你是否能够到达最后一个位置。
+输入: [2,3,1,1,4]
+输出: true
+解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。
+```
+2.分析
++ 可以使用贪心算法
+  - 依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。对于当前遍历到的位置 xx，如果它在**最远可以到达**的位置的范围内，那么我们就可以从起点通过若干次跳跃到达该位置，因此我们可以用**x+nums[x] 更新最远可以到达**的位置。
+  - 在遍历的过程中，如果**最远可以到达的位置大于等于数组中的最后一个位置**，那就说明最后一个位置可达，我们就可以直接返回 True 作为答案。反之，如果在遍历结束后，最后一个位置仍然不可达，我们就返回 False 作为答案。
++ 实现
+```
+class Solution {
+public:
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        int rightmost = 0;
+        for (int i = 0; i < n; ++i) {
+            if (i <= rightmost) {
+                rightmost = max(rightmost, i + nums[i]);
+                if (rightmost >= n - 1) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+```
+3.**还有一种更极致的判断方法！**
+```
+//(1)如果某一个作为 起跳点 的格子可以跳跃的距离是 3，那么表示后面 3 个格子都可以作为 起跳点。
+//(2)可以对每一个能作为 起跳点 的格子都尝试跳一次，把 能跳到最远的距离 不断更新。
+//(3)如果可以一直跳到最后，就成功了。
+bool canJump(vector<int>& nums) 
+{
+	int k = 0;
+	for (int i = 0; i < nums.size(); i++)
+	{
+		if (i > k) return false;
+		k = max(k, i + nums[i]);
+	}
+	return true;
+}
+```
+## 最大子序和
+
+1.题目
+```
+给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+输入: [-2,1,-3,4,-1,2,1,-5,4],
+输出: 6
+解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+```
+2.使用动态规划的思想是自然而然的。
+
+**dp[i]表示nums中以nums[i]结尾的最大子序和**
+```
+class Solution
+{
+public:
+    int maxSubArray(vector<int> &nums)
+    {
+        //类似寻找最大最小值的题目，初始值一定要定义成理论上的最小最大值
+        int result = INT_MIN;
+        int numsSize = int(nums.size());
+        //dp[i]表示nums中以nums[i]结尾的最大子序和
+        vector<int> dp(numsSize);
+        dp[0] = nums[0];
+        result = dp[0];
+        for (int i = 1; i < numsSize; i++)
+        {
+            dp[i] = max(dp[i - 1] + nums[i], nums[i]);
+            result = max(result, dp[i]);
+        }
+        return result;
+    }
+};
+```
+3.迷之分治算法
+
++ 这个是使用分治法解决问题的典型的例子，并且可以用与合并排序相似的算法求解。下面是用分治法解决问题的模板：
+  - 定义基本情况。
+  - 将问题分解为子问题并递归地解决它们。
+  - 合并子问题的解以获得原始问题的解。
++ 算法：
+  - 当最大子数组有 n 个数字时：
+  - 若 n==1，返回此元素。
+  - left_sum 为最大子数组前 n/2 个元素，在索引为 (left + right) / 2 的元素属于左子数组。
+  - right_sum 为最大子数组的右子数组，为最后 n/2 的元素。
+  - cross_sum 是包含左右子数组且含索引 (left + right) / 2 的最大值。
++ 实现：
+```
+class Solution
+{
+public:
+    int maxSubArray(vector<int> &nums)
+    {
+        //类似寻找最大最小值的题目，初始值一定要定义成理论上的最小最大值
+        int result = INT_MIN;
+        int numsSize = int(nums.size());
+        result = maxSubArrayHelper(nums, 0, numsSize - 1);
+        return result;
+    }
+    int maxSubArrayHelper(vector<int> &nums, int left, int right)
+    {
+        if (left == right)
+        {
+            return nums[left];
+        }
+        int mid = (left + right) / 2;
+        int leftSum = maxSubArrayHelper(nums, left, mid);
+        //注意这里应是mid + 1，否则left + 1 = right时，会无限循环
+        int rightSum = maxSubArrayHelper(nums, mid + 1, right);
+        int midSum = findMaxCrossingSubarray(nums, left, mid, right);
+        int result = max(leftSum, rightSum);
+        result = max(result, midSum);
+        return result;
+    }
+    int findMaxCrossingSubarray(vector<int> &nums, int left, int mid, int right)
+    {
+        int leftSum = INT_MIN;
+        int sum = 0;
+        for (int i = mid; i >= left; i--)
+        {
+            sum += nums[i];
+            leftSum = max(leftSum, sum);
+        }
+        int rightSum = INT_MIN;
+        sum = 0;
+        //注意这里i = mid + 1，避免重复用到nums[i]
+        for (int i = mid + 1; i <= right; i++)
+        {
+            sum += nums[i];
+            rightSum = max(rightSum, sum);
+        }
+        return (leftSum + rightSum);
+    }
+};
 ```
 ## 统计重复个数
 
@@ -2492,6 +2745,4 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 输入: nums = [1, 3, 2, 2, 3, 1]
 输出: 一个可能的答案是 [2, 3, 1, 3, 1, 2]
 ```
-由 n 个连接的字符串 s 组成字符串 S，记作 S = [s,n]。例如，["abc",3]=“abcabcabc”。
-如果我们可以从 s2 中删除某些字符使其变为 s1，则称字符串 s1 可以从字符串 s2 获得。例如，
 2.**要总结一下快速排序、快速选择、3-way-partition算法**
