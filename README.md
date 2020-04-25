@@ -23,7 +23,7 @@ No.1248 统计优美子数组(vector初始化以及边界处理)
 ```
 [岛屿问题系列](https://leetcode-cn.com/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/)
 
-[No.463 岛屿的周长](##No.4)
+[No.463 岛屿的周长](#No.4)
 ## No.1111 有效括号的嵌套深度
 
 1.vector<int>等容器在声明时，**最好进行初始化** eg:vector<int> result(seq.size())；容器一般都有size()操作；
@@ -99,7 +99,7 @@ int StrToInt2(string str)
 
   只要在遍历过程中，我们保证栈内一半的括号属于序列 A，一半的括号属于序列 B，那么就能保证拆分后最大的嵌套深度最小，是当前最大嵌套深度的一半。要实现这样的对半分配，我们只需要把奇数层的 ( 分配给 A，偶数层的 ( 分配给 B 即可。对于上面的例子，我们将嵌套深度为 1 和 3 的所有括号 (()) 分配给 A，嵌套深度为 2 的所有括号 ()()() 分配给 B。
   
- ## No.4 
+ # No.4 
  
  寻找两个数组的中位数
  
