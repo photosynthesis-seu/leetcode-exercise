@@ -101,7 +101,7 @@ int StrToInt2(string str)
 
   只要在遍历过程中，我们保证栈内一半的括号属于序列 A，一半的括号属于序列 B，那么就能保证拆分后最大的嵌套深度最小，是当前最大嵌套深度的一半。要实现这样的对半分配，我们只需要把奇数层的 ( 分配给 A，偶数层的 ( 分配给 B 即可。对于上面的例子，我们将嵌套深度为 1 和 3 的所有括号 (()) 分配给 A，嵌套深度为 2 的所有括号 ()()() 分配给 B。
   
- ## No.4 寻找两个数组的中位数
+ ## 寻找两个数组的中位数
  
  1.通过**割(Cut)算法**，把有序数组分成左右两个部分，割的左右会有两个元素，分别是左边最大值和右边最小值。
  ```
@@ -119,7 +119,7 @@ int StrToInt2(string str)
  RMini = Ci/2 位置上的元素;
  ```
  
- ## No.5 最长回文子串
+ ## 最长回文子串
  1.反转一个字符串
  ```
  string s;
@@ -189,7 +189,7 @@ int StrToInt2(string str)
         return R-L-1;
     }
  ```
- ## No.206 反转链表
+ ## 反转链表
  
  **做链表题目一定要多画图！**
  
@@ -224,7 +224,7 @@ int StrToInt2(string str)
         return cur;//注意！返回的是cur！不是*cur，因为函数类型本身就是ListNode*了
     }
  ```
-## No.21 合并两个有序链表
+## 合并两个有序链表
 
 1.合并有序链表时用两个链表的指针分别比较每一个节点的大小，然后申请一个新链表存储比较后每一个比较小的节点。
 
@@ -244,7 +244,7 @@ while(l1 != NULL && l2 != NULL){
 }
 result->next = l1 == NULL? l2:l1;//在这一步再将更长一些的链表补在result后面
 ```
-## 剑指Offer No.38 字符串的排列
+## 字符串的排列
 
 1.**set的使用**
 
@@ -339,7 +339,7 @@ void paixu(std::string s, int start, std::set<std::string> &res) {
     }
 }
 ```
-## No.8 字符串转整数
+## 字符串转整数
 
 1.C++中ostringstream、istringstream、stringstream三个类
 
@@ -402,7 +402,7 @@ for(int i = 0; i<str.length(); i++){
 ```
 int digit =str[i] - '0';
 ```
-## No.15 三数之和
+## 三数之和
 
 **此题自己的暴力递归方法存在一些问题，待解决**
 
@@ -441,7 +441,7 @@ int sum = accumulate(res.begin(),res.end(),0);
 
 sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个参数默认升序排列
 
-## No.42 接雨水问题
+## 接雨水问题
 
 1.思路分析：
 
@@ -478,7 +478,7 @@ int trap(vector<int>& height) {
     }  
 ```
 
-## No.72 编辑两个单词的距离
+## 编辑两个单词的距离
 
 1.题目要求：
 ```
@@ -535,7 +535,7 @@ int minDistance(string word1, string word2) {
     }
 ```
 
-## 难-No.887 鸡蛋掉落
+## 鸡蛋掉落
 
 1.**典型的动态规划**
 
@@ -621,7 +621,7 @@ class Solution {
     }
 };
 ```
-## No.460-LFU缓存
+## LFU缓存
 
 1.首先需要定义一个缓存的数据结构
 ```
@@ -672,7 +672,7 @@ public:
     }......
  }
 ```
-## No.6 Z字形变换
+## Z字形变换
 
 1.可以使用 min(numRows,len(s)) 个列表来表示 Z 字形图案中的非空行。
 
@@ -713,7 +713,7 @@ public:
     }
 };
 ```
-## No.7 整数反转
+## 整数反转
 
 1.字符串转整数的函数
 
@@ -732,7 +732,7 @@ char *itoa( int value, char *string,int radix);
 char str[255];
 sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
 ```
-## No.9 回文整数的判断
+## 回文整数的判断
 
 1.核心思路
 
@@ -757,7 +757,9 @@ sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
         return x == revertedNumber || x == revertedNumber/10;
     }
 ```
-## No.300 最长递增子序列（经典动态规划）
+## 最长递增子序列
+
+（经典动态规划）
 
 1.关键在于(1)如何定义dp[i]是什么，也就是确定最优子结构；(2)如何建立状态转移方程；
 
@@ -796,7 +798,7 @@ public int lengthOfLIS(int[] nums) {
 
 此时的dp[j]不知道，且如果nums[j]大于nums[i]，因为是求递增子序列的缘故，自会有dp[j]在之后补充。
 
-## 面试01.07 旋转矩阵
+## 旋转矩阵
 
 1.关于利用vector<vector<int>>  vec定义一个二维矩阵，如果想获取vec的行数和列数。可以使用：
 
@@ -821,7 +823,7 @@ void rotate(vector<vector<int>>& matrix) {
         matrix = res;
     }
 ```
-## No.11 盛最多水的容器
+## 盛最多水的容器
 ```
 给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
 
@@ -870,7 +872,7 @@ public:
 }
 };
 ```
-## No.1143 最长公共子序列
+## 最长公共子序列
 
 1.题目要求
 ```
@@ -926,7 +928,9 @@ public:
     }
 };
 ```
-## 面试题13-机器人的运动范围（典型的DFS/BFS）
+## 机器人的运动范围
+
+（典型的DFS/BFS）
 
 1.题目描述
  ```
@@ -1008,7 +1012,7 @@ int movingCount(int m, int n, int k) {
         return ans;
     }
 ```
-## No.516 最长回文子序列
+## 最长回文子序列
 
 1.题目
 ```
@@ -1041,7 +1045,7 @@ int longestPalindromeSubseq(string s) {
     return dp[0][n - 1];
 }
 ```
-## No.22 括号的生成
+## 括号的生成
 
 1.题目描述：
 ```
@@ -1148,7 +1152,9 @@ void backtrack(vector<string>& ans, string cur, int open, int close, int n) {
         }
     }
 ```
-## No.96 不同的二叉搜索树（动态规划）
+## 不同的二叉搜索树
+
+（动态规划）
 
 1.题目
 ```
@@ -1183,7 +1189,7 @@ int numTrees(int n) {
     }
     return dp[n];
 ```
-## NO.95 不同的二叉搜索树II
+## 不同的二叉搜索树II
 
 1.题目
 ```
@@ -1218,7 +1224,7 @@ vector<TreeNode*> helper(int start,int end){
         }
         return ret;
 ```
-## No.151 反转字符串里的单词
+## 反转字符串里的单词
 
 1.题目
 ```
@@ -1273,7 +1279,9 @@ tring reverseWords(string s) {
         return result;
     }
 ```
-## 面试题16.03 交点（主要考察你细不细致）
+## 交点
+
+（主要考察你细不细致）
 
 1.题目
 ```
@@ -1322,7 +1330,7 @@ line2 = {1, 1}, {0, -1}
 
 [确定两点之间线段的公式模型和算法](https://leetcode-cn.com/problems/intersection-lcci/solution/wo-jue-de-wo-yi-jing-hen-nu-li-liao-ke-yi-jiao-zhu/)
 
-## NO.215 数组中第k个最大元素
+## 数组中第k个最大元素
 
 1.题目
 ```
@@ -1347,7 +1355,7 @@ sort()默认是升序排列，可以使用great()参数实现降序排序。
         return nums[k-1];
     }
 ```
-## NO.33 搜索旋转排序数组
+## 搜索旋转排序数组
 
 1.题目
 ```
@@ -1394,7 +1402,7 @@ sort()默认是升序排列，可以使用great()参数实现降序排序。
         return -1;  //没找到
     }
 ```
-## No.355设计推特
+## 设计推特
 
 1.题目
 ```
@@ -1497,7 +1505,7 @@ priority_queue	不支持迭代器
         return ans;
     }
 ```
-## No.23 合并k个排序链表
+## 合并k个排序链表
 
 1.题目
 ```
@@ -1614,7 +1622,7 @@ while(!pri_queue.empty()){
         return head;  
     }
 ```
-## No.445 两数相加 II
+## 两数相加 II
 
 1.题目
 ```
@@ -1692,7 +1700,9 @@ while (l1) {
         return ans;
     }
 ```
-## No.542 01矩阵(BFS+动态规划)
+## 01矩阵
+
+(BFS+动态规划)
 
 1.题目
 ```
@@ -1854,7 +1864,7 @@ public:
     }
 };
 ```
-## No.56 合并区间
+## 合并区间
 
 1.题目
 ```
@@ -1917,7 +1927,7 @@ public:
     }
 };
 ```
-## No.1162 地图分析
+## 地图分析
 
 1.题目
 ```
@@ -2038,7 +2048,7 @@ public:
     }
 };
 ```
-## No.55 跳跃游戏
+## 跳跃游戏
 
 1.题目
 ```
@@ -2086,7 +2096,7 @@ bool canJump(vector<int>& nums)
 	return true;
 }
 ```
-## No.53 最大子序和
+## 最大子序和
 
 1.题目
 ```
@@ -2183,7 +2193,9 @@ public:
     }
 };
 ```
-## No.466 统计重复个数(**使用hash表！**)
+## 统计重复个数
+
+(**使用hash表！**)
 1.题目
 ```
 由 n 个连接的字符串 s 组成字符串 S，记作 S = [s,n]。例如，["abc",3]=“abcabcabc”。
