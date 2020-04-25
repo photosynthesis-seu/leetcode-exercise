@@ -34,6 +34,7 @@
 + 排序算法
   - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！
   - [No.75 颜色分类](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#颜色分类)//快速排序！
+  - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
 ```
 已做题目：
 
