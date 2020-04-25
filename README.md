@@ -1701,3 +1701,797 @@ while (l1) {
 
 ```
  ListNode* a
+  ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        stack<int> s1, s2;
+        while (l1) {
+            s1.push(l1 -> val);
+            l1 = l1 -> next;
+        }
+        while (l2) {
+            s2.push(l2 -> val);
+            l2 = l2 -> next;
+        }
+        int carry = 0;
+        ListNode* ans = nullptr;
+        while (!s1.empty() || !s2.empty() || carry != 0) {//排除进位和数字长度不一干扰的关键性判断！
+            int a = s1.empty() ? 0 : s1.top();
+            int b = s2.empty() ? 0 : s2.top();
+            if (!s1.empty()) s1.pop();
+            if (!s2.empty()) s2.pop();
+            int cur = a + b + carry;
+            carry = cur / 10;
+            cur %= 10;
+            auto curnode = new ListNode(cur);
+            curnode -> next = ans;
+            ans = curnode;
+        }
+        return ans;
+    }
+```
+## 01矩阵
+
+(BFS+动态规划)
+
+1.题目
+```
+给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。两个相邻元素间的距离为 1 。
+输入:
+0 0 0
+0 1 0
+1 1 1
+输出:
+0 0 0
+0 1 0
+1 2 1
+```
+2.constexpr修饰符
+
++ constexpr是C++11中新增的关键字，其语义是“常量表达式”，也就是在编译期可求值的表达式。最基础的常量表达式就是字面值或全局变量/函数的地址或sizeof等关键字返回的结果，而其它常量表达式都是由基础表达式通过各种确定的运算得到的。constexpr值可用于enum、switch、数组长度等场合。
+
++ constexpr还能用于修饰类的构造函数，即保证如果提供给该构造函数的参数都是constexpr，那么产生的对象中的所有成员都会是constexpr，该对象也就是constexpr对象了，可用于各种只能使用constexpr的场合。注意，constexpr构造函数必须有一个空的函数体，即所有成员变量的初始化都放到初始化列表中。
+
++constexpr的好处：
+  - 是一种很强的约束，更好地保证程序的正确语义不被破坏。
+  - 编译器可以在编译期对constexpr的代码进行非常大的优化，比如将用到的constexpr表达式都直接替换成最终结果等。
+  - 相比宏来说，没有额外的开销，但更安全可靠
+
+3.BFS方法
++ 我们可以从 00 的位置开始进行 广度优先搜索。广度优先搜索可以找到从起点到其余所有点的 最短距离，因此如果我们从 00 开始搜索，每次搜索到一个 11，就可以得到 00 到这个 11 的最短距离，也就离这个 11 最近的 00 的距离了（因为矩阵中只有一个 00）。
+
++ 思路：
+  - 对于 「Tree 的 BFS」 （典型的「单源 BFS」） 大家都已经轻车熟路了：
+    - 首先把 root 节点入队，再一层一层无脑遍历就行了。
+  - 对于 「图 的 BFS」 （「多源 BFS」） 做法其实也是一样滴～，与 「Tree 的 BFS」的区别注意以下两条就 ok 辣～
+    - Tree 只有 1 个 root，而图可以有多个源点，所以首先需要把多个源点都入队；
+    - Tree 是有向的因此不需要标识是否访问过，而对于无向图来说，必须得标志是否访问过哦！并且为了防止某个节点多次入队，需要在其入队之前就将其设置成已访问！【 看见很多人说自己的 BFS 超时了，坑就在这里哈哈哈
+
++ 举例来看
+```
+假设矩阵中有两个0，剩余的1我们用短横线表示:
+_ _ _ _ 
+_ 0 _ _   ==> 
+_ _ 0 _
+_ _ _ _
+_ 1 _ _         2 1 2 _         2 1 2 3
+1 0 1 _   ==>   1 0 1 2   ==>   1 0 1 2
+_ 1 0 1         2 1 0 1         2 1 0 1
+_ _ 1 _         _ 2 1 2         3 2 1 2
+```
++ 实现：
+```
+class Solution {
+private:
+    static constexpr int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        int m = matrix.size(), n = matrix[0].size();
+        vector<vector<int>> dist(m, vector<int>(n));
+        vector<vector<int>> seen(m, vector<int>(n));
+        queue<pair<int, int>> q;
+        // 将所有的 0 添加进初始队列中
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (matrix[i][j] == 0) {
+                    q.emplace(i, j);
+                    seen[i][j] = 1;
+                }
+            }
+        }
+        // 广度优先搜索
+        while (!q.empty()) {
+            auto [i, j] = q.front();
+            q.pop();
+            for (int d = 0; d < 4; ++d) {
+                int ni = i + dirs[d][0];
+                int nj = j + dirs[d][1];
+                if (ni >= 0 && ni < m && nj >= 0 && nj < n && !seen[ni][nj]) {
+                    dist[ni][nj] = dist[i][j] + 1;
+                    q.emplace(ni, nj);
+                    seen[ni][nj] = 1;
+                }
+            }
+        }
+    return dist;
+    }
+};
+```
+4.动态规划方法
++ 尝试将问题分解：
+  - 距离 (i,j) 最近的 0 的位置，是在其 「左上，右上，左下，右下」4个方向之一；
+  - 因此我们分别从四个角开始递推，就分别得到了位于「左上方、右上方、左下方、右下方」距离 (i,j) 的最近的 0 的距离，取min 即可；
+  - 通过上两步思路，我们可以很容易的写出 4 个双重for 循环，动态规划的解法写到这一步其实已经完全 OK 了；
++ 如果第三步还不满足的话，从四个角开始的 4 次递推，其实还可以优化成从任一组对角开始的 2 次递推，比如只写从左上角、右下角开始递推就行了
+  - 首先从左上角开始递推 dp[i][j] 是由其 「左方」和 「左上方」的最优子状态决定的；
+  - 然后从右下角开始递推 dp[i][j] 是由其 「右方」和 「右下方」的最优子状态决定的；
+  - 看起来第一次递推的时候，把「右上方」的最优子状态给漏掉了，其实不是的，因为第二次递推的时候「右方」的状态在第一次递推时已经包含了「右上方」的最优子状态了；
+  - 看起来第二次递推的时候，把「左下方」的最优子状态给漏掉了，其实不是的，因为第二次递推的时候「右下方」的状态在第一次递推时已经包含了「左下方」的最优子状态了。
++ 也可以这样理解，从最近的0走到1，肯定只能从1周围上下左右4个点走到1，第一次从左上角到右下角遍历整个表，到表中任意位置i的时候，i上方和左方的位置已经遍历过了，所以可以判断从上方进入这个1和左方进入这个1的状况哪个最近，并在dp数组保存。同理，第二次从右下角到左上角遍历整个表到i位置时，i右方和下方的位置状态已经更新过了，所以能判断从右边进入合算还是从下边进入合算，再加上第一次遍历保存的左方和上方的最优解就能判断出上下左右四个方向的最优解了
+
++ 四次动态规划的实现(**一定要注意动态规划的计算顺序**)
+```
+class Solution {
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        int m = matrix.size(), n = matrix[0].size();
+        // 初始化动态规划的数组，所有的距离值都设置为一个很大的数
+        vector<vector<int>> dist(m, vector<int>(n, INT_MAX / 2));
+        // 如果 (i, j) 的元素为 0，那么距离为 0
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (matrix[i][j] == 0) {
+                    dist[i][j] = 0;
+                }
+            }
+        }
+        // 只有 水平向左移动 和 竖直向上移动，注意动态规划的计算顺序
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (i - 1 >= 0) {
+                    dist[i][j] = min(dist[i][j], dist[i - 1][j] + 1);
+                }
+                if (j - 1 >= 0) {
+                    dist[i][j] = min(dist[i][j], dist[i][j - 1] + 1);
+                }
+            }
+        }
+        // 只有 水平向左移动 和 竖直向下移动，注意动态规划的计算顺序
+        for (int i = m - 1; i >= 0; --i) {
+            for (int j = 0; j < n; ++j) {
+                if (i + 1 < m) {
+                    dist[i][j] = min(dist[i][j], dist[i + 1][j] + 1);
+                }
+                if (j - 1 >= 0) {
+                    dist[i][j] = min(dist[i][j], dist[i][j - 1] + 1);
+                }
+            }
+        }
+        // 只有 水平向右移动 和 竖直向上移动，注意动态规划的计算顺序
+        for (int i = 0; i < m; ++i) {
+            for (int j = n - 1; j >= 0; --j) {
+                if (i - 1 >= 0) {
+                    dist[i][j] = min(dist[i][j], dist[i - 1][j] + 1);
+                }
+                if (j + 1 < n) {
+                    dist[i][j] = min(dist[i][j], dist[i][j + 1] + 1);
+                }
+            }
+        }
+        // 只有 水平向右移动 和 竖直向下移动，注意动态规划的计算顺序
+        for (int i = m - 1; i >= 0; --i) {
+            for (int j = n - 1; j >= 0; --j) {
+                if (i + 1 < m) {
+                    dist[i][j] = min(dist[i][j], dist[i + 1][j] + 1);
+                }
+                if (j + 1 < n) {
+                    dist[i][j] = min(dist[i][j], dist[i][j + 1] + 1);
+                }
+            }
+        }
+        return dist;
+    }
+};
+```
+## 合并区间
+
+1.题目
+```
+给出一个区间的集合，请合并所有重叠的区间。区间集合的顺序是不规则的。
+输入: [[1,3],[2,6],[8,10],[15,18]]
+输出: [[1,6],[8,10],[15,18]]
+解释: 区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
+```
+2.**空 vector和vector初始化的一些知识**
++ 空vector的判断和返回:
+
+```
+vector<vector<int>> intervals;
+if (intervals.size() == 0) {
+            return {};
+        }
+```
++ vector初始化的一些问题
+  - **如果声明vector时没有进行初始化，那么后面的赋值操作只可以有push_back，而不可以用"="赋值**
+
+  并且赋值时，vector变量后面不可以加下标!
+  ```
+  vector<vector<int>> res;
+  res.push_back(intervals[i]);//这样是可以的！
+  res[i].push_back(intervals[i]);//这样是错误的！因为没初始化，不可以在res后添加下标 
+  ```
+ - 如果声明时vector进行了初始化，**那么push_back操作将会在原初始化大小的后面添加元素；想改变初始化大小内的元素需要用"="!**
+ ```
+ vector<vector<int>> res(rows,vector<int>(cols));//rows X cols的二维vector，里面元素没赋值时，初始化为0
+ res[0].push_back(5);//是对的，但是赋值位置在res[0][cols]
+ res[0][0]=5;//是对的
+ ```
++ vector中也有front()和back()，分别表示vector中的第一个和最后一个元素。
+
+3.分析
++ 排序后比较右端点数大小。我们用数组 merged 存储最终的答案。
+  - 首先，我们将列表中的区间**按照左端点升序排序**。然后我们将第一个区间加入 merged 数组中，并按顺序依次考虑之后的每个区间：
+  - 如果**当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合**，我们可以直接将这个区间加入数组 merged 的末尾；
+  - 否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
++ 实现：
+```
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        if (intervals.size() == 0) {
+            return {};
+        }
+        sort(intervals.begin(), intervals.end());
+        vector<vector<int>> merged;
+        for (int i = 0; i < intervals.size(); ++i) {
+            int L = intervals[i][0], R = intervals[i][1];
+            if (!merged.size() || merged.back()[1] < L) {
+                merged.push_back({L, R});
+            }
+            else {
+                merged.back()[1] = max(merged.back()[1], R);
+            }
+        }
+        return merged;
+    }
+};
+```
+## 地图分析
+
+1.题目
+```
+你现在手里有一份大小为 N x N 的「地图」（网格） grid，上面的每个「区域」（单元格）都用 0 和 1 标记好了。其中 0 代表海洋，1 代表陆地，请你找出一个海洋区域，这个海洋区域到离它最近的陆地区域的距离是最大的。
+我们这里说的距离是「曼哈顿
+```
+## 统计重复个数
+
+(**使用hash表！**)
+
+1.题目
+```
+由 n 个连接的字符串 s 组成字符串 S，记作 S = [s,n]。例如，["abc",3]=“abcabcabc”。
+如果我们可以从 s2 中删除某些字符使其变为 s1，则称字符串 s1 可以从字符串 s2 获得。例如，根据定义，"abc" 可以从 “abdbec” 获得，但不能从 “acbbe” 获得。
+现在给你两个非空字符串 s1 和 s2（每个最多 100 个字符长）和两个整数 0 ≤ n1 ≤ 106 和 1 ≤ n2 ≤ 106。现在考虑字符串 S1 和 S2，其中 S1=[s1,n1] 、S2=[s2,n2] 。
+请你找出一个可以满足使[S2,M] 从 S1 获得的最大整数 M 。
+输入：
+s1 ="acb",n1 = 4
+s2 ="ab",n2 = 2
+返回：2
+```
+2.**map中find()和count()的区别——如何判断unordered_map 判断某个键是否存在**
++ unordered_map c++ reference 是c++ 哈希表的实现模板，在头文件<unordered_map>中，存储key-value的组合，unordered_map可以在常数时间内，根据key来取到value值。
++ find()函数
+  - 返回的是被查找元素的位置，没有则返回map.end()。。
+  - 因此可以通过map.find(key) == map.end()来判断，key是否存在于当前的unordered_map中。
++ count()函数
+ - count函数用以统计key值在unordered_map中出现的次数。实际上，c++ unordered_map不允许有重复的key。因此，如果key存在，则count返回1，如果不存在，则count返回0.
++ map与unordered_map相比：
+  - map底层实现为红黑数，undered_map底层实现为哈希表，两者均不能有重复的建，均支持[]运算符
++ map与multimap相比：
+  - 两者底层实现均为红黑树，但是multimap支持重复的键，不支持[]运算符
+
+
+3.分析
+
+![image](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/images/466_fig1.png)
+
++ 由于题目中的 n1 和 n2 都很大，因此我们无法真正把 S1 = [s1, n1] 和 S2 = [s2, n2] 都显式地表示出来。由于这两个字符串都是不断循环的，因此我们可以考虑找出 s2 在 S1 中出现的循环节，如果我们找到了循环节，那么我们就可以很快算出 s2 在 S1 中出现了多少次了。
++ 当我们找出循环节后，我们即可知道一个循环节内包含 s1 的数量，以及在循环节出现前的 s1 的数量，这样就可以在 O(1) 的时间内，通过简单的运算求出 s2 在 S1 中出现的次数了。当然，由于 S1 中 s1 的数量 n1 是有限的，因此可能会存在循环节最后一个部分没有完全匹配，如上图最后会单独剩一个 s1 出来无法完全匹配完循环节，这部分我们需要单独拿出来遍历处理统计。
++ 实现
+```
+int getMaxRepetitions(string s1, int n1, string s2, int n2) {
+        if (n1 == 0) {
+            return 0;
+        }
+        int s1cnt = 0, index = 0, s2cnt = 0;
+        // recall 是我们用来找循环节的变量，它是一个哈希映射
+        // 我们如何找循环节？假设我们遍历了 s1cnt 个 s1，此时匹配到了第 s2cnt 个 s2 中的第 index 个字符
+        // 如果我们之前遍历了 s1cnt' 个 s1 时，匹配到的是第 s2cnt' 个 s2 中同样的第 index 个字符，那么就有循环节了
+        // 我们用 (s1cnt', s2cnt', index) 和 (s1cnt, s2cnt, index) 表示两次包含相同 index 的匹配结果
+        // 那么哈希映射中的键就是 index，值就是 (s1cnt', s2cnt') 这个二元组
+        // 循环节就是；
+        //    - 前 s1cnt' 个 s1 包含了 s2cnt' 个 s2
+        //    - 以后的每 (s1cnt - s1cnt') 个 s1 包含了 (s2cnt - s2cnt') 个 s2
+        // 那么还会剩下 (n1 - s1cnt') % (s1cnt - s1cnt') 个 s1, 我们对这些与 s2 进行暴力匹配
+        // 注意 s2 要从第 index 个字符开始匹配
+        unordered_map<int, pair<int, int>> recall;
+        pair<int, int> pre_loop, in_loop;
+        while (true) {
+            // 我们多遍历一个 s1，看看能不能找到循环节
+            ++s1cnt;
+            for (char ch: s1) {
+                if (ch == s2[index]) {
+                    index += 1;
+                    if (index == s2.size()) {
+                        ++s2cnt;
+                        index = 0;
+                    }
+                }
+            }
+            // 还没有找到循环节，所有的 s1 就用完了
+            if (s1cnt == n1) {
+                return s2cnt / n2;
+            }
+            // 出现了之前的 index，表示找到了循环节
+            if (recall.count(index)) {
+                auto [s1cnt_prime, s2cnt_prime] = recall[index];
+                // 前 s1cnt' 个 s1 包含了 s2cnt' 个 s2
+                pre_loop = {s1cnt_prime, s2cnt_prime};
+                // 以后的每 (s1cnt - s1cnt') 个 s1 包含了 (s2cnt - s2cnt') 个 s2
+                in_loop = {s1cnt - s1cnt_prime, s2cnt - s2cnt_prime};
+                break;
+            }
+            else {
+                recall[index] = {s1cnt, s2cnt};
+            }
+        }
+        // ans 存储的是 S1 包含的 s2 的数量，考虑的之前的 pre_loop 和 in_loop
+        int ans = pre_loop.second + (n1 - pre_loop.first) / in_loop.first * in_loop.second;
+        // S1 的末尾还剩下一些 s1，我们暴力进行匹配
+        int rest = (n1 - pre_loop.first) % in_loop.first;
+        for (int i = 0; i < rest; ++i) {
+            for (char ch: s1) {
+                if (ch == s2[index]) {
+                    ++index;
+                    if (index == s2.size()) {
+                        ++ans;
+                        index = 0;
+                    }
+                }
+            }
+        }
+        // S1 包含 ans 个 s2，那么就包含 ans / n2 个 S2
+        return ans / n2;
+    }
+```
+## 无重叠区
+
+1.题目
+```
+给定一个区间的集合，找到需要移除区间的最小数量，使剩余区间互不重叠。
+注意:可以认为区间的终点总是大于它的起点。区间 [1,2] 和 [2,3] 的边界相互“接触”，但没有相互重叠。
+输入: [ [1,2], [2,3], [3,4], [1,3] ]
+输出: 1
+解释: 移除 [1,3] 后，剩下的区间没有重叠。
+```
+2.vector中自定义sort函数的比较函数
+
+**注意是用vector数组第二个元素大小降序排列，且注意函数前加static**
+```
+static bool cmp(vector<int>& a,vector<int>& b){
+            return a[1]<b[1];//以一维数组第二个元素比较大小
+        };
+```
+
+3.思路
++ 正确的思路其实很简单，可以分为以下三步：
+  - 从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。
+  - 把所有与 x 区间相交的区间从区间集合 intvs 中删除。
+  - 重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。
+  - 把这个思路实现成算法的话，可以按每个区间的 end 数值升序排序，因为这样处理之后实现步骤 1 和步骤 2 都方便很多。
++ 代码
+```
+ static bool cmp(vector<int>& a,vector<int>& b){
+            return a[1]<b[1];
+        }
+    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
+        int len = intervals.size();
+        if(len==0) return 0;
+        sort(intervals.begin(),intervals.end(),cmp);
+        int count = 1;
+        int end = intervals[0][1];
+        for(int i = 0;i<len;i++){
+            if(intervals[i][0]>=end){
+                count++;
+                end = intervals[i][1];
+            }
+        }
+        int res = len - count;
+        return res;
+    }
+```
+## 岛屿数量
+
+1.题目
+```
+你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。
+此外，你可以假设该网格的四条边均被水包围。
+输入:
+11110
+11010
+11000
+00000
+输出: 1
+输入:
+11000
+11000
+00100
+00011
+输出: 3
+```
+2.一些技巧
++ **队列中嵌套pair的声明和赋值**：
+```
+queue<pair<int,int>> res;
+res.push(make_pair(i,j));
+```
++ **在二维vector里面判断空集时，一定要在调用vector下标前判断！！**
+ - 以下错误！
+ ```
+ int rows = grid.size();
+ int cols = grid[0].size();//这段代码因为为空，所以直接出错！
+ if(rows == 0){
+     return 0;
+        }
+ ```
+ - 以下正确！
+ ```
+  int rows = grid.size();
+  if(rows == 0){
+      return 0;
+        }
+  int cols = grid[0].size();
+ ```
+3.分析
++ BFS算法
+  - 为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则将其加入队列，开始进行广度优先搜索。在广度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。直到队列为空，搜索结束。
+最终岛屿的数量就是我们进行广度优先搜索的次数。
+  - **一定要理解广度优先的本质含义，注意队列操作的位置！把队列的push和pop放在整个大循环的一个判断语句中！**
+  - 实现
+ ```
+    int numIslands(vector<vector<char>>& grid) {
+        int rows = grid.size();
+        if(rows == 0){
+            return 0;
+        }
+        int cols = grid[0].size();
+        queue<pair<int,int>> res;
+        int count = 0;
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+                if(grid[i][j] == '1'){
+                    count++;
+                    //queue<pair<int,int>> res;
+                    res.push(make_pair(i,j));
+                    grid[i][j] = '0';
+                    while(!res.empty()){
+                        auto [r,c] = res.front();
+                        res.pop();
+                        if(r-1>=0&&grid[r-1][c]=='1'){
+                            res.push(make_pair(r-1,c));
+                            grid[r-1][c]='0';
+                        }
+                        if(r+1<rows&&grid[r+1][c]=='1'){
+                            res.push(make_pair(r+1,c));
+                            grid[r+1][c]='0';
+                        }
+                        if(c-1>=0&&grid[r][c-1]=='1'){
+                            res.push(make_pair(r,c-1));
+                            grid[r][c-1]='0';
+                        }
+                        if(c+1<cols&&grid[r][c+1]=='1'){
+                            res.push(make_pair(r,c+1));
+                            grid[r][c+1]='0';
+                        }
+                    }   
+                }
+            }
+        }
+        return count;
+    }
+ ```
++ DFS算法(貌似使用的更多一些)
+  - 我们可以将二维网格看成一个无向图，竖直或水平相邻的 1 之间有边相连。
+为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。
+  - 实现（**包含一种经典的遍历岛屿的方式**）
+  ```
+  void dfs(vector<vector<char>>& grid, int r, int c) {
+        int nr = grid.size();
+        int nc = grid[0].size();
+        grid[r][c] = '0';//一定要关注！防止重复遍历！
+        if (r - 1 >= 0 && grid[r-1][c] == '1') dfs(grid, r - 1, c);
+        if (r + 1 < nr && grid[r+1][c] == '1') dfs(grid, r + 1, c);
+        if (c - 1 >= 0 && grid[r][c-1] == '1') dfs(grid, r, c - 1);
+        if (c + 1 < nc && grid[r][c+1] == '1') dfs(grid, r, c + 1);
+    }
+  public:
+    int numIslands(vector<vector<char>>& grid) {
+        int nr = grid.size();
+        if (!nr) return 0;
+        int nc = grid[0].size();
+        int num_islands = 0;
+        for (int r = 0; r < nr; ++r) {
+            for (int c = 0; c < nc; ++c) {
+                if (grid[r][c] == '1') {
+                    ++num_islands;
+                    dfs(grid, r, c);
+                }
+            }
+        }
+        return num_islands;
+    }
+  ```
+## 岛屿的周长
+
+1.题目
+
+```
+给定一个包含 0 和 1 的二维网格地图，其中 1 表示陆地 0 表示水域。
+网格中的格子水平和垂直方向相连（对角线方向不相连）。整个网格被水完全包围，但其中恰好有一个岛屿（或者说，一个或多个表示陆地的格子相连组成的岛屿）。
+岛屿中没有“湖”（“湖” 指水域在岛屿内部且不和岛屿周围的水相连）。格子是边长为 1 的正方形。网格为长方形，且宽度和高度均不超过 100 。计算这个岛屿的周长。
+输入:
+[[0,1,0,0],
+ [1,1,1,0],
+ [0,1,0,0],
+ [1,1,0,0]]
+输出: 16
+```
+2.分析
++ 普通分类讨论思想
+  - 这个题目的关键就是减掉相邻重复的边，两块岛屿相邻就有两条重复的边。
+    因此**判断它的 上 下 左 右 有没有岛屿(就是说有没有 1 )**
+  - 实现
+  ```
+  int islandPerimeter(vector<vector<int>>& grid) {
+          //定义总周长res为0
+        int res=0;
+		for(int i=0;i<grid.size();i++) {
+			for(int j=0;j<grid[0].size();j++) {
+				if(grid[i][j]==1) {
+					//每个岛屿默认4条边
+					int count=4;
+					//看它的上方的那块是不是 1，是的话count减一
+					if(i>0&&grid[i-1][j]==1)
+						count--;
+					//看它的下方的那块是不是 1，是的话count减一
+					if(i<grid.size()-1&&grid[i+1][j]==1)
+						count--;
+					//看它的左方的那块是不是 1，是的话count减一
+					if(j>0&&grid[i][j-1]==1)
+						count--;
+					//看它的右方的那块是不是 1，是的话count减一
+					if(j<grid[0].size()-1&&grid[i][j+1]==1)
+						count--;
+					res+=count;
+				}
+			}
+		}
+		return res;  
+    }
+  ```
++ DFS思路
+  - 求岛屿的周长其实有很多种方法，如果用 DFS 遍历来求的话，有一种很简单的思路：岛屿的周长就是岛屿方格和非岛屿方格相邻的边的数量。注意，这里的非岛屿方格，既包括水域方格，也包括网格的边界。
+  -  **关注这种方法下遍历岛屿方法与No.200的不同之处**
+  为了能够添加周长，这里把判断边界和访问海水块的判断条件单独拿了出来，用来添加周长。
+  ```
+  // 从一个岛屿方格走向网格边界，周长加 1
+    int dfs(vector<vector<int>>& grid, int r, int c) {
+    if (!(0 <= r && r < grid.length && 0 <= c && c < grid[0].length)) {
+        return 1;//正常遍历陆地的情况下是直接返回，没有返回值。
+    }
+    // 从一个岛屿方格走向水域方格，周长加 1
+    if (grid[r][c] == 0) {
+        return 1;//正常遍历陆地的情况下没有这个判断。
+    }
+    if (grid[r][c] != 1) {
+        return 0;//正常遍历陆地的情况下是直接返回，没有返回值。
+    }
+    grid[r][c] = 2;// 将方格标记为"已遍历"
+    return dfs(grid, r - 1, c)
+        + dfs(grid, r + 1, c)
+        + dfs(grid, r, c - 1)
+        + dfs(grid, r, c + 1);
+    }
+  ```
+  - 实现
+  ```
+   int islandPerimeter(vector<vector<int>>& grid) {
+    for (int r = 0; r < grid.size(); r++) {
+        for (int c = 0; c < grid[0].size(); c++) {
+            if (grid[r][c] == 1) {
+                // 题目限制只有一个岛屿，计算一个即可
+                return dfs(grid, r, c);
+            }
+        }
+    }
+    return 0;
+    }
+    DFS定义省去
+  ```
+## 统计优美数组
+
+1.题目
+```
+给你一个整数数组 nums 和一个整数 k。
+如果某个 连续 子数组中恰好有 k 个奇数数字，我们就认为这个子数组是「优美子数组」。
+请返回这个数组中「优美子数组」的数目。
+输入：nums = [1,1,2,1,1], k = 3
+输出：2
+解释：包含 3 个奇数的子数组是 [1,1,2,1] 和 [1,2,1,1] 。
+```
+2.分析
++ 可以单独建立一 odd 数组来记录第 i 个奇数的下标。那么我们可以枚举奇数，假设当前枚举到第 i 个，那么[odd[i],odd[i+k−1]] 这个子数组就恰好包含 k 个奇数。由于奇数和奇数间存在偶数，所以一定存在其他子数组 [l,r] 满足 [l,r] 包含 [odd[i],odd[i+k−1]] 且[l,r] 里的奇数个数为kk 个
++ 由于我们已经记录了每个奇数的下标，所以我们知道对于第 i 个奇数，它的前一个奇数的下标为 odd[i−1]，也就是说 (odd[i−1],odd[i]) 间的数都为偶数。同理可得 (odd[i+k−1],odd[i+k]) 间的数也都为偶数。那么我们可以得出满足l∈(odd[i−1],odd[i]] 且 r∈[odd[i+k−1],odd[i+k]) 条件的子数组[l,r] 包含 [odd[i],odd[i+k−1]] 且[l,r] 里的奇数个数为 k 个。因此对于第 i 个奇数，它对答案的贡献为符合条件的 [l,r] 的个数，即：
+**为(odd[i]−odd[i−1])∗(odd[i+k]−odd[i+k−1])**
++ 我们只要遍历一遍 \textit{odd}odd 数组即可求得最后的答案，注意边界的处理。
+
+3.实现
+```
+int numberOfSubarrays(vector<int>& nums, int k) {
+        vector<int> odd;//存储奇数坐标
+        odd.push_back(-1);
+        int count = 1;
+        int res=0;
+        for(int i = 0;i<nums.size();i++){
+            if(nums[i]%2==1){
+                odd.push_back(i);
+                count++;
+            }
+        }
+        odd.push_back(nums.size());
+        for(int j=1;j+k<odd.size();j++){
+            res += (odd[j]-odd[j-1])*(odd[j+k]-odd[j+k-1]);
+        }
+        return res;
+    }
+```
+## 图像渲染
+1.题目
+```
+有一幅以二维整数数组表示的图画，每一个整数表示该图画的像素值大小，数值在 0 到 65535 之间。
+给你一个坐标 (sr, sc) 表示图像渲染开始的像素值（行 ，列）和一个新的颜色值 newColor，让你重新上色这幅图像。
+为了完成上色工作，从初始坐标开始，记录初始坐标的上下左右四个方向上像素值与初始坐标相同的相连像素点，接着再记录这四个方向上符合条件的像素点与他们对应四个方向上像素值与初始坐标相同的相连像素点，……，重复该过程。将所有有记录的像素点的颜色值改为新的颜色值。
+最后返回经过上色渲染后的图像。
+输入: 
+image = [[1,1,1],[1,1,0],[1,0,1]]
+sr = 1, sc = 1, newColor = 2
+输出: [[2,2,2],[2,2,0],[2,0,1]]
+```
+2.分析
++ 将 color 置为目标像素初始颜色。我们从目标像素位置开始上色：若像素颜色和 color 相同则改变像素颜色为 newColor，然后再从四个方向进行上色，重复上述过程。
++ 我们可以使用 dfs 函数对目标像素进行渲染。
+
+3.实现
+```
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int color = image[sr][sc];
+        if(color != newColor){
+            dfs(image, sr, sc, color, newColor);
+        }
+        return image;
+    }
+    void dfs(vector<vector<int>>& image, int r, int c, int color, int newColor){
+        if(image[r][c] == color){
+            image[r][c] = newColor;
+            if (r >= 1) dfs(image, r-1, c, color, newColor);
+            if (c >= 1) dfs(image, r, c-1, color, newColor);
+            if (r+1 < image.size()) dfs(image, r+1, c, color, newColor);
+            if (c+1 < image[0].size()) dfs(image, r, c+1, color, newColor);
+        }
+    }
+```
+## 二叉树的右视图
+
+1.题目
+```
+给定一棵二叉树，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。
+输入: [1,2,3,null,5,null,4]
+输出: [1, 3, 4]
+解释:
+   1            <---
+ /   \
+2     3         <---
+ \     \
+  5     4       <---
+```
+2.自己的方法，以及一些思考
++**一定要区分i++和++i**
+   i++ 与 ++i 的主要区别有两个：
+   (1) i++ 返回原来的值，++i 返回加1后的值。
+   (2) i++ 不能作为左值，而++i 可以。
++ **在函数里面dfs(layer++)和dfs(layer+1)也不一样**。
+  - **需要注意的是，函数里的变量i++，变量值变成了i+1，但是在本次函数运行时变量值还是i。**
+  - 一个代码的例子：
+  ```
+  int test1(int a){
+    cout<<"test1 "<<a<<endl;
+   }
+   int test2(int a){
+    cout<<"test2 "<<a<<endl;
+	}
+   int main() {
+    int i = 0;
+    while(i<5){
+        test1(i++);
+        test2(i++);
+    }
+    return 0;
+    }
+  ```
+  输出：
+  ```
+  test1 0
+  test2 1
+  test1 2
+  test2 3
+  test1 4
+  test2 5
+  ```
+
++ 实现
+```
+ vector<int> res;
+    vector<int> rightSideView(TreeNode* root) {
+        if(root == NULL){
+            return {} ;
+        }
+        vector<int> count(1000,0);
+        dfs(root,0,count);
+        return res;
+    }
+    void dfs(TreeNode* root,int layer,vector<int>& count){
+        if(count[layer] == 0){
+             res.push_back(root->val);
+             count[layer] = 1;
+        }
+        //layer++;
+        if (root->right != nullptr) dfs(root->right,layer+1,count);
+        if (root->left != nullptr) dfs(root->left,layer+1,count);
+    }
+```
+
+3.分析
++ DFS方法
+  - 我们对树进行深度优先搜索，在搜索过程中，我们总是先访问右子树。那么对于每一层来说，我们在这层见到的第一个结点一定是最右边的结点。
+这样一来，我们可以存储在每个深度访问的第一个结点，一旦我们知道了树的层数，就可以得到最终的结果数组。
+  - **注意一定要有一个记录深度的vector容器！**
+  - 实现
++ BFS
+  - 我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。
+  - **因为使用队列对每一层遍历实现，因此在每一层的队列中，最后一个成员就是右视图能看到的结点**
+  - 实现
+
+## 从前序与中序遍历序列构造二叉树
+1.题目
+```
+根据一棵树的前序遍历与中序遍历构造二叉树。
+注意:
+你可以假设树中没有重复的元素。
+```
+2.分析,详细见剑指offer面试题7
++ 先构造根节点，根节点是先序遍历的第一个节点
++ 寻找根节点在中序序列中的位置
++ 递归构建根节点的左右子树
+
+
+
+## 摆动排序
+
+1.题目
+```
+给定一个无序的数组 nums，将它重新排列成 nums[0] < nums[1] > nums[2] < nums[3]... 的顺序。
+输入: nums = [1, 3, 2, 2, 3, 1]
+输出: 一个可能的答案是 [2, 3, 1, 3, 1, 2]
+```
+由 n 个连接的字符串 s 组成字符串 S，记作 S = [s,n]。例如，["abc",3]=“abcabcabc”。
+如果我们可以从 s2 中删除某些字符使其变为 s1，则称字符串 s1 可以从字符串 s2 获得。例如，
+2.**要总结一下快速排序、快速选择、3-way-partition算法**
