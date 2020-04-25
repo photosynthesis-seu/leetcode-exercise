@@ -8,7 +8,7 @@
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
   - [No.300 最长递增子序列](#最长递增子序列)
-  - [No.322 零钱兑换](#零钱兑换)
+  - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
   - [No.435 无重叠区域](#无重叠区间)
   - [No.516 最长回文子序列](#最长回文子序列)
   - [No.542 01矩阵](#01矩阵)
@@ -19,17 +19,21 @@
   - [面试题08.11 硬币](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#硬币)//背包问题
 + DFS、BFS算法（回溯算法、分治算法->递归实现）
   - [No.22 括号的生成](#括号的生成)
+  - [No.46 全排列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#全排列)//回溯算法，使用栈存放访问记录
   - [No.55 跳跃游戏](#跳跃游戏)
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
   - [No.200 岛屿数量](#岛屿数量)//经典遍历岛屿DFS、经典动态规划、BFS题目
+  - [No.322零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
   - [No.463 岛屿的周长](#岛屿的周长)//分类判断、DFS
   - [No.542 01矩阵](#01矩阵)
   - [No.733 图像渲染](#图像渲染)//类似岛屿问题
   - [No.1162 地图分析](#地图分析)
   - [面试题13-机器人的运动范围](#机器人的运动范围)
   - [剑指Offer-38-字符串的排列](#字符串的排列)//回溯算法+递归函数
-
++ 排序算法
+  - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！
+  - [No.75 颜色分类](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#颜色分类)//快速排序！
 ```
 已做题目：
 
