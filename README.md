@@ -41,7 +41,8 @@
 No.4 寻找两个数组的中位数 No.5 最长回文子串 No.6 Z字形变换 No.7 整数反转 No.8 字符串转整数 No.9 回文整数的判断
 No.11 盛最多水的容器 No.15 三数之和 No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（哨兵节点、优先队列） NO.33 搜索旋转排序数组
 No.42 接雨水问题 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
-No.96 不同的二叉搜索树（动态规划）NO.95 不同的二叉搜索树II No.105 从前序与中序遍历序列构造二叉树 No.199 二叉树的右视图(DFS、BFS；i++的问题！) 
+No.96 不同的二叉搜索树（动态规划）NO.95 不同的二叉搜索树II No.105 从前序与中序遍历序列构造二叉树 No.125 验证回文串（isdigit/islower/isupper函数）
+No.199 二叉树的右视图(DFS、BFS；i++的问题！) 
 No.200 岛屿数量（经典遍历岛屿DFS、经典动态规划、BFS题目！）
 No.206 反转链表 NO.215 数组中第k个最大元素 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）No.324 摆动排序
 No.355 设计推特 No.435 无重叠区域（动态规划）
@@ -65,20 +66,20 @@ No.1248 统计优美子数组(vector初始化以及边界处理)
 2.对于求字符串长度的函数：strlen/size/length的区别
 
 方法一：调用length()或size()
-```
+```C++
 string strTest="test";
 strTest.length();			//结果为4
 strTest.size();				//结果为4
 ```
 
 方法二：转为C风格字符串，调用strlen()
-```
+```C++
 strlen(strTest.c_str());	//结果为4
 ```
 3.c++遍历字符串的三种方式
 
 方法一：常规方式（下标+operator[])
-```
+```C++
 int StrToInt1(string str)
 {
     int value = 0;
@@ -91,7 +92,7 @@ int StrToInt1(string str)
 }
 ```
 方法二：使用迭代器遍历字符串
-```
+```C++
 int StrToInt2(string str)
     {
         //迭代器--在STL中，不破坏封装的情况下去访问容器
@@ -105,7 +106,7 @@ int StrToInt2(string str)
     }
  ```
  方法三：新式for循环 （第三种字符串遍历方式源自于c++11）
- ```
+ ```C++
  int StrToInt3(string str)
     {
         int value = 0;
@@ -136,41 +137,41 @@ int StrToInt2(string str)
  ## 寻找两个数组的中位数
  
  1.通过**割(Cut)算法**，把有序数组分成左右两个部分，割的左右会有两个元素，分别是左边最大值和右边最小值。
- ```
+ ```C++
  LMax= Max(LeftPart)，RMin = Min(RightPart)
  Ci为第i个数组的割。
  ```
  最终目的为：
- ```
+ ```C++
  LMax1<=RMin1，LMax2<=RMin2;
  LMax1<=RMin2，LMax2<=RMin1;
  ```
  2.通过将数组大小隐性X2+1的方法，将两个数组的长度强制转化为偶数。
- ```
+ ```C++
  LMaxi = (Ci-1)/2 位置上的元素;
  RMini = Ci/2 位置上的元素;
  ```
  
  ## 最长回文子串
  1.反转一个字符串
- ```
+ ```C++
  string s;
  string reverse_s = s;
  std::reverse(reverse_s.begin(),reverse_s.end());//可以将reverse_s反转；
  ```
  2.初始化二维vector
- ```
+ ```C++
  int length = s.length();
  vector<vector<int>> dp(length,vector<int>(length));
  ```
  3.输出一个字符串的子串
- ```
+ ```C++
  int start = 0;//子串开始位置
  int sub_length = 5;//子串长度
  s.substr(start,sub_length)；//substr为子串函数
  ```
  4.动态规划
- ```
+ ```C++
  //从长度为3的子字符串开始动态寻找回文串
         for(int l=3;l<length;l++){
             for(int i = 0; i<length-l+1;i++){
@@ -191,7 +192,7 @@ int StrToInt2(string str)
  
  通过遍历字符串的2n-1种可能性：n（奇数串，每个字符都可以是中心）+n-1（偶数串，以字符串的空隙为中心）= 2n-1，来确定最长回文子串
  
- ```
+ ```C++
   for(int i=0;i<len;i++)
         {
             int len1=expendaroundcenter(s,i,i);//一个元素为中心
@@ -207,7 +208,7 @@ int StrToInt2(string str)
 
  ```
  回文字符串的判断方法：
- ```
+ ```C++
   int expendaroundcenter(string s,int left,int right)
     //计算以left和right为中心的回文串长度
     {
@@ -227,7 +228,7 @@ int StrToInt2(string str)
  
  1.单链表的简单声明
  
- ```
+ ```C++
   struct ListNode {
    int val;
    ListNode *next;
@@ -239,7 +240,7 @@ int StrToInt2(string str)
  
  (2)ListNode* cur = NULL;ListNode* pre = head;是两个链表，顺便当双指针用；
  
- ```
+ ```C++
  ListNode* reverseList(ListNode* head) {
         if(head == NULL || head->next == NULL){
             return head;
@@ -265,12 +266,12 @@ int StrToInt2(string str)
 2.创建一个链表，并简单初始化一个值。
 
 注意一个技巧：最后的结果是从result链表第二个节点开始的，这样做可以每次从result->next添加节点。
-```
+```C++
 ListNode* result = new ListNode(1);
 ListNode* res = result;//最后的结果是从result链表第二个节点开始的，这样做可以每次从result->next添加节点
 ```
 3.注意这里的判断条件必须用&&，如果用或的话，NULL无法和另一个链表节点的值比大小。
-```
+```C++
 while(l1 != NULL && l2 != NULL){
 //比较两个链表节点值的大小//
 }
@@ -287,7 +288,7 @@ result->next = l1 == NULL? l2:l1;//在这一步再将更长一些的链表补在
   -----待完善
   
 2.**vector和set之间数据的转化方法**
-```
+```C++
 vector<string> result;//最终输出结果
 set<string> res;//使用set的性质去除重复字符串排列
 result = vector<string>(res.begin(),res.end());
@@ -296,7 +297,7 @@ result = vector<string>(res.begin(),res.end());
 
 4.函数形参中的引用问题
 
-```
+```C++
 void paixu(std::string s, int start, std::set<std::string> &res) {
     // 回溯结束条件
     if(start == s.size()){
@@ -348,7 +349,7 @@ void paixu(std::string s, int start, std::set<std::string> &res) {
  * 依次遍历每个字符，再进行回溯递归。
 ```
 **(2)具体实现细节**
-```
+```C++
 /*
      * 回溯函数
      * 使用set函数对字符串字符进行去重，
@@ -379,7 +380,7 @@ istringstream类用于执行C++风格的串流的输入操作; ostringstream类�
 
 **istringstream对象 可以绑定一行字符串，然后以空格为分隔符把该行分隔开来**
 
-```
+```C++
 #include<iostream>  
 #include<sstream>        //istringstream 必须包含这个头文件
 #include<string>  
@@ -404,7 +405,7 @@ boy
 ```
 2.uordered_map
 用来存储键和值，面对嵌套vector时的访问，可以用下面的例子来展示：
-```
+```C++
 unordered_map<string, vector<string>> table = {
         {"start", {"start", "signed", "in_number", "end"}},
         {"signed", {"end", "end", "in_number", "end"}},
@@ -416,13 +417,13 @@ state = table[state][get_col(c)];//使用两个下表来进行访问，第一个
 3.**判断字符串中字符为空格和数字的方法**
 
 (1)方法一：使用isspace()和isdigit()函数
-```
+```C++
 char c;
 int i = isspace(c);//是否为空格的判断函数
 int j = isdigit(c);//是否为数字的判断函数
 ```
 (2)方法二：直接判断
-```
+```C++
 for(int i = 0; i<str.length(); i++){
     if(str[i] == " "){...}//判断是否为空格
     if(str[i] >= '0'&& str[i] <= '9'){...}//判断是否为整数
@@ -431,7 +432,7 @@ for(int i = 0; i<str.length(); i++){
 关注**判断字符是否为整数的方法：str[i] >= '0'&& str[i] <= '9'**
 
 4.字符串转数字
-```
+```C++
 int digit =str[i] - '0';
 ```
 ## 三数之和
@@ -439,7 +440,7 @@ int digit =str[i] - '0';
 **此题自己的暴力递归方法存在一些问题，待解决**
 
 1.vector容器中所有元素求和的函数：accmulate()
-```
+```C++
 vector<int> res;
 int sum = accumulate(res.begin(),res.end(),0);
 ```
@@ -486,7 +487,7 @@ sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个�
   
 2.动态规划的实现（**注意利用备忘录！！**）
 
-```
+```C++
 int trap(vector<int>& height) {
         if(height.size() == 0 ||height.size() == 1||height.size() == 2){
             return 0;
@@ -537,7 +538,7 @@ rose -> ros (删除 'e')
 ![image](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/images/QQ%E5%9B%BE%E7%89%8720200404171329.png)
 
 4.实现
-```
+```C++
 int minDistance(string word1, string word2) {
         // 对于每个状态下，都有三种选择，替换、删除、插入
         int m = word1.size();
@@ -578,7 +579,7 @@ int minDistance(string word1, string word2) {
 + 「选择」其实就是去选择哪层楼扔鸡蛋。线性扫描选择一层层向上测试。不同的选择会造成状态的转移。
 
   明确了「状态」和「选择」，动态规划的基本思路就形成了：肯定是个二维的 dp 数组或者带有两个状态参数的 dp 函数来表示状态转移；外加一个 for 循环来遍历所有选择，择最优的选择更新状态：
-```
+```C++
 class Solution {
     public int superEggDrop(int K, int N) {
         return Solution.recursive(K, N);
@@ -599,7 +600,7 @@ class Solution {
 };
 ```
 2.一种暴力的带备忘录的动态规划
-```
+```C++
 for (int k = 2; k <= K; k++) { // 遍历所有鸡蛋、楼层高度可能，然后使用备忘录记录每种可能的最优解
             for (int n = 1; n <= N; n++) {
                 int tMinDrop = N * N;
@@ -615,7 +616,7 @@ for (int k = 2; k <= K; k++) { // 遍历所有鸡蛋、楼层高度可能，然�
 3.一种使用二分查找+动态规划的方法：
 
 ![image](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/images/12.png)
-```
+```C++
 class Solution {
     Map<Integer, Integer> cache = new HashMap<>();
     
@@ -656,7 +657,7 @@ class Solution {
 ## LFU缓存
 
 1.首先需要定义一个缓存的数据结构
-```
+```C++
 struct Node {
     int cnt;//缓存使用频率
     int time;//缓存使用时间
@@ -674,7 +675,7 @@ struct Node {
 
 + 对于 get(key) 操作，只要查看一下哈希表 key_table 是否有 key 这个键即可，有的话需要同时更新哈希表和集合中该缓存的使用频率以及使用时间，否则返回 -1。
 + 对于 put(key, value) 操作，首先需要查看 key_table 中是否已有对应的键值。如果有的话操作基本等同于 get(key)，不同的是需要更新缓存的 value 值。如果没有的话相当于是新插入一个缓存，这时候需要先查看是否达到缓存容量 capacity，如果达到了的话，需要删除最近最少使用的缓存，即平衡二叉树中最左边的结点，同时删除 key_table 中对应的索引，最后向 key_table 和 S 插入新的缓存信息即可。
-```
+```C++
 class LFUCache {
     // 缓存容量，时间戳
     int capacity, time;
@@ -714,7 +715,7 @@ public:
 
 2.一种遍历字符串和字符串vector中字符串的方法：
 
-```
+```C++
 string s;
 vector<string> rows;
 for (char c : s) {...}
@@ -722,7 +723,7 @@ for (string row : rows){...}
 ```
 
 2.具体实现
-```
+```C++
 class Solution {
 public:
     string convert(string s, int numRows) {
@@ -760,7 +761,7 @@ char *itoa( int value, char *string,int radix);
 原型说明：value：欲转换的数据;string：目标字符串的地址。radix：转换后的进制数，可以是10进制、16进制等。
 
 **itoa()并不是一个标准的C函数**，它是Windows特有的.如果要写跨平台的程序，标准库中有sprintf，用法跟printf类似：
-```
+```C++
 char str[255];
 sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
 ```
@@ -776,7 +777,7 @@ sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
 例如，输入 1221，我们可以将数字 “1221” 的后半部分从 “21” 反转为 “12”，并将其与前半部分 “12” 进行比较，因为二者相同，我们得知数字 1221 是回文。
 
 2.实现的细节
-```
+```C++
  int revertedNumber = 0;
         while(x > revertedNumber) {
             revertedNumber = revertedNumber * 10 + x % 10;
@@ -807,7 +808,7 @@ sprintf(str, "%x", 100); //将100转为16进制表示的字符串。
 当然，可能形成很多种新的子序列，但是我们只要最长的，把最长子序列的长度作为 dp[5] 的值即可。
 
 3.代码实现
-```
+```C++
 public int lengthOfLIS(int[] nums) {
     int[] dp = new int[nums.length];
     // dp 数组全都初始化为 1
@@ -837,7 +838,7 @@ public int lengthOfLIS(int[] nums) {
 vec.size()和 vec[0].size()来分别获取行数和列数。
 
 2.**一定要注意二维vector初始化后的push_back问题**
-```
+```C++
 void rotate(vector<vector<int>>& matrix) {
         int N = matrix[0].size();
         if(N==0 || N==1){
@@ -884,7 +885,7 @@ void rotate(vector<vector<int>>& matrix) {
 2.算法实现
 
 **双指针算法，关键点在于如何制定双指针的移动规则**
-```
+```C++
 class Solution {
 public:
     int maxArea(vector<int>& height) {
@@ -928,7 +929,7 @@ public:
 **第三步**，找状态转移方程。这是动态规划最难的一步，不过好在这种字符串问题的套路都差不多，权且借这道题来聊聊处理这类问题的思路。
 
 状态转移说简单些就是做选择，比如说这个问题，是求 s1 和 s2 的最长公共子序列，不妨称这个子序列为 lcs。那么对于 s1 和 s2 中的每个字符，有什么选择？很简单，两种选择，要么在 lcs 中，要么不在。还是看代码最直观：
-```
+```C++
 class Solution {
 public:
     int longestCommonSubsequence(string text1, string text2) {
@@ -975,7 +976,7 @@ public:
 (2)队列中添加元素：Q.push(make_pair(0, 0));
 
 (3)队列弹出元素，以及智能定义队列中的pair：
-```
+```C++
  auto [x, y] = Q.front();//队列顶端只能用front
  Q.pop();
 ```    
@@ -985,7 +986,7 @@ public:
 + x⊙10 ：得到 x 的个位数字；
 + x/10 ： 令 x 的十进制数向右移动一位，即删除个位数字。
 因此，可通过循环求得数位和，代码如下：
-```
+```C++
 // 计算 x 的数位之和（1步是模10，2步是除以10，注意这个技巧）
     int get(int x) {
         int res=0;
@@ -1018,7 +1019,7 @@ public:
   - 标记当前单元格 ：将单元格索引chess[x],[y]赋值1，代表此单元格可以被访问。
   - 单元格入队： 将当前可以被访问的下方、右方单元格的索引加入queue ；结果++
   - 返回值：返回结果。
-```
+```C++
 int movingCount(int m, int n, int k) {
         if (!k) return 1;
         // 向右和向下的方向数组
@@ -1055,7 +1056,7 @@ int movingCount(int m, int n, int k) {
 2.实现
 
 [详细解答见此文章](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98%E6%A8%A1%E6%9D%BF.md)
-```
+```C++
 int longestPalindromeSubseq(string s) {
     int n = s.size();
     // dp 数组全部初始化为 0
@@ -1088,7 +1089,7 @@ int longestPalindromeSubseq(string s) {
 ```
 
 2.注意**string类型添加和删除元素,和vector不一样**：
-```
+```C++
 string s;
 s.push_back('s');
 s.pop_back('s');
@@ -1097,7 +1098,7 @@ s.pop_back('s');
 3.如何判断生成的括号是否有效？
 
 思路核心在于左括号与右括号数量一定要相等，并且**从左往右遍历字符串时，右括号数量一定不能多于左括号数量**,经典算法如下：
-```
+```C++
 bool decision(string cur){
         int balance = 0;
         for(int i = 0;i<cur.size();i++){
@@ -1116,7 +1117,7 @@ bool decision(string cur){
 
 可以直接看代码，注意递归的跳出条件、如何遍历每一种可能性；
 
-```
+```C++
 void useful(vector<string>& res,string& cur,int left,int right,int n){
         if(cur.size() == 2*n){
             //if(decision(cur)){
@@ -1146,7 +1147,7 @@ void useful(vector<string>& res,string& cur,int left,int right,int n){
 (3)注意函数参数是否引用的区别！dfs(vector<string>& res, string cur, int n, int lc, int rc)和useful(vector<string>& res,string& cur,int left,int right,int n)
   
  用operator+的时候, 是按值传入的, 沒有改变cur. 而push_back()时, 改变了cur。 
-```
+```C++
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
@@ -1209,7 +1210,7 @@ void backtrack(vector<string>& ans, string cur, int open, int close, int n) {
   - G(n) = G(0) * G(n-1)+G(1) * (n-2)+...+G(n-1) * G(0)
   
 3.实现
-```
+```C++
 int numTrees(int n) {
     vector<int> dp(n+1);
     dp[0] = 1;
@@ -1236,7 +1237,7 @@ int numTrees(int n) {
 这样，我们就有了树根 i 和可能的左子树、右子树的列表。
 
 3.实现
-```
+```C++
 vector<TreeNode*> helper(int start,int end){
         vector<TreeNode*> ret;
         if(start > end)
@@ -1277,8 +1278,8 @@ top() 返回栈顶元素，不删除（获取）；
 **需要注意的是**当字符串为空时""，它也可以被压入堆栈，并且占用一个堆栈内存空间，这一点一定要注意！！
 
 3.实现简单来说是利用栈后进先出的特点实现，难点在于如何排除空格的影响。具体代码如下：
-```
-tring reverseWords(string s) {
+```C++
+string reverseWords(string s) {
         stack<string> res;
         string cur;
         string result;
@@ -1333,7 +1334,7 @@ line2 = {1, 1}, {0, -1}
 当斜率均存在时：1) 两条线段斜率相等 2) 两条线段斜率不相等
 ```
 + **利用直线方程求交点**：
-```
+```C++
 //求解斜率与纵截距
  vector<double> getLine(vector<int> st, vector<int> ed) {
         double k = (double) (st[1] - ed[1]) / (st[0] - ed[0]), b = st[1] - k * (double) st[0];
@@ -1371,7 +1372,7 @@ line2 = {1, 1}, {0, -1}
 输出: 4
 ```
 2.注意一维vector的初始化和重新赋值：
-```
+```C++
 vector<int> res(n+1,0);
 res[i] = res[i-1]+res[i-2];
 ```
@@ -1380,7 +1381,7 @@ res[i] = res[i-1]+res[i-2];
 **关注** sort() 只能接受 array、vector、deque 或标准数组中的元素。
 
 sort()默认是升序排列，可以使用great()参数实现降序排序。
-```
+```C++
  int findKthLargest(vector<int>& nums, int k) {
         int len = nums.size();
         sort(nums.begin(),nums.end(),greater());
@@ -1409,7 +1410,7 @@ sort()默认是升序排列，可以使用great()参数实现降序排序。
     - 如果target不在两者之间，那么right = mid-1;
 + 这种方法巧妙地实现了每次将左右区间中的一边转化到mid！
 3.实现
-```
+```C++
  public int search(int[] nums, int target) {
         int left = 0;int right = nums.length-1;int mid = left + (right-left)/2;
         while(left <= right){
@@ -1447,7 +1448,7 @@ sort()默认是升序排列，可以使用great()参数实现降序排序。
 ```
 2.分析
 + 首先创建一些数据结构，存储用户ID、关注的人的ID、发表的推特；以及推特发表的时间：
-```
+```C++
 struct Node {
         // 哈希表存储关注人的 Id
         unordered_set<int> followee;
@@ -1495,7 +1496,7 @@ priority_queue	不支持迭代器
 6.实现
 
 选择有代表性的两个函数：
-```
+```C++
  void postTweet(int userId, int tweetId) {
         if (user.find(userId) == user.end()) {
             init(userId);
@@ -1590,7 +1591,7 @@ priority_queue	不支持迭代器
 
   - 当链表为空时，没有哨兵节点的链表的头节点为NULL，处理起来也和其他情况不同。带哨兵节点的链表，当其为一个空链表时，仅含哨兵节点，哨兵节点的指针域为空，和其他情况的表尾是一样的。
 + 哨兵节点的实现：
-```
+```C++
 ListNode dummy(-1);
 ListNode* p = &dummy;
 // 开始出队
@@ -1605,7 +1606,7 @@ while(!pri_queue.empty()){
 4.优先队列的方法
 
 建立优先队列，不需要全部元素一次性入队；只需要让链表头元素入队即可，弹出该元素后，该链表往后移。
-```
+```C++
  // 小根堆的回调函数
     struct cmp{  
        bool operator()(ListNode *a,ListNode *b){
@@ -1631,7 +1632,7 @@ while(!pri_queue.empty()){
     }
 ```
 5.两两合并的方法
-```
+```C++
  // 合并两个有序链表
     ListNode* merge(ListNode* p1, ListNode* p2){
         if(!p1) return p2;
@@ -1666,7 +1667,7 @@ while(!pri_queue.empty()){
 2.**初始化一个链表的正确打开方式**
 
 + 利用头部哨兵节点创建
-```
+```C++
  ListNode* res = new ListNode(0);//可以认为是头部哨兵节点
  ListNode* result=res;
  ......
@@ -1682,7 +1683,7 @@ while(!pri_queue.empty()){
 + 还有一种**尾部哨兵节点**的例子，从后往前构建链表！
 
 **注意**尾节点可以这么定义，还不占用内存 ListNode* ans = nullptr;
-```
+```C++
 ListNode* ans = nullptr;
 ......
 ListNode* curnode = new ListNode(cur);
@@ -1692,7 +1693,7 @@ ListNode* curnode = new ListNode(cur);
         return ans;
 ```
 + 一种简单的遍历链表所有元素的写法**while(l1)**
-```
+```C++
 ListNode* l1;
 stack<int> s1;
 while (l1) {
@@ -1704,7 +1705,7 @@ while (l1) {
 
 本题的主要难点在于链表中数位的顺序与我们做加法的顺序是相反的，为了逆序处理所有数位，我们可以使用栈：把所有数字压入栈中，再依次取出相加。计算过程中需要注意进位的情况。
 
-```
+```C++
  ListNode* a
   ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         stack<int> s1, s2;
@@ -1783,7 +1784,7 @@ _ 1 0 1         2 1 0 1         2 1 0 1
 _ _ 1 _         _ 2 1 2         3 2 1 2
 ```
 + 实现：
-```
+```C++
 class Solution {
 private:
     static constexpr int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
@@ -1833,7 +1834,7 @@ public:
 + 也可以这样理解，从最近的0走到1，肯定只能从1周围上下左右4个点走到1，第一次从左上角到右下角遍历整个表，到表中任意位置i的时候，i上方和左方的位置已经遍历过了，所以可以判断从上方进入这个1和左方进入这个1的状况哪个最近，并在dp数组保存。同理，第二次从右下角到左上角遍历整个表到i位置时，i右方和下方的位置状态已经更新过了，所以能判断从右边进入合算还是从下边进入合算，再加上第一次遍历保存的左方和上方的最优解就能判断出上下左右四个方向的最优解了
 
 + 四次动态规划的实现(**一定要注意动态规划的计算顺序**)
-```
+```C++
 class Solution {
 public:
     vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
@@ -1908,7 +1909,7 @@ public:
 2.**空 vector和vector初始化的一些知识**
 + 空vector的判断和返回:
 
-```
+```C++
 vector<vector<int>> intervals;
 if (intervals.size() == 0) {
             return {};
@@ -1918,13 +1919,13 @@ if (intervals.size() == 0) {
   - **如果声明vector时没有进行初始化，那么后面的赋值操作只可以有push_back，而不可以用"="赋值**
 
   并且赋值时，vector变量后面不可以加下标!
-  ```
+  ```C++
   vector<vector<int>> res;
   res.push_back(intervals[i]);//这样是可以的！
   res[i].push_back(intervals[i]);//这样是错误的！因为没初始化，不可以在res后添加下标 
   ```
  - 如果声明时vector进行了初始化，**那么push_back操作将会在原初始化大小的后面添加元素；想改变初始化大小内的元素需要用"="!**
- ```
+ ```C++
  vector<vector<int>> res(rows,vector<int>(cols));//rows X cols的二维vector，里面元素没赋值时，初始化为0
  res[0].push_back(5);//是对的，但是赋值位置在res[0][cols]
  res[0][0]=5;//是对的
@@ -1937,7 +1938,7 @@ if (intervals.size() == 0) {
   - 如果**当前区间的左端点在数组 merged 中最后一个区间的右端点之后，那么它们不会重合**，我们可以直接将这个区间加入数组 merged 的末尾；
   - 否则，它们重合，我们需要用当前区间的右端点更新数组 merged 中最后一个区间的右端点，将其置为二者的较大值。
 + 实现：
-```
+```C++
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -1978,7 +1979,7 @@ public:
 + 考虑最朴素的方法，即求出每一个海洋区域（grid[i][j] == 0 的区域）的「最近陆地区域」，然后记录下它们的距离，然后在这些距离里面取一个最大值。
 + 对于一个给定的区域 (x,y) ，求它的「最近陆地区域」，可以使用宽度优先搜索思想。我们把每个区域的坐标作以及这个区域与(x,y) 的曼哈顿距离为搜索状态，即 Coordinate 结构体的 x、y 和 step 属性。findNearestLand 方法实现了宽度优先搜索的过程，用一个 vis[u][v] 数组记录(u,v) 区域是否被访问过.
 + 具体实现
-```
+```C++
 class Solution {
 public:
     static constexpr int dx[4] = {-1, 0, 1, 0}, dy[4] = {0, 1, 0, -1};
@@ -2027,7 +2028,7 @@ public:
 5.多源BFS方法
 
 实现
-```
+```C++
 class Solution {
 public:
     static constexpr int MAX_N = 100 + 5;
@@ -2091,7 +2092,7 @@ public:
   - 依次遍历数组中的每一个位置，并实时维护 最远可以到达的位置。对于当前遍历到的位置 xx，如果它在**最远可以到达**的位置的范围内，那么我们就可以从起点通过若干次跳跃到达该位置，因此我们可以用**x+nums[x] 更新最远可以到达**的位置。
   - 在遍历的过程中，如果**最远可以到达的位置大于等于数组中的最后一个位置**，那就说明最后一个位置可达，我们就可以直接返回 True 作为答案。反之，如果在遍历结束后，最后一个位置仍然不可达，我们就返回 False 作为答案。
 + 实现
-```
+```C++
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
@@ -2109,7 +2110,7 @@ public:
     }
 ```
 3.**还有一种更极致的判断方法！**
-```
+```C++
 //(1)如果某一个作为 起跳点 的格子可以跳跃的距离是 3，那么表示后面 3 个格子都可以作为 起跳点。
 //(2)可以对每一个能作为 起跳点 的格子都尝试跳一次，把 能跳到最远的距离 不断更新。
 //(3)如果可以一直跳到最后，就成功了。
@@ -2136,7 +2137,7 @@ bool canJump(vector<int>& nums)
 2.使用动态规划的思想是自然而然的。
 
 **dp[i]表示nums中以nums[i]结尾的最大子序和**
-```
+```C++
 class Solution
 {
 public:
@@ -2171,7 +2172,7 @@ public:
   - right_sum 为最大子数组的右子数组，为最后 n/2 的元素。
   - cross_sum 是包含左右子数组且含索引 (left + right) / 2 的最大值。
 + 实现：
-```
+```C++
 class Solution
 {
 public:
@@ -2254,7 +2255,7 @@ s2 ="ab",n2 = 2
 + 由于题目中的 n1 和 n2 都很大，因此我们无法真正把 S1 = [s1, n1] 和 S2 = [s2, n2] 都显式地表示出来。由于这两个字符串都是不断循环的，因此我们可以考虑找出 s2 在 S1 中出现的循环节，如果我们找到了循环节，那么我们就可以很快算出 s2 在 S1 中出现了多少次了。
 + 当我们找出循环节后，我们即可知道一个循环节内包含 s1 的数量，以及在循环节出现前的 s1 的数量，这样就可以在 O(1) 的时间内，通过简单的运算求出 s2 在 S1 中出现的次数了。当然，由于 S1 中 s1 的数量 n1 是有限的，因此可能会存在循环节最后一个部分没有完全匹配，如上图最后会单独剩一个 s1 出来无法完全匹配完循环节，这部分我们需要单独拿出来遍历处理统计。
 + 实现
-```
+```C++
 int getMaxRepetitions(string s1, int n1, string s2, int n2) {
         if (n1 == 0) {
             return 0;
@@ -2333,7 +2334,7 @@ int getMaxRepetitions(string s1, int n1, string s2, int n2) {
 2.vector中自定义sort函数的比较函数
 
 **注意是用vector数组第二个元素大小降序排列，且注意函数前加static**
-```
+```C++
 static bool cmp(vector<int>& a,vector<int>& b){
             return a[1]<b[1];//以一维数组第二个元素比较大小
         };
@@ -2346,7 +2347,7 @@ static bool cmp(vector<int>& a,vector<int>& b){
   - 重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。
   - 把这个思路实现成算法的话，可以按每个区间的 end 数值升序排序，因为这样处理之后实现步骤 1 和步骤 2 都方便很多。
 + 代码
-```
+```C++
  static bool cmp(vector<int>& a,vector<int>& b){
             return a[1]<b[1];
         }
@@ -2394,7 +2395,7 @@ res.push(make_pair(i,j));
 ```
 + **在二维vector里面判断空集时，一定要在调用vector下标前判断！！**
  - 以下错误！
- ```
+ ```C++
  int rows = grid.size();
  int cols = grid[0].size();//这段代码因为为空，所以直接出错！
  if(rows == 0){
@@ -2402,7 +2403,7 @@ res.push(make_pair(i,j));
         }
  ```
  - 以下正确！
- ```
+ ```C++
   int rows = grid.size();
   if(rows == 0){
       return 0;
@@ -2415,7 +2416,7 @@ res.push(make_pair(i,j));
 最终岛屿的数量就是我们进行广度优先搜索的次数。
   - **一定要理解广度优先的本质含义，注意队列操作的位置！把队列的push和pop放在整个大循环的一个判断语句中！**
   - 实现
- ```
+ ```C++
     int numIslands(vector<vector<char>>& grid) {
         int rows = grid.size();
         if(rows == 0){
@@ -2461,7 +2462,7 @@ res.push(make_pair(i,j));
   - 我们可以将二维网格看成一个无向图，竖直或水平相邻的 1 之间有边相连。
 为了求出岛屿的数量，我们可以扫描整个二维网格。如果一个位置为 1，则以其为起始节点开始进行深度优先搜索。在深度优先搜索的过程中，每个搜索到的 1 都会被重新标记为 0。
   - 实现（**包含一种经典的遍历岛屿的方式**）
-  ```
+  ```C++
   void dfs(vector<vector<char>>& grid, int r, int c) {
         int nr = grid.size();
         int nc = grid[0].size();
@@ -2508,7 +2509,7 @@ res.push(make_pair(i,j));
   - 这个题目的关键就是减掉相邻重复的边，两块岛屿相邻就有两条重复的边。
     因此**判断它的 上 下 左 右 有没有岛屿(就是说有没有 1 )**
   - 实现
-  ```
+  ```C++
   int islandPerimeter(vector<vector<int>>& grid) {
           //定义总周长res为0
         int res=0;
@@ -2540,7 +2541,7 @@ res.push(make_pair(i,j));
   - 求岛屿的周长其实有很多种方法，如果用 DFS 遍历来求的话，有一种很简单的思路：岛屿的周长就是岛屿方格和非岛屿方格相邻的边的数量。注意，这里的非岛屿方格，既包括水域方格，也包括网格的边界。
   -  **关注这种方法下遍历岛屿方法与No.200的不同之处**
   为了能够添加周长，这里把判断边界和访问海水块的判断条件单独拿了出来，用来添加周长。
-  ```
+  ```C++
   // 从一个岛屿方格走向网格边界，周长加 1
     int dfs(vector<vector<int>>& grid, int r, int c) {
     if (!(0 <= r && r < grid.length && 0 <= c && c < grid[0].length)) {
@@ -2593,7 +2594,7 @@ res.push(make_pair(i,j));
 + 我们只要遍历一遍 \textit{odd}odd 数组即可求得最后的答案，注意边界的处理。
 
 3.实现
-```
+```C++
 int numberOfSubarrays(vector<int>& nums, int k) {
         vector<int> odd;//存储奇数坐标
         odd.push_back(-1);
@@ -2629,7 +2630,7 @@ sr = 1, sc = 1, newColor = 2
 + 我们可以使用 dfs 函数对目标像素进行渲染。
 
 3.实现
-```
+```C++
 vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
         int color = image[sr][sc];
         if(color != newColor){
@@ -2669,7 +2670,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 + **在函数里面dfs(layer++)和dfs(layer+1)也不一样**。
   - **需要注意的是，函数里的变量i++，变量值变成了i+1，但是在本次函数运行时变量值还是i。**
   - 一个代码的例子：
-  ```
+  ```C++
   int test1(int a){
     cout<<"test1 "<<a<<endl;
    }
@@ -2696,7 +2697,7 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   ```
 
 + 实现
-```
+```C++
  vector<int> res;
     vector<int> rightSideView(TreeNode* root) {
         if(root == NULL){
