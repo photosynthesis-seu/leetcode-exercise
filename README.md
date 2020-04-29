@@ -36,6 +36,9 @@
   - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！
   - [No.75 颜色分类](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#颜色分类)//快速排序！
   - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
++ 查找算法
+  - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
+  - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
 ```
 已做题目：
 
@@ -44,14 +47,15 @@ No.11 盛最多水的容器 No.15 三数之和 No.21 合并两个有序链表 No
 No.42 接雨水问题 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
 No.96 不同的二叉搜索树（动态规划）NO.95 不同的二叉搜索树II No.105 从前序与中序遍历序列构造二叉树 
 No.124 二叉树中的最大路径和(带返回值的dfs)
-No.125 验证回文串（isdigit/islower/isupper函数）
+No.125 验证回文串（isdigit/islower/isupper函数）No.172 阶乘后的零（数学技巧、腾讯面试题）
 No.199 二叉树的右视图(DFS、BFS；i++的问题！) 
 No.200 岛屿数量（经典遍历岛屿DFS、经典动态规划、BFS题目！）
 No.206 反转链表 NO.215 数组中第k个最大元素 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）No.324 摆动排序
 No.355 设计推特 No.435 无重叠区域（动态规划）
 No.445 两数相加II（初始化一个链表的正确打开方式、栈实现高位先进，低位先出）
 No.460-LFU缓存 No.463 岛屿的周长（分类判断、DFS） No.466 统计重复个数（unordered_map） No.542 01矩阵分解
-No.516 最长回文子序列 No.733 图像渲染(类似岛屿问题，DFS) 难-No.887 鸡蛋掉落 No.1111 有效括号的嵌套深度 No.1143 最长公共子序列 No.1162 地图分析
+No.516 最长回文子序列 No.733 图像渲染(类似岛屿问题，DFS) No.793 阶乘函数后K个零（二分查找，腾讯面试题变种）
+难-No.887 鸡蛋掉落 No.1111 有效括号的嵌套深度 No.1143 最长公共子序列 No.1162 地图分析
 No.1248 统计优美子数组(vector初始化以及边界处理)
 
 
