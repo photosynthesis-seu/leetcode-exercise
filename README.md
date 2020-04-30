@@ -40,6 +40,11 @@
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
++ 双指针算法
+  - [No.11 盛最多水的容器](#盛最多水的容器)
+  - [No.15 三数之和](#三数之和)
+  - [No.202 快乐数]
+  - [No.206 反转链表](#反转链表)
 ```
 已做题目：
 
