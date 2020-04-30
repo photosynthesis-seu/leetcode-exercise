@@ -1,4 +1,4 @@
-自己的暴力解法：
+//自己的暴力解法：
 class Solution {
 public:
         set<vector<int>> result;
