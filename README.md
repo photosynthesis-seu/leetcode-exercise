@@ -273,24 +273,59 @@ int StrToInt2(string str)
  ```
 ## 合并两个有序链表
 
-1.合并有序链表时用两个链表的指针分别比较每一个节点的大小，然后申请一个新链表存储比较后每一个比较小的节点。
+1.题目
+```
+将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+```
+2.合并有序链表时用两个链表的指针分别比较每一个节点的大小，然后申请一个新链表存储比较后每一个比较小的节点。
 
 **注意!!** 不需要考虑两个节点值相等的情况，因为相等时随便让一个节点进入，然后留下另一个节点和之后的节点比较，它最终还是会进入链表的。
 
-2.创建一个链表，并简单初始化一个值。
+3.创建一个链表，并简单初始化一个值。
 
 注意一个技巧：最后的结果是从result链表第二个节点开始的，这样做可以每次从result->next添加节点。
 ```C++
 ListNode* result = new ListNode(1);
 ListNode* res = result;//最后的结果是从result链表第二个节点开始的，这样做可以每次从result->next添加节点
 ```
-3.注意这里的判断条件必须用&&，如果用或的话，NULL无法和另一个链表节点的值比大小。
+4.注意这里的判断条件必须用&&，如果用或的话，NULL无法和另一个链表节点的值比大小。
 ```C++
 while(l1 != NULL && l2 != NULL){
 //比较两个链表节点值的大小//
 }
 result->next = l1 == NULL? l2:l1;//在这一步再将更长一些的链表补在result后面
 ```
+5.整体实现
+```C++
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* result = new ListNode(1);
+        ListNode* res = result;//最后的结果是从result链表第二个节点开始的，这样做可以每次从result->next添加节点
+        if(l1 != NULL && l2 == NULL){
+            return l1;
+        }
+        if(l1 == NULL && l2 != NULL){
+            return l2;
+        }
+        //注意这里的判断条件必须用&&，如果用或的话，NULL无法和另一个链表节点的值比大小
+        while(l1 != NULL && l2 != NULL){
+            if(l1->val < l2->val){
+                result->next = l1;
+                result = result->next;
+                l1 = l1->next;
+            }
+            else{
+                result->next = l2;
+                result = result->next;
+                l2 = l2->next;
+            }
+            result->next = l1 == NULL? l2:l1;//在这一步再将更长一些的链表补在result后面
+        }
+        return res->next;
+    }
+```
+
 ## 字符串的排列
 
 1.**set的使用**
