@@ -32,7 +32,7 @@
   - [No.1162 地图分析](#地图分析)
   - [面试题13-机器人的运动范围](#机器人的运动范围)
   - [剑指Offer-38-字符串的排列](#字符串的排列)//回溯算法+递归函数
-+ 排序算法
++ 排序算法:  [十大排序算法模板](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
   - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！
   - [No.75 颜色分类](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#颜色分类)//快速排序！
   - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
