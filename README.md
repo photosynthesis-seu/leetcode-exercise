@@ -42,6 +42,7 @@
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
 + 双指针算法/滑窗算法
   - [No.3 无重复字符的最长子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#无重复字符的最长子串)//双指针、滑窗算法，动态规划，unordered_set
+  - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
   - [No.11 盛最多水的容器](#盛最多水的容器)
   - [No.15 三数之和](#三数之和)
   - [No.21 合并两个有序链表](#合并两个有序链表)//迭代、构造新链表的技巧
@@ -52,7 +53,8 @@
 
 No.3 无重复字符的最长子串（双指针、滑窗算法，动态规划，unordered_set）
 No.4 寻找两个数组的中位数 No.5 最长回文子串 No.6 Z字形变换 No.7 整数反转 No.8 字符串转整数 No.9 回文整数的判断
-No.11 盛最多水的容器 No.15 三数之和 No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（哨兵节点、优先队列） NO.33 搜索旋转排序数组
+No.11 盛最多水的容器 No.15 三数之和 No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（哨兵节点、优先队列） 
+No.30 串联所有单词的子串（滑窗算法，unordered_map,比较复杂）NO.33 搜索旋转排序数组
 No.42 接雨水问题 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
 No.96 不同的二叉搜索树（动态规划）NO.95 不同的二叉搜索树II No.105 从前序与中序遍历序列构造二叉树 
 No.124 二叉树中的最大路径和(带返回值的dfs)
