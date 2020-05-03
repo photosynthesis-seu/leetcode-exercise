@@ -3,6 +3,7 @@
 # C++题目总结
 + 动态规划
   - [No.5 最长回文子串](#最长回文子串)
+  - [No.39 组合总数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总数)//需要列举完全背包问题每种情况/面试题08.11.硬币的细化、回溯算法+剪枝
   - [No.42 接雨水问题](#接雨水问题)
   - [No.53 最大子序和](#最大子序和)
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
@@ -17,7 +18,7 @@
   - [No.877 石头游戏](#石头游戏)
   - [No.1143 最长公共子序列](#最长公共子序列)
   - [No.1162 地图分析](#地图分析)
-  - [面试题08.11 硬币](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#硬币)//背包问题
+  - [面试题08.11 硬币](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#硬币)//非常重要！二维数组背包问题
 + DFS、BFS算法（回溯算法、分治算法->递归实现）
   - [No.22 括号的生成](#括号的生成)
   - [No.46 全排列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#全排列)//回溯算法，使用栈存放访问记录
