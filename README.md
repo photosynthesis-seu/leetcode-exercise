@@ -21,6 +21,8 @@
   - [面试题08.11 硬币](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#硬币)//非常重要！二维数组背包问题
 + DFS、BFS算法（回溯算法、分治算法->递归实现）
   - [No.22 括号的生成](#括号的生成)
+  - [No.39 组合总数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总数)//需要列举完全背包问题每种情况/面试题08.11.硬币的细化、回溯算法+剪枝
+  - [No.40 组合总和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总和)//回溯算法+巧妙的剪枝
   - [No.46 全排列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#全排列)//回溯算法，使用栈存放访问记录
   - [No.55 跳跃游戏](#跳跃游戏)
   - [No.124 二叉树中的最大路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树中的最大路径和)//带返回值的dfs，返回选择路径最大值
