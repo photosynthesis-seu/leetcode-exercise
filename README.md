@@ -26,6 +26,7 @@
   - [No.40 组合总和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总和)//回溯算法+巧妙的剪枝
   - [No.46 全排列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#全排列)//回溯算法，使用栈存放访问记录
   - [No.55 跳跃游戏](#跳跃游戏)
+  - [No.98 验证二叉搜索树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证二叉搜索树)//递归，helper(root, ower,upper)，中序遍历
   - [No.124 二叉树中的最大路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树中的最大路径和)//带返回值的dfs，返回选择路径最大值
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
