@@ -39,7 +39,7 @@
   - [面试题13-机器人的运动范围](#机器人的运动范围)
   - [剑指Offer-38-字符串的排列](#字符串的排列)//回溯算法+递归函数
 + 排序算法:  [十大排序算法模板](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
-  - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！
+  - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！copy函数，涉及从标准输入设备读取信息！
   - [No.75 颜色分类](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#颜色分类)//快速排序！
   - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
 + 查找算法
@@ -82,7 +82,10 @@ No.1111 有效括号的嵌套深度 No.1143 最长公共子序列 No.1162 地图
 No.1248 统计优美子数组(vector初始化以及边界处理)
 
 
-面试题13-机器人的运动范围（典型的DFS/BFS）面试题16.03 交点（主要考察你细不细致）面试01.07 旋转矩阵 面试题08.11.硬币（核心就是动态规划里的背包问题！）面试题51 数组中的逆序对（归并排序）面试题56-I 数组中数字出现的次数（位运算与运算符优先级）
+面试题13-机器人的运动范围（典型的DFS/BFS）面试题16.03 交点（主要考察你细不细致）
+面试01.07 旋转矩阵 面试题08.11.硬币（核心就是动态规划里的背包问题！）
+面试题51 数组中的逆序对（归并排序，copy函数，涉及从标准输入设备读取信息！）
+面试题56-I 数组中数字出现的次数（位运算与运算符优先级）
 
 
 剑指Offer No.38 字符串的排列
