@@ -19,6 +19,7 @@
   - [No.887 鸡蛋掉落](#鸡蛋掉落)
   - [No.877 石头游戏](#石头游戏)
   - [No.983 最低票价](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最低票价)//从后向前的动态规划，unordered_set，正确初始化类成员变量
+  - [No.994 腐烂的橘子](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#腐烂的橘子)//本质是BFS，带点动态规划那味
   - [No.1143 最长公共子序列](#最长公共子序列)
   - [No.1162 地图分析](#地图分析)
   - [面试题08.11 硬币](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#硬币)//非常重要！二维数组背包问题
@@ -39,6 +40,7 @@
   - [No.542 01矩阵](#01矩阵)
   - [No.572 另一个树的子树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#另一个树的子树)//典型的dfs+递归（考虑前、中序遍历问题）、KMP字符串匹配算法
   - [No.733 图像渲染](#图像渲染)//类似岛屿问题
+  - [No.994 腐烂的橘子](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#腐烂的橘子)// 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
   - [No.1162 地图分析](#地图分析)
   - [面试题13-机器人的运动范围](#机器人的运动范围)
   - [剑指Offer-38-字符串的排列](#字符串的排列)//回溯算法+递归函数
@@ -92,8 +94,10 @@ No.542 01矩阵分解
 No.572 另一个树的子树（典型的dfs+递归（考虑前、中序遍历问题）、KMP字符串匹配算法）
 No.733 图像渲染(类似岛屿问题，DFS) No.793 阶乘函数后K个零（二分查找，腾讯面试题变种）
 No.820 单词的压缩编码（字典树，unorded_set,unordered_map）
+难-No.887 鸡蛋掉落
+No.912 排序数组（各类排序的知识！）
 No.983 最低票价（从后向前的动态规划，unordered_set，正确初始化类成员变量）
-难-No.887 鸡蛋掉落 No.912 排序数组（各类排序的知识！）
+No.994 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
 No.1111 有效括号的嵌套深度 No.1143 最长公共子序列 No.1162 地图分析
 No.1248 统计优美子数组(vector初始化以及边界处理)
 
