@@ -50,6 +50,7 @@
   - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
 + 查找算法
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
+  - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
 + 双指针算法/滑窗算法
@@ -73,6 +74,7 @@ No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（�
 No.30 串联所有单词的子串（滑窗算法，unordered_map,比较复杂）NO.33 搜索旋转排序数组
 No.42 接雨水问题  No.45 跳跃游戏II(贪心算法！)
 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 
+No.69 x的平方根（二分查找、牛顿迭代算法）
 No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
 No.96 不同的二叉搜索树（动态规划）NO.95 不同的二叉搜索树II 
 No.105 从前序与中序遍历序列构造二叉树 
