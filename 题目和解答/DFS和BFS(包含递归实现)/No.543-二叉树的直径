@@ -1,0 +1,16 @@
+class Solution {
+    int ans;
+    int depth(TreeNode* root){
+        if (root == NULL) return 0; // 访问到空节点了，返回0
+        int L = depth(root->left); // 左儿子为根的子树的深度
+        int R = depth(root->right); // 右儿子为根的子树的深度
+        ans = max(ans, L + R ); // 计算d_node即L+R 并更新ans
+        return max(L, R) + 1; // 这一步是精髓！返回该节点为根的子树的深度+1（往上一个节点凸出连接）
+    }
+public:
+    int diameterOfBinaryTree(TreeNode* root) {
+        ans = 0;
+        depth(root);
+        return ans;
+    }
+};
