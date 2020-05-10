@@ -34,7 +34,7 @@
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
   - [No.200 岛屿数量](#岛屿数量)//经典遍历岛屿DFS、经典动态规划、BFS题目
-  - [No.236 二叉树的最近公共祖先](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的最近公共祖先)//递归的后序遍历算法、哈希表存储父节点、以及一种很朴素容易想到但是个别用例超市的算法！
+  - [No.236 二叉树的最近公共祖先](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的最近公共祖先)//递归的后序遍历算法、哈希表存储父节点、以及一种很朴素容易想到但是个别用例超时的算法！
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
   - [No.365 水壶问题](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#水壶问题)//BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数
   - [No.463 岛屿的周长](#岛屿的周长)//分类判断、DFS
