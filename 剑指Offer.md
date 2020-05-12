@@ -13,3 +13,16 @@
 [2, 3, 1, 0, 2, 5, 3]
 输出：2 或 3 
 ```
+2.哈希表低级做法
+```C++
+    int findRepeatNumber(vector<int>& nums) {
+        unordered_set<int> res;
+        for(auto num : nums){
+            if(res.count(num)){
+                return num;
+            }
+            res.emplace(num);
+        }
+        return -1;
+    }
+```
