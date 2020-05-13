@@ -30,6 +30,7 @@
   - [No.46 全排列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#全排列)//回溯算法，使用栈存放访问记录
   - [No.55 跳跃游戏](#跳跃游戏)
   - [No.98 验证二叉搜索树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证二叉搜索树)//递归，helper(root, ower,upper)，中序遍历
+  - [No.102 二叉树的层序遍历](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的层序遍历)//BFS、vector初始化和赋值的新方法
   - [No.124 二叉树中的最大路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树中的最大路径和)//带返回值的dfs，返回选择路径最大值
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
@@ -79,7 +80,9 @@ No.50 Pow(x,n)(经典的二分法降低计算复杂度，还有经典的x^n = ex
 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 
 No.69 x的平方根（二分查找、牛顿迭代算法）
 No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
-No.96 不同的二叉搜索树（动态规划）NO.95 不同的二叉搜索树II 
+NO.95 不同的二叉搜索树II 
+No.96 不同的二叉搜索树（动态规划）
+No.102 二叉树的层序遍历（BFS、vector初始化和赋值的新方法）
 No.105 从前序与中序遍历序列构造二叉树 
 No.124 二叉树中的最大路径和(带返回值的dfs)
 No.125 验证回文串（isdigit/islower/isupper函数）
