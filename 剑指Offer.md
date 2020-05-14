@@ -1,7 +1,7 @@
 # 目录
 - [No.3 数组中的重复数字](#数组中的重复数字)
 - [No.6 从尾到头打印链表](#从尾到头打印链表)
-
+- [No.7 重建二叉树](#重建二叉树)
 # 题目
 
 ## 数组中的重复数字
@@ -138,6 +138,54 @@ public:
             pre = pre->next;
         }
         return res;
+    }
+};
+```
+## 重建二叉树
+
+1.题目
+```
+输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+
+前序遍历 preorder = [3,9,20,15,7]
+中序遍历 inorder = [9,3,15,20,7]
+返回如下的二叉树：
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+2.分析
++ 使用一个 Map 存储中序遍历的每个元素及其对应的下标，目的是为了快速获得一个元素在中序遍历中的位置。
++ 实现
+```
+class Solution {
+public:
+    unordered_map<int,int> dic;//存放中序遍历中节点与下标的对应关系
+    TreeNode* head;
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        for(int i=0;i<inorder.size();i++){
+            dic[inorder[i]] = i;
+        }
+        head = PreOrder(preorder,0,0,inorder.size()-1);
+        return head;
+    }
+    //前序遍历递归函数的三个整型参数分别为:
+    //子树的根节点在前序遍历的下标，子树在中序遍历中的左边界的下标，子树在中序遍历中的右边界的下标
+    //这个子树根据递归算法，可以是左子树也可以是右子树。
+    TreeNode* PreOrder(vector<int>& preorder, int root_pre, int left_in, int right_in){
+        if(left_in>right_in) return NULL;
+        //先使用子树的根节点初始化一个子树
+        TreeNode* node = new TreeNode(preorder[root_pre]);
+        //获取前序中的根节点在中序中的下标， 即index 左边就是这节点的左子树，index右边就是节点的右子树
+        int index = dic[preorder[root_pre]];
+        //左子树根节点就是前序遍历中当前根节点的下标加1，这正是前序遍历的性质
+        node->left = PreOrder(preorder,root_pre+1,left_in,index-1);
+        //右子树根节点在前序遍历中的下标即为:当前根节点下标+左子树节点个数+1
+        node->right = PreOrder(preorder,root_pre+index-left_in+1,index+1,right_in);
+        return node;
     }
 };
 ```
