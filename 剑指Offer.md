@@ -2,7 +2,8 @@
 - [No.3 数组中的重复数字](#数组中的重复数字)
 - [No.6 从尾到头打印链表](#从尾到头打印链表)//双指针反转链表、辅助栈、巧妙的递归函数
 - [No.7 重建二叉树](#重建二叉树)//前序遍历、中序遍历、递归函数DFS
-- [No.11 旋转数组的最小数字](旋转数组的最小数字)//二分查找、双指针算法、特殊情况判断
+- [No.11 旋转数组的最小数字](#旋转数组的最小数字)//二分查找、双指针算法、特殊情况判断
+- [No.12 矩阵中的路径](#阵中的路径)//dfs算法+典型模板、回溯算法、有点动态规划那味
 # 题目
 
 ## 数组中的重复数字
@@ -231,3 +232,62 @@ int minArray(vector<int>& numbers) {
         return numbers[left];
     }
 ```
+## 矩阵中的路径
+
+1.题目
+```
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。
+
+[["a","b","c","e"],
+["s","f","c","s"],
+["a","d","e","e"]]
+
+但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。
+```
+2.分析
++ 在board中找到一个位置，使得board[i][j] == word[0]，可以作为搜索的入口
++ 由于不能重复进入，因此需要定义一个visit数组，保证每个格子只进入一次
++ 找到一个可行解即返回true。若该次搜索返回false，那么进行寻找下一个可行的入口，进入下一次搜索
++ 直到遍历完整个board，仍没有搜索到目标路径，返回false
+3.实现
+```C++
+vector<vector<int>> direcs{{-1,0},{1,0},{0,-1},{0,1}};//常见的方向向量
+    bool exist(vector<vector<char>>& board, string word) {
+        int rows = board.size();
+        int cols = board[0].size();
+        vector<vector<bool>> visited(rows,vector<bool>(cols));//记录是否当前矩阵元素是否访问过，回溯
+        for(int i=0;i<rows;i++){
+            for(int j=0;j<cols;j++){
+               if(dfs(board,word,visited,0,i,j)){
+                   return true;
+               }
+            }
+        }
+        return false;
+    }
+    //DFS算法参数包括矩阵、单词、访问表、当前比对的字符在word的位置、访问的矩阵元素的坐标
+    bool dfs(vector<vector<char>>& board, string word, vector<vector<bool>>& visited, int index, int x, int y){
+        //返回条件是word所有字符都能在board找到
+        if(index == word.size()-1){
+            return board[x][y] == word[index];
+        }
+        //只有当前矩阵元素等于当前比对的word字符才进一步dfs，否则直接返回false
+        if(board[x][y] == word[index]){
+            visited[x][y] = true;
+            for(auto direc : direcs){
+                //一定要声明新的变量new_x，new_y。否则x,y会互相叠加影响，全乱套了
+                int new_x = x + direc[0];
+                int new_y = y + direc[1];
+                //只有没访问过，以及在矩阵内，才会进行dfs递归
+                if(new_x>=0&&new_x<board.size()&&new_y>=0&&new_y<board[0].size()&&!visited[new_x][new_y]){
+                    if(dfs(board,word,visited,index+1,new_x,new_y)){
+                        return true;
+                    }
+                }
+            } 
+            visited[x][y] = false;//回溯  
+        }
+        return false;
+    }
+```
+
