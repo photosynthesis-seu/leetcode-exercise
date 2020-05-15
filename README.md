@@ -65,6 +65,7 @@
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
+  - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [面试题57 - II. 和为s的连续正数序列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为s的连续正数序列)//简单凝练的滑窗算法
 ```
 已做题目：
@@ -104,6 +105,7 @@ No.460-LFU缓存 No.463 岛屿的周长（分类判断、DFS） No.466 统计重
 No.516 最长回文子序列 
 No.542 01矩阵分解
 No.543 二叉树的直径（典型的dfs，算是后序遍历，关注怎么选择返回二叉树左右子树的路径）
+No.560 和为k的子数组(双指针思想，巧妙的前缀和，哈希表unordered_map的应用)
 No.572 另一个树的子树（典型的dfs+递归（考虑前、中序遍历问题）、KMP字符串匹配算法）
 No.733 图像渲染(类似岛屿问题，DFS) No.793 阶乘函数后K个零（二分查找，腾讯面试题变种）
 No.820 单词的压缩编码（字典树，unorded_set,unordered_map）
