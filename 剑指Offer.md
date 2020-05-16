@@ -322,6 +322,18 @@ vector<vector<int>> direcs{{-1,0},{1,0},{0,-1},{0,1}};//常见的方向向量
     //         }
     // }
     int cuttingRope(int n) {
+        if(n==2)    return 1;
+        if(n==3)    return 2;
+        if(n==4)    return 4;
+        long res=1;
+        while(n>4){//大数越界:当a增大时，最后返回的3^a大小以指数级别增长，可能超出int32甚至int64的取值范围,导致返回值错误。因此考虑循环求余
+            res*=3;
+            res%=1000000007;
+            n-=3;
+        }
+        return (int)(res*n%1000000007);//这里必须取括号，否则会优先计算res*n的值，报错会超出范围
+    }
+    int cuttingRope(int n) {
         if(n<=1) return 0;
         if(n==2) return 1;
         if(n==3) return 2;
