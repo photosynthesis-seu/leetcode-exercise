@@ -4,6 +4,7 @@
 - [No.7 重建二叉树](#重建二叉树)//前序遍历、中序遍历、递归函数DFS
 - [No.11 旋转数组的最小数字](#旋转数组的最小数字)//二分查找、双指针算法、特殊情况判断
 - [No.12 矩阵中的路径](#阵中的路径)//dfs算法+典型模板、回溯算法、有点动态规划那味
+- [No.14 剪绳子I](#剪绳子I)//关注严格的数学原理推导、动态规划
 # 题目
 
 ## 数组中的重复数字
@@ -290,4 +291,52 @@ vector<vector<int>> direcs{{-1,0},{1,0},{0,-1},{0,1}};//常见的方向向量
         return false;
     }
 ```
+## 剪绳子I
+
+1.题目
+```
+给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n>1并且m>1），每段绳子的长度记为 k[0],k[1]...k[m-1] 。请问 k[0]*k[1]*...*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。
+输入: 10
+输出: 36
+解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
+```
+2.分析
++ [严格的数学推导，使用均值不等式与对数化求幂函数极值](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/solution/mian-shi-ti-14-i-jian-sheng-zi-tan-xin-si-xiang-by/)
+  - 数学推导总体分为两步：1.**当所有绳段长度相等时，乘积最大** 2.**最优的绳段长度为3**
++ 动态规划
+  - 可以定义 dp(n) 代表长度为n的绳子分割后的最大可能乘积，那么如果先从 n 中分出来 i 长度的一段，那么 dp(n) = dp(n-i) * dp(i)，然后求最大值即可。
++ 两种方法的实现
+  ```C++
+  // int cuttingRope(int n) {
+    //     if(n<=3) return n-1;
+    //     int a = n/3;
+    //     int b = n%3;
+    //     if(b==0){
+    //         return pow(3,a);
+    //     }
+    //     else if(b==1){
+    //         return pow(3,a-1)*4;
+    //     }
+    //         else{
+    //             return pow(3,a)*2;
+    //         }
+    // }
+    int cuttingRope(int n) {
+        if(n<=1) return 0;
+        if(n==2) return 1;
+        if(n==3) return 2;
+        vector<int> dp(n+1);
+        dp[1]=1;
+        dp[2]=2;
+        dp[3]=3;
+        for(int i=4;i<=n;i++){
+            int multi_max=0;
+            for(int j=1;j<=i/2;j++){
+                multi_max = max(multi_max,dp[i-j]*dp[j]);
+            }
+            dp[i] = multi_max;
+        }
+        return dp[n];
+    }
+  ```
 
