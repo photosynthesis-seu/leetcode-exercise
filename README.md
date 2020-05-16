@@ -62,6 +62,7 @@
   - [No.11 盛最多水的容器](#盛最多水的容器)
   - [No.15 三数之和](#三数之和)
   - [No.21 合并两个有序链表](#合并两个有序链表)//迭代、构造新链表的技巧
+  - [No.25 k个一组翻转链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#k个一组翻转链表)//难：两个全局指针，两个局部指针、反转链表
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
@@ -75,6 +76,7 @@ No.3 无重复字符的最长子串（双指针、滑窗算法，动态规划，
 No.11 盛最多水的容器 
 No.15 三数之和 
 No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（哨兵节点、优先队列） 
+No.25 k个一组翻转链表（难：两个全局指针，两个局部指针、反转链表）
 No.30 串联所有单词的子串（滑窗算法，unordered_map,比较复杂）NO.33 搜索旋转排序数组
 No.42 接雨水问题  No.45 跳跃游戏II(贪心算法！)
 No.50 Pow(x,n)(经典的二分法降低计算复杂度，还有经典的x^n = exp(n*log(abs(x)));,参考No.69 x的平方根)
