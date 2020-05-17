@@ -7,6 +7,7 @@
 - [No.14 剪绳子I](#剪绳子I)//关注严格的数学原理推导、动态规划
 - [No.15 二进制中1的个数](#二进制中1的个数)//n&(n-1),运算符优先级：先算术运算，后移位运算，最后位运算
 - [No.16 数值的整数次方](#数值的整数次方)//快速幂法，二分法
+- [No.17 打印从1到最大的n位数](#打印从1到最大的n位数)//pow()函数、大数解法
 # 题目
 
 ## 数组中的重复数字
@@ -428,4 +429,101 @@ double myPow(double x, int n) {
         }
         return res;
     }
+```
+## 打印从1到最大的n位数
+1.题目
+```
+输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
+
+输入: n = 1
+输出: [1,2,3,4,5,6,7,8,9]
+```
+2.分析
++ pow函数实现
+```C++
+class Solution {
+public:
+	vector<int> printNumbers(int n) {
+		vector<int> res;
+		if (n == 0) return res;
+		//打印到数组中
+		for (int i=1,max=pow(10,n);i<max;i++)
+		{
+			res.push_back(i);
+		}
+		return res;
+	}
+}; 
+```
++ 大数的string解法
+```C++
+class Solution {
+public:
+	vector<int> res;
+	vector<int> printNumbers(int n) {
+		if (n <= 0) return res;
+		//创建一个能容纳最大值的字符数组
+		string number(n, '0');
+		//初始全部设置为0
+		while (!Increment(number))
+		{
+			saveNumber(number);
+		}
+		return res;
+	}
+	bool Increment(string& number) {
+		//注意要使用引用传递，否则无法修改number
+		bool isOverflow = false;//检测是否越界
+		int nTakeOver = 0;//存储进位
+		int nLength = number.size();
+		for (int i = nLength - 1; i >= 0; i--)
+		{
+			int nSum = number[i] - '0' + nTakeOver;
+			if (i == nLength - 1)
+				//如果是第一位，进位
+			{
+				nSum++;
+			}
+			if (nSum >= 10)//有进位
+			{
+				if (i == 0)
+					//如果是最高位有进位，说明超过了给定得到最大值，越界
+				{
+					isOverflow = true;
+				}
+				else
+				{
+					nTakeOver = 1;
+					number[i] = nSum - 10 + '0';//对第i位进行设置
+				}
+			}
+			else//没有进位
+				//设置第i位数字
+				//并直接跳出循环
+			{
+				number[i] = nSum + '0';
+				break;
+			}
+		}
+		return isOverflow;
+	}
+	void saveNumber(string number)
+		//由于此处输出，不需要修改number，因此不需要加引用
+	{
+		string s = "";
+		bool isBegin0 = true;
+		string::iterator it = number.begin();
+		while (it != number.end())
+		{
+			if (isBegin0 && *it != '0') isBegin0 = false;
+			if (!isBegin0)
+			{
+				s += *it;
+			}
+			it++;
+		}
+		int num = stoi(s);
+		res.push_back(num);
+	}
+};
 ```
