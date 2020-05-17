@@ -35,6 +35,7 @@
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
   - [No.200 岛屿数量](#岛屿数量)//经典遍历岛屿DFS、经典动态规划、BFS题目
+  - [No.210 课程表II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#课程表II)//全新的知识！拓扑排序和有向图、BFS(入度)、DFS
   - [No.236 二叉树的最近公共祖先](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的最近公共祖先)//递归的后序遍历算法、哈希表存储父节点、以及一种很朴素容易想到但是个别用例超时的算法！
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
   - [No.365 水壶问题](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#水壶问题)//BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数
@@ -96,6 +97,7 @@ No.199 二叉树的右视图(DFS、BFS；i++的问题！)
 No.200 岛屿数量（经典遍历岛屿DFS、经典动态规划、BFS题目！）
 No.202 快乐数（数学技巧，unordered_set的使用）
 No.206 反转链表 NO.215 数组中第k个最大元素 
+No.210 课程表II(全新的知识！拓扑排序和有向图、BFS(入度)、DFS)
 No.221 最大正方形（典型的动态规划，需要关注暴力解法）
 No.225 用队列实现栈 No.232 用栈实现队列(注意循环的判断条件，如果修改栈，就不要用栈的大小判断，很关键！)
 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）
