@@ -5,7 +5,8 @@
 - [No.11 旋转数组的最小数字](#旋转数组的最小数字)//二分查找、双指针算法、特殊情况判断
 - [No.12 矩阵中的路径](#阵中的路径)//dfs算法+典型模板、回溯算法、有点动态规划那味
 - [No.14 剪绳子I](#剪绳子I)//关注严格的数学原理推导、动态规划
-- [No.15 二进制中1的个数](二进制中1的个数)//n&(n-1),运算符优先级：先算术运算，后移位运算，最后位运算
+- [No.15 二进制中1的个数](#二进制中1的个数)//n&(n-1),运算符优先级：先算术运算，后移位运算，最后位运算
+- [No.16 数值的整数次方](#数值的整数次方)//快速幂法，二分法
 # 题目
 
 ## 数组中的重复数字
@@ -398,4 +399,31 @@ vector<vector<int>> direcs{{-1,0},{1,0},{0,-1},{0,1}};//常见的方向向量
         return res;
     }
 ```
+## 数值的整数次方
+1.题目
+```
+现函数double Power(double base, int exponent)，求base的exponent次方。不得使用库函数，同时不需要考虑大数问题。
 
+输入: 2.00000, 10
+输出: 1024.00000
+```
+2.分析
++ [见题目解析](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/)
++ 实现
+```C++
+double myPow(double x, int n) {
+        if(x == 0) return 0;
+        long b = n;
+        double res = 1.0;
+        if(b < 0) {
+            x = 1 / x;
+            b = -b;
+        }
+        while(b > 0) {
+            if((b & 1) == 1) res *= x;
+            x *= x;
+            b >>= 1;
+        }
+        return res;
+    }
+```
