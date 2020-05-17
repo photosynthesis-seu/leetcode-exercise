@@ -409,6 +409,8 @@ vector<vector<int>> direcs{{-1,0},{1,0},{0,-1},{0,1}};//常见的方向向量
 ```
 2.分析
 + [见题目解析](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/solution/mian-shi-ti-16-shu-zhi-de-zheng-shu-ci-fang-kuai-s/)
++ n&1 （与操作）： 判断 n 二进制最右一位是否为 1 ；
++ n>>1 （移位操作）： n 右移一位（可理解为删除最后一位）。
 + 实现
 ```C++
 double myPow(double x, int n) {
