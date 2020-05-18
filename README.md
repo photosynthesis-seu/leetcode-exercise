@@ -10,6 +10,7 @@
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
+  - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
   - [No.221 最大正方形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最大正方形)//典型的动态规划，需要关注暴力解法
   - [No.300 最长递增子序列](#最长递增子序列)
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
@@ -91,6 +92,7 @@ No.105 从前序与中序遍历序列构造二叉树
 No.124 二叉树中的最大路径和(带返回值的dfs)
 No.125 验证回文串（isdigit/islower/isupper函数）
 No.136 只出现一次的数字(异或算法，类似面试题56-I 数组中数字出现的次数)
+No.152 乘积最大子数组（动态规划、同时使用两个一维dp数组）
 No.155 最小栈（使用栈容器的辅助栈方法、使用链表的方法）
 No.172 阶乘后的零（数学技巧、腾讯面试题）
 No.199 二叉树的右视图(DFS、BFS；i++的问题！) 
