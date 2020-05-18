@@ -8,6 +8,7 @@
 - [No.15 二进制中1的个数](#二进制中1的个数)//n&(n-1),运算符优先级：先算术运算，后移位运算，最后位运算
 - [No.16 数值的整数次方](#数值的整数次方)//快速幂法，二分法
 - [No.17 打印从1到最大的n位数](#打印从1到最大的n位数)//pow()函数、大数解法
+- [No.18 删除链表的节点](#删除链表的节点)//注意考虑所有情况
 # 题目
 
 ## 数组中的重复数字
@@ -526,4 +527,39 @@ public:
 		res.push_back(num);
 	}
 };
+```
+
+## 删除链表的节点
+
+1.题目
+```
+给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。
+返回删除后的链表的头节点。
+
+输入: head = [4,5,1,9], val = 5
+输出: [4,1,9]
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -> 1 -> 9.
+```
+2.分析
++ 实现
+```C++
+ ListNode* deleteNode(ListNode* head, int val) {
+        ListNode* res = head;
+        if (res->val == val){
+            return res->next;
+        }
+        while(res->next){
+            if(res->next->val == val){
+                if(res->next->next){
+                    res->next = res->next->next;
+                }
+                else{
+                    res->next = NULL;
+                    break;
+                }
+            }
+            res = res->next;
+        }
+        return head;
+    }
 ```
