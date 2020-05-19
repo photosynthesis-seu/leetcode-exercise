@@ -9,6 +9,7 @@
 - [No.16 数值的整数次方](#数值的整数次方)//快速幂法，二分法
 - [No.17 打印从1到最大的n位数](#打印从1到最大的n位数)//pow()函数、大数解法
 - [No.18 删除链表的节点](#删除链表的节点)//注意考虑所有情况
+- [No.19 正则表达式匹配](#正则表达式匹配)//比较复杂的动态规划
 # 题目
 
 ## 数组中的重复数字
@@ -562,4 +563,59 @@ public:
         }
         return head;
     }
+```
+## 正则表达式匹配
+1.题目
+```
+请实现一个函数用来匹配包含'. '和'*'的正则表达式。模式中的字符'.'表示任意一个字符，而'*'表示它前面的字符可以出现任意次（含0次）。在本题中，匹配是指字符串的所有字符匹配整个模式。例如，字符串"aaa"与模式"a.a"和"ab*ac*a"匹配，但与"aa.a"和"ab*a"均不匹配。
+
+输入:
+s = "aa"
+p = "a"
+输出: false
+解释: "a" 无法匹配 "aa" 整个字符串。
+```
+2.分析
++ [见这篇解析](https://leetcode-cn.com/problems/regular-expression-matching/solution/ji-yu-guan-fang-ti-jie-gen-xiang-xi-de-jiang-jie-b/)
++ 实现
+```C++
+class Solution {
+public:
+    //记忆表
+    vector<vector<int>>memo;
+    bool isMatch(string s, string p) {
+        // 大小+1的目的是因为memo有边界限制，在递归出口是只判断了pi，但没有限制si
+        memo = vector<vector<int>>(s.size() + 1, vector<int>(p.size() + 1, -1));
+        return helper(0, 0, s, p);
+    }
+    bool helper(int si, int pi, string s, string p) {
+        //递归出口
+        //当si==s.size() 且 pi < p.size()时 可能p中还有“*”字符 可以令前面的字符出现0次以匹配s
+        if(pi == p.size()) {
+            return si == s.size();
+        }
+        //如果判断过了直接返回存储的结果
+        if(memo[si][pi] != -1) { 
+            return memo[si][pi]; 
+        } 
+        bool res = false; //整个结果是否匹配
+        bool cur_match = false; //当前字符是否匹配
+        if(si < s.size()) {
+            if(s[si] == p[pi] || p[pi] == '.') {
+                cur_match = true;
+            }
+        }
+        //判断下一个字符是否'*'
+        if((pi + 1) < p.size() && p[pi + 1] == '*') {
+            // 考虑只需两种情况：
+            // 情况1：当前字符出现0次：跳过pattern中的当前字符和下一个"*"==>helper(si, pi + 2, s, p)
+            // 情况2：当前字符出现1次：当前是否匹配 && 将字符s向后移动一位是否匹配==>cur_match && helper(si + 1, pi, s, p)
+            res = helper(si, pi + 2, s, p) || (cur_match && helper(si + 1, pi, s, p));
+        } else {
+            res = cur_match && helper(si + 1, pi + 1, s, p); //下一个不是"*"正常向后匹配就好
+        }
+        memo[si][pi] = res;
+        return res;
+    }
+};
 ```
