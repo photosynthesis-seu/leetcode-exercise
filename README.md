@@ -264,6 +264,33 @@ int StrToInt2(string str)
             }
         }
  ```
+ 6.一种更加直接了然的实现
+ ```C++
+  string longestPalindrome(string s) {
+        int n = s.size();
+        vector<vector<int>> dp(n, vector<int>(n));
+        string ans;
+        for (int l = 0; l < n; ++l) {
+            for (int i = 0; i + l < n; ++i) {
+                int j = i + l;
+                if (l == 0) {
+                    dp[i][j] = 1;
+                }
+                else if (l == 1) {
+                    dp[i][j] = (s[i] == s[j]);
+                }
+                else {
+                    dp[i][j] = (s[i] == s[j] && dp[i + 1][j - 1]);
+                }
+                if (dp[i][j] && l + 1 > ans.size()) {
+                    ans = s.substr(i, l + 1);
+                }
+            }
+        }
+        return ans;
+    }
+ ```
+ 
  5.**中心拓展法**
  
  回文子串以中心字符为基准左右对称。那么可以根据以中心两个字符为基准（偶数串）或以中心一个字符为基准（奇数串），来向两边进行拓展。
