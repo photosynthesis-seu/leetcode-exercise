@@ -54,11 +54,11 @@
   - [面试题51 数组中的逆序对](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#数组中的逆序对)//归并排序！copy函数，涉及从标准输入设备读取信息！
   - [No.75 颜色分类](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#颜色分类)//快速排序！
   - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
+  - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
 + 查找算法
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
-  - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
 + 双指针算法/滑窗算法
   - [滑窗算法简短凝练的介绍](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/shi-yao-shi-hua-dong-chuang-kou-yi-ji-ru-he-yong-h/)
