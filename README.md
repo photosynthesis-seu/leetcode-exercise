@@ -45,6 +45,7 @@
   - [No.543 二叉树的直径](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的直径)//典型的dfs，算是后序遍历，关注怎么选择返回二叉树左右子树的路径
   - [No.572 另一个树的子树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#另一个树的子树)//典型的dfs+递归（考虑前、中序遍历问题）、KMP字符串匹配算法
   - [No.733 图像渲染](#图像渲染)//类似岛屿问题
+  - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
   - [No.994 腐烂的橘子](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#腐烂的橘子)// 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
   - [No.1162 地图分析](#地图分析)
   - [面试题13-机器人的运动范围](#机器人的运动范围)
@@ -57,6 +58,7 @@
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
+  - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
 + 双指针算法/滑窗算法
   - [滑窗算法简短凝练的介绍](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/shi-yao-shi-hua-dong-chuang-kou-yi-ji-ru-he-yong-h/)
@@ -120,6 +122,7 @@ No.820 单词的压缩编码（字典树，unorded_set,unordered_map）
 No.836 矩形重叠（IOU，一维化投影！）
 难-No.887 鸡蛋掉落
 No.912 排序数组（各类排序的知识！）
+No.945 使数组唯一的最小增量(很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归)
 No.983 最低票价（从后向前的动态规划，unordered_set，正确初始化类成员变量）
 No.994 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
 No.1111 有效括号的嵌套深度 No.1143 最长公共子序列 No.1162 地图分析
