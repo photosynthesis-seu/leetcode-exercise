@@ -191,6 +191,7 @@ public:
         //获取前序中的根节点在中序中的下标， 即index 左边就是这节点的左子树，index右边就是节点的右子树
         int index = dic[preorder[root_pre]];
         //左子树根节点就是前序遍历中当前根节点的下标加1，这正是前序遍历的性质
+	//PS：考虑左子树不存在，右子树存在的情况，此时left_in>right_in,所以一定会返回null
         node->left = PreOrder(preorder,root_pre+1,left_in,index-1);
         //右子树根节点在前序遍历中的下标即为:当前根节点下标+左子树节点个数+1
         node->right = PreOrder(preorder,root_pre+index-left_in+1,index+1,right_in);
