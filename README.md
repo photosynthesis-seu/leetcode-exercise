@@ -68,6 +68,7 @@
   - [No.21 合并两个有序链表](#合并两个有序链表)//迭代、构造新链表的技巧
   - [No.25 k个一组翻转链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#k个一组翻转链表)//难：两个全局指针，两个局部指针、反转链表
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
+  - [No.76 最小覆盖子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最小覆盖子串)//比较难的滑动窗口算法！
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
@@ -88,6 +89,7 @@ No.50 Pow(x,n)(经典的二分法降低计算复杂度，还有经典的x^n = ex
 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 
 No.69 x的平方根（二分查找、牛顿迭代算法）
 No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
+No.76 最小覆盖子串（比较难的滑动窗口算法！）
 NO.95 不同的二叉搜索树II 
 No.96 不同的二叉搜索树（动态规划）
 No.102 二叉树的层序遍历（BFS、vector初始化和赋值的新方法）
