@@ -56,6 +56,7 @@
   - [No.315计算右侧小于当前元素的个数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#计算右侧小于当前元素的个数)
   - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
 + 查找算法
+  - [No.4 寻找两个数组的中位数](#寻找两个数组的中位数)//经典、比较复杂的二分查找！
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
@@ -78,7 +79,8 @@
 已做题目：
 
 No.3 无重复字符的最长子串（双指针、滑窗算法，动态规划，unordered_set）
-(4~9)No.4 寻找两个数组的中位数 No.5 最长回文子串 No.6 Z字形变换 No.7 整数反转 No.8 字符串转整数 No.9 回文整数的判断
+No.4 寻找两个数组的中位数(有一种非常完善的二分查找算法!)
+No.5 最长回文子串 No.6 Z字形变换 No.7 整数反转 No.8 字符串转整数 No.9 回文整数的判断
 No.11 盛最多水的容器 
 No.15 三数之和 
 No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（哨兵节点、优先队列） 
@@ -234,6 +236,54 @@ int StrToInt2(string str)
  ```C++
  LMaxi = (Ci-1)/2 位置上的元素;
  RMini = Ci/2 位置上的元素;
+ ```
+ 3.[一种经典的二分查找算法！看视频](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/solution/xun-zhao-liang-ge-you-xu-shu-zu-de-zhong-wei-s-114/)
+ 
+ 4.实现
+ ```java
+ public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        if (nums1.length > nums2.length) {
+            int[] temp = nums1;
+            nums1 = nums2;
+            nums2 = temp;
+        }
+
+        int m = nums1.length;
+        int n = nums2.length;
+
+        // 分割线左边的所有元素需要满足的个数 m + (n - m + 1) / 2;
+        int totalLeft = (m + n + 1) / 2;
+
+        // 在 nums1 的区间 [0, m] 里查找恰当的分割线，
+        // 使得 nums1[i - 1] <= nums2[j] && nums2[j - 1] <= nums1[i]
+        int left = 0;
+        int right = m;
+
+        while (left < right) {
+            int i = left + (right - left + 1) / 2;
+            int j = totalLeft - i;
+            if (nums1[i - 1] > nums2[j]) {
+                // 下一轮搜索的区间 [left, i - 1]
+                right = i - 1;
+            } else {
+                // 下一轮搜索的区间 [i, right]
+                left = i;
+            }
+        }
+
+        int i = left;
+        int j = totalLeft - i;
+        int nums1LeftMax = i == 0 ? Integer.MIN_VALUE : nums1[i - 1];
+        int nums1RightMin = i == m ? Integer.MAX_VALUE : nums1[i];
+        int nums2LeftMax = j == 0 ? Integer.MIN_VALUE : nums2[j - 1];
+        int nums2RightMin = j == n ? Integer.MAX_VALUE : nums2[j];
+
+        if (((m + n) % 2) == 1) {
+            return Math.max(nums1LeftMax, nums2LeftMax);
+        } else {
+            return (double) ((Math.max(nums1LeftMax, nums2LeftMax) + Math.min(nums1RightMin, nums2RightMin))) / 2;
+        }
+    }
  ```
  
  ## 最长回文子串
