@@ -70,6 +70,7 @@
   - [No.25 k个一组翻转链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#k个一组翻转链表)//难：两个全局指针，两个局部指针、反转链表
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
   - [No.76 最小覆盖子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最小覆盖子串)//比较难的滑动窗口算法！
+  - [No.146 LRU缓存机制](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#LRU缓存机制)//哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
@@ -99,6 +100,7 @@ No.105 从前序与中序遍历序列构造二叉树
 No.124 二叉树中的最大路径和(带返回值的dfs)
 No.125 验证回文串（isdigit/islower/isupper函数）
 No.136 只出现一次的数字(异或算法，类似面试题56-I 数组中数字出现的次数)
+No.146 LRU缓存机制（哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map）
 No.152 乘积最大子数组（动态规划、同时使用两个一维dp数组）
 No.155 最小栈（使用栈容器的辅助栈方法、使用链表的方法）
 No.172 阶乘后的零（数学技巧、腾讯面试题）
