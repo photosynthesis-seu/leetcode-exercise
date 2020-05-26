@@ -59,6 +59,7 @@
   - [No.4 寻找两个数组的中位数](#寻找两个数组的中位数)//经典、比较复杂的二分查找！
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
+  - [No.287 寻找重复数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#寻找重复数)//类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
 + 双指针算法/滑窗算法
@@ -111,6 +112,7 @@ No.206 反转链表 NO.215 数组中第k个最大元素
 No.210 课程表II(全新的知识！拓扑排序和有向图、BFS(入度)、DFS)
 No.221 最大正方形（典型的动态规划，需要关注暴力解法）
 No.225 用队列实现栈 No.232 用栈实现队列(注意循环的判断条件，如果修改栈，就不要用栈的大小判断，很关键！)
+No.287 寻找重复数（类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间）
 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）
 No.324 摆动排序
 No.355 设计推特 No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数）
