@@ -19,6 +19,7 @@
   - [No.542 01矩阵](#01矩阵)
   - [No.887 鸡蛋掉落](#鸡蛋掉落)
   - [No.877 石头游戏](#石头游戏)
+  - [No.974 和可被K整除的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和可被K整除的子数组)//使用哈希表的前缀和、类似动态规划、unordered_map
   - [No.983 最低票价](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最低票价)//从后向前的动态规划，unordered_set，正确初始化类成员变量
   - [No.994 腐烂的橘子](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#腐烂的橘子)//本质是BFS，带点动态规划那味
   - [No.1143 最长公共子序列](#最长公共子序列)
@@ -131,6 +132,7 @@ No.836 矩形重叠（IOU，一维化投影！）
 难-No.887 鸡蛋掉落
 No.912 排序数组（各类排序的知识！）
 No.945 使数组唯一的最小增量(很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归)
+No.974 和可被 K 整除的子数组(使用哈希表的前缀和、类似动态规划、unordered_map)
 No.983 最低票价（从后向前的动态规划，unordered_set，正确初始化类成员变量）
 No.994 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
 No.1071 字符串的最大公因子(枚举、辗转相除，c++自带的求最大公约数的函数__gcd())
