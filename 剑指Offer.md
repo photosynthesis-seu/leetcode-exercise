@@ -10,6 +10,7 @@
 - [No.17 打印从1到最大的n位数](#打印从1到最大的n位数)//pow()函数、大数解法
 - [No.18 删除链表的节点](#删除链表的节点)//注意考虑所有情况
 - [No.19 正则表达式匹配](#正则表达式匹配)//比较复杂的动态规划
+- [No.20 表示数值的字符串](#表示数值的字符串)//几个神奇的函数find_first_not_of...,根据e划分指数和底数
 - [No.21 调整数组顺序使奇数位于偶数前面](#调整数组顺序使奇数位于偶数前面) //典型的首尾双指针、快慢指针题目，一定要会！！
 # 题目
 
@@ -693,4 +694,76 @@ vector<int> exchange(vector<int>& nums) {
         }
         return nums;
     }
+```
+## 表示数值的字符串
+1.题目
+```
+请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串"+100"、"5e2"、"-123"、"3.1416"、"0123"都表示数值，但"12e"、"1a3.14"、"1.2.3"、"+-5"、"-1E-16"及"12e+5.4"都不是。
+```
+2.一种简单的方法
++ 先去除字符串首尾的空格
++ 然后根据e划分指数和底数
++ 判断指数和底数是否合法即可
++ 实现
+```C++
+    bool isNumber(string s) {
+        //1、从首尾寻找s中不为空格首尾位置，也就是去除首尾空格
+        int i=s.find_first_not_of(' ');
+        if(i==string::npos)return false;
+        int j=s.find_last_not_of(' ');
+        s=s.substr(i,j-i+1);
+        if(s.empty())return false;
+
+        //2、根据e来划分底数和指数
+        int e=s.find('e');
+
+        //3、指数为空，判断底数
+        if(e==string::npos)return judgeP(s);
+
+        //4、指数不为空，判断底数和指数
+        else return judgeP(s.substr(0,e))&&judgeS(s.substr(e+1));
+    }
+
+    bool judgeP(string s)//判断底数是否合法
+    {
+        bool result=false,point=false;
+        int n=s.size();
+        for(int i=0;i<n;++i)
+        {
+            if(s[i]=='+'||s[i]=='-'){//符号位不在第一位，返回false
+                if(i!=0)return false;
+            }
+            else if(s[i]=='.'){
+                if(point)return false;//有多个小数点，返回false
+                point=true;
+            }
+            else if(s[i]<'0'||s[i]>'9'){//非纯数字，返回false
+                return false;
+            }
+            else{
+                result=true;
+            }
+        }
+        return result;
+    }
+
+    bool judgeS(string s)//判断指数是否合法
+    {   
+        bool result=false;
+        //注意指数不能出现小数点，所以出现除符号位的非纯数字表示指数不合法
+        for(int i=0;i<s.size();++i)
+        {
+            if(s[i]=='+'||s[i]=='-'){//符号位不在第一位，返回false
+                if(i!=0)return false;
+            }
+            else if(s[i]<'0'||s[i]>'9'){//非纯数字，返回false
+                return false;
+            }
+            else{
+                result=true;
+            }
+        }
+        return result;
+    }
+
 ```
