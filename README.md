@@ -41,6 +41,7 @@
   - [No.236 二叉树的最近公共祖先](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的最近公共祖先)//递归的后序遍历算法、哈希表存储父节点、以及一种很朴素容易想到但是个别用例超时的算法！
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
   - [No.365 水壶问题](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#水壶问题)//BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数
+  - [No.394 字符串解码](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#字符串解码)//辅助数字栈、字符串栈，腾讯面试题目，两个栈之间巧妙地协作，编译原理？
   - [No.463 岛屿的周长](#岛屿的周长)//分类判断、DFS
   - [No.542 01矩阵](#01矩阵)
   - [No.543 二叉树的直径](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的直径)//典型的dfs，算是后序遍历，关注怎么选择返回二叉树左右子树的路径
@@ -76,24 +77,33 @@
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
-  - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
+  - [No.680 验证回文字符串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
   - [面试题57 - II. 和为s的连续正数序列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为s的连续正数序列)//简单凝练的滑窗算法
 ```
 已做题目：
 
 No.3 无重复字符的最长子串（双指针、滑窗算法，动态规划，unordered_set）
 No.4 寻找两个数组的中位数(有一种非常完善的二分查找算法!)
-No.5 最长回文子串 No.6 Z字形变换 No.7 整数反转 No.8 字符串转整数 No.9 回文整数的判断
+No.5 最长回文子串 
+No.6 Z字形变换 
+No.7 整数反转 
+No.8 字符串转整数 
+No.9 回文整数的判断
 No.11 盛最多水的容器 
 No.15 三数之和 
-No.21 合并两个有序链表 No.22 括号的生成 No.23 合并k个链表（哨兵节点、优先队列） 
+No.21 合并两个有序链表 
+No.22 括号的生成 
+No.23 合并k个链表（哨兵节点、优先队列） 
 No.25 k个一组翻转链表（难：两个全局指针，两个局部指针、反转链表）
-No.30 串联所有单词的子串（滑窗算法，unordered_map,比较复杂）NO.33 搜索旋转排序数组
-No.42 接雨水问题  No.45 跳跃游戏II(贪心算法！)
+No.30 串联所有单词的子串（滑窗算法，unordered_map,比较复杂）
+NO.33 搜索旋转排序数组
+No.42 接雨水问题  
+No.45 跳跃游戏II(贪心算法！)
 No.50 Pow(x,n)(经典的二分法降低计算复杂度，还有经典的x^n = exp(n*log(abs(x)));,参考No.69 x的平方根)
 No.53 最大子序和 No.55 跳跃游戏 No.56 合并区间 
 No.69 x的平方根（二分查找、牛顿迭代算法）
-No.72 编辑两个单词的距离 No.75 颜色分类（快速排序、荷兰旗）
+No.72 编辑两个单词的距离 
+No.75 颜色分类（快速排序、荷兰旗）
 No.76 最小覆盖子串（比较难的滑动窗口算法！）
 NO.95 不同的二叉搜索树II 
 No.96 不同的二叉搜索树（动态规划）
@@ -116,10 +126,14 @@ No.225 用队列实现栈 No.232 用栈实现队列(注意循环的判断条件�
 No.287 寻找重复数（类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间）
 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）
 No.324 摆动排序
-No.355 设计推特 No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数）
+No.355 设计推特 
+No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数）
+No.394 字符串解码（辅助数字栈、字符串栈，腾讯面试题目，两个栈之间巧妙地协作，编译原理？）
 No.435 无重叠区域（动态规划）
 No.445 两数相加II（初始化一个链表的正确打开方式、栈实现高位先进，低位先出）
-No.460-LFU缓存 No.463 岛屿的周长（分类判断、DFS） No.466 统计重复个数（unordered_map） 
+No.460-LFU缓存 
+No.463 岛屿的周长（分类判断、DFS） 
+No.466 统计重复个数（unordered_map） 
 No.516 最长回文子序列 
 No.542 01矩阵分解
 No.543 二叉树的直径（典型的dfs，算是后序遍历，关注怎么选择返回二叉树左右子树的路径）
@@ -136,7 +150,9 @@ No.974 和可被 K 整除的子数组(使用哈希表的前缀和、类似动态
 No.983 最低票价（从后向前的动态规划，unordered_set，正确初始化类成员变量）
 No.994 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
 No.1071 字符串的最大公因子(枚举、辗转相除，c++自带的求最大公约数的函数__gcd())
-No.1111 有效括号的嵌套深度 No.1143 最长公共子序列 No.1162 地图分析
+No.1111 有效括号的嵌套深度 
+No.1143 最长公共子序列 
+No.1162 地图分析
 No.1248 统计优美子数组(vector初始化以及边界处理)
 No.1371 每个元音包含偶数次的最长子字符串(前缀和、压缩字符，使用位运算实现、~位运算符的使用)
 
