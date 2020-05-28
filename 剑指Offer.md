@@ -700,7 +700,22 @@ vector<int> exchange(vector<int>& nums) {
 ```
 请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，字符串"+100"、"5e2"、"-123"、"3.1416"、"0123"都表示数值，但"12e"、"1a3.14"、"1.2.3"、"+-5"、"-1E-16"及"12e+5.4"都不是。
 ```
-2.一种简单的方法
+2.find_first_of和find_first_not_of函数以及string::nops
++ find_first_not_of()用法
+```C++
+  size_type find_first_not_of( const basic_string &str, size_type index = 0 );
+  size_type find_first_not_of( const char *str, size_type index = 0 );
+  size_type find_first_not_of( const char *str, size_type index, size_type num );
+  size_type find_first_not_of( char ch, size_type index = 0 );
+```
++ 在字符串中查找第一个与str中的字符都不匹配的字符，返回它的位置。搜索从index开始。如果**没找到就返回string::nops**
++ 在字符串中查找第一个与str中的字符都不匹配的字符，返回它的位置。搜索从index开始，最多查找num个字符。如果**没找到就返回string::nops**
++ 在字符串中查找第一个与ch不匹配的字符，返回它的位置。搜索从index开始。如果**没找到就返回string::nops**
+
+
+
+
+3.一种简单的方法
 + 先去除字符串首尾的空格
 + 然后根据e划分指数和底数
 + 判断指数和底数是否合法即可
@@ -766,4 +781,59 @@ vector<int> exchange(vector<int>& nums) {
         return result;
     }
 
+```
+4.有限状态机算法
++ [见这篇分析](https://leetcode-cn.com/problems/valid-number/solution/biao-qu-dong-fa-by-user8973/)
++ 实现
+```C++
+class Solution {
+public:
+    bool isNumber(string s) {
+        if(s.empty()) return false;
+        int n = s.size();
+
+        int state = 0;
+        vector<bool> finals({0, 0, 0, 1, 0, 1, 1, 0, 1}); // 合法的终止状态
+        vector<vector<int> > transfer({
+                {0,  1,  6,  2,  -1, -1},
+                {-1, -1, 6,  2,  -1, -1},
+                {-1, -1, 3,  -1, -1, -1},
+                {8,  -1, 3,  -1, 4,  -1},
+                {-1, 7,  5,  -1, -1, -1},
+                {8,  -1, 5,  -1, -1, -1},
+                {8,  -1, 6,  3,  4,  -1},
+                {-1, -1, 5,  -1, -1, -1},
+                {8,  -1, -1, -1, -1, -1},
+                });
+
+        for(int i = 0; i < n; ++i)
+        {
+            state = transfer[state][_make(s[i])];
+            if(state < 0) return false;
+        }
+        return finals[state];
+    }
+
+private:
+    int _make(const char& c)
+    {
+        switch(c)
+        {
+            case ' ': return 0;
+            case '+': return 1;
+            case '-': return 1;
+            case '.': return 3;
+            case 'e': return 4;
+            default: return _number(c);
+        }
+    }
+
+    int _number(const char& c)
+    {
+        if(c >= '0' && c <= '9')
+            return 2;
+        else
+            return 5;
+    }
+};
 ```
