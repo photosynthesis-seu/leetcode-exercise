@@ -12,6 +12,7 @@
 - [No.19 正则表达式匹配](#正则表达式匹配)//比较复杂的动态规划
 - [No.20 表示数值的字符串](#表示数值的字符串)//几个神奇的函数find_first_not_of...,根据e划分指数和底数
 - [No.21 调整数组顺序使奇数位于偶数前面](#调整数组顺序使奇数位于偶数前面) //典型的首尾双指针、快慢指针题目，一定要会！！
+- [No.22 链表中倒数第k个节点](#链表中倒数第k个节点)//快慢双指针
 # 题目
 
 ## 数组中的重复数字
@@ -836,4 +837,33 @@ private:
             return 5;
     }
 };
+```
+## 链表中倒数第k个节点
+1.题目
+```
+输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。
+
+给定一个链表: 1->2->3->4->5, 和 k = 2.
+返回链表 4->5.
+```
+2.分析
++ 比较简单，快慢双指针
++ 实现
+```C++
+    ListNode* getKthFromEnd(ListNode* head, int k) {
+        
+        ListNode* fast = head;
+        ListNode* slow = head;
+        for(int fast_num=1;fast_num<k;fast_num++){
+            fast = fast->next;
+            if(fast == NULL){
+                return nullptr;
+            } 
+        }
+        while(fast->next){
+            fast = fast->next;
+            slow = slow->next;
+        }
+        return slow;
+    }
 ```
