@@ -13,6 +13,8 @@
 - [No.20 表示数值的字符串](#表示数值的字符串)//几个神奇的函数find_first_not_of...,根据e划分指数和底数
 - [No.21 调整数组顺序使奇数位于偶数前面](#调整数组顺序使奇数位于偶数前面) //典型的首尾双指针、快慢指针题目，一定要会！！
 - [No.22 链表中倒数第k个节点](#链表中倒数第k个节点)//快慢双指针
+- [No.24 反转链表](#反转链表)//常规操作，反转链表
+
 # 题目
 
 ## 数组中的重复数字
@@ -866,4 +868,38 @@ private:
         }
         return slow;
     }
+```
+## 反转链表
+1.题目
+```
+定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+
+输入: 1->2->3->4->5->NULL
+输出: 5->4->3->2->1->NULL
+```
+2.实现
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* cur = NULL;
+        ListNode* pre = head;
+        while(pre){
+            ListNode* temp = pre->next;
+            pre->next = cur;
+            cur = pre;
+            pre = temp;
+        }
+        return cur;
+    }
+};
+
 ```
