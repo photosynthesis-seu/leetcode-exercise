@@ -16,6 +16,7 @@
 - [No.24 反转链表](#反转链表)//常规操作，反转链表
 - [No.25 合并两个排序的链表](#合并两个排序的链表)//关注哨兵节点
 - [No.26 树的子结构](#树的子结构)//巧妙的使用两种递归（就不使用回溯算法了）
+- [No.27 二叉树的镜像](#二叉树的镜像)//递归算法
 
 # 题目
 
@@ -1022,5 +1023,64 @@ public:
             return false;
         }
     }
+};
+```
+## 二叉树的镜像
+1.题目
+```
+请完成一个函数，输入一个二叉树，该函数输出它的镜像。
+例如输入：
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+镜像输出：
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+
+输入：root = [4,2,7,1,3,6,9]
+输出：[4,7,2,9,6,3,1]
+```
+2.实现
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* mirrorTree(TreeNode* root) {
+        TreeNode* res = root;
+        reverse(res);//这个递归执行完，实际上res还是指向整个树的根节点。
+        return res;
+    }
+    void reverse(TreeNode* root){
+        if(root == NULL) return;
+        TreeNode* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+        reverse(root->left);
+        reverse(root->right);
+    }
+    //另一种做法本质和我的解法是一致的
+    //     TreeNode* mirrorTree(TreeNode* root) {
+    //     if(root){
+    //         swap(root->left, root->right);
+    //     }else return NULL;
+    //     mirrorTree(root->left);
+    //     mirrorTree(root->right);
+    //     return root;
+    // }
 };
 ```
