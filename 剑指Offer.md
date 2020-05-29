@@ -14,6 +14,7 @@
 - [No.21 调整数组顺序使奇数位于偶数前面](#调整数组顺序使奇数位于偶数前面) //典型的首尾双指针、快慢指针题目，一定要会！！
 - [No.22 链表中倒数第k个节点](#链表中倒数第k个节点)//快慢双指针
 - [No.24 反转链表](#反转链表)//常规操作，反转链表
+- [No.25 合并两个排序的链表](#合并两个排序的链表)//关注哨兵节点
 
 # 题目
 
@@ -901,5 +902,59 @@ public:
         return cur;
     }
 };
+```
+## 合并两个排序的链表
+1.题目
+```
+输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。
 
+输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+```
+2.实现
+```C++
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* res = new ListNode(0);
+        ListNode* head = res;
+        while(l1 && l2){
+            if(l1->val < l2->val){
+                res->next = l1;
+                res = res->next;
+                l1 = l1->next;
+            }
+            else{
+                res->next = l2;
+                res = res->next;
+                l2 = l2->next;
+            }
+        }
+        if(l1){
+            res->next = l1;
+        }
+        if(l2){
+            res->next = l2; 
+        }
+        // while(l1){//这样虽然复杂，但也可以实现
+        //     res->next = new ListNode(l1->val);
+        //     res = res->next;
+        //     l1 = l1->next;
+        // }
+        // while(l2){
+        //     res->next = new ListNode(l2->val);
+        //     res = res->next;
+        //     l2 = l2->next;
+        // }
+        return head->next;
+    }
+};
 ```
