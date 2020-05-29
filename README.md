@@ -12,6 +12,7 @@
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
   - [No.198 打家劫舍](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍)//经典的动态规划类型问题，有详细教程！
+  - [No.231 打家劫舍II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍II)//分两种情况判别的打家劫舍
   - [No.221 最大正方形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最大正方形)//典型的动态规划，需要关注暴力解法
   - [No.300 最长递增子序列](#最长递增子序列)
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
@@ -123,6 +124,7 @@ No.200 岛屿数量（经典遍历岛屿DFS、经典动态规划、BFS题目！�
 No.202 快乐数（数学技巧，unordered_set的使用）
 No.206 反转链表 NO.215 数组中第k个最大元素 
 No.210 课程表II(全新的知识！拓扑排序和有向图、BFS(入度)、DFS)
+No.213 打家劫舍II（分两中情况判别的打家劫舍）
 No.221 最大正方形（典型的动态规划，需要关注暴力解法）
 No.225 用队列实现栈 No.232 用栈实现队列(注意循环的判断条件，如果修改栈，就不要用栈的大小判断，很关键！)
 No.287 寻找重复数（类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间）
