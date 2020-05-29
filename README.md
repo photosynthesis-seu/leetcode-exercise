@@ -11,6 +11,7 @@
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
+  - [No.198 打家劫舍](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍)//经典的动态规划类型问题，有详细教程！
   - [No.221 最大正方形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最大正方形)//典型的动态规划，需要关注暴力解法
   - [No.300 最长递增子序列](#最长递增子序列)
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
@@ -116,6 +117,7 @@ No.146 LRU缓存机制（哈希表，双向链表，自定义双向链表添加�
 No.152 乘积最大子数组（动态规划、同时使用两个一维dp数组）
 No.155 最小栈（使用栈容器的辅助栈方法、使用链表的方法）
 No.172 阶乘后的零（数学技巧、腾讯面试题）
+No.198 打家劫舍（经典的动态规划类型问题，有详细教程！）
 No.199 二叉树的右视图(DFS、BFS；i++的问题！) 
 No.200 岛屿数量（经典遍历岛屿DFS、经典动态规划、BFS题目！）
 No.202 快乐数（数学技巧，unordered_set的使用）
