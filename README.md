@@ -12,7 +12,7 @@
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
   - [No.198 打家劫舍](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍)//经典的动态规划类型问题，有详细教程！
-  - [No.231 打家劫舍II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍II)//分两种情况判别的打家劫舍
+  - [No.213 打家劫舍II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍II)//分两种情况判别的打家劫舍
   - [No.221 最大正方形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最大正方形)//典型的动态规划，需要关注暴力解法
   - [No.300 最长递增子序列](#最长递增子序列)
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
