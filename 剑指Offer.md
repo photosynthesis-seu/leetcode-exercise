@@ -15,6 +15,7 @@
 - [No.22 链表中倒数第k个节点](#链表中倒数第k个节点)//快慢双指针
 - [No.24 反转链表](#反转链表)//常规操作，反转链表
 - [No.25 合并两个排序的链表](#合并两个排序的链表)//关注哨兵节点
+- [No.26 树的子结构](#树的子结构)//巧妙的使用两种递归（就不使用回溯算法了）
 
 # 题目
 
@@ -955,6 +956,71 @@ public:
         //     l2 = l2->next;
         // }
         return head->next;
+    }
+};
+```
+## 树的子结构
+1.题目
+```
+输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)
+B是A的子结构， 即 A中有出现和B相同的结构和节点值。
+
+给定的树 A:
+     3
+    / \
+   4   5
+  / \
+ 1   2
+给定的树 B：
+   4 
+  /
+ 1
+返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。
+```
+2.分析
++ dfs(A, B) 函数：
+  - 终止条件：
+    - 当节点 B 为空：说明树 B 已匹配完成（越过叶子节点），因此返回 true ；
+    - 当节点 A 为空且 B 不为空：说明已经越过树 A 叶子节点，即匹配失败，返回 false ；
+    - 当节点 A 和 B 的值不同：说明匹配失败，返回 false ；
+  - 返回值：
+    - 判断 A 和 B 的左子节点是否相等，即 dfs(A.left, B.left) ；
+    - 判断 A 和 B 的右子节点是否相等，即 dfs(A.right, B.right) ；
++ isSubStructure(A, B) 函数(题目里的主函数)：
+  - 特例处理： 当 树 A 为空 或 树 B 为空 时，直接返回 false ；
+  - 返回值： 若树 B 是树 A 的子结构，则必满足以下三种情况之一，因此用或 || 连接；
+    - 以 节点 A 为根节点的子树 包含树 B ，对应 dfs(A, B)；
+    - 树 B 是 树 A 左子树 的子结构，对应 isSubStructure(A.left, B)；
+    - 树 B 是 树 A 右子树 的子结构，对应 isSubStructure(A.right, B)；
++ 实现
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSubStructure(TreeNode* A, TreeNode* B) {
+        if(B == NULL) return false;
+        if(A == NULL && B) return false;
+        // if(dfs(A,B)) return true;//一定要注意isSubStructure的退出条件，同时分开写也是可以的
+        // return isSubStructure(A->left,B)||isSubStructure(A->right,B);
+        return dfs(A,B)||isSubStructure(A->left,B)||isSubStructure(A->right,B);
+    }
+    bool dfs(TreeNode* A, TreeNode* B){
+        if(B == NULL) return true;
+        if(A == NULL && B) return false;
+        if(A->val == B->val){
+            return dfs(A->left,B->left)&&dfs(A->right,B->right);
+        }
+        else{
+            return false;
+        }
     }
 };
 ```
