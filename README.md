@@ -4,7 +4,7 @@
 + 动态规划
   - [No.5 最长回文子串](#最长回文子串)
   - [No.39 组合总数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总数)//需要列举完全背包问题每种情况/面试题08.11.硬币的细化、回溯算法+剪枝
-  - [No.42 接雨水问题](#接雨水问题)//动态规划解法、单调栈解法！！
+  - [No.42 接雨水问题](#接雨水问题)//动态规划解法、单调递减栈解法！！
   - [No.45 跳跃游戏II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#跳跃游戏II)//贪心算法！
   - [No.53 最大子序和](#最大子序和)
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
@@ -708,7 +708,7 @@ sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个�
 输出: 6
 ```
 
-1.思路分析：
+2.思路分析：
 
 对于数组中的每个元素，我们找出下雨后水能达到的最高位置，等于两边最大高度的较小值减去当前高度的值。
 
@@ -717,7 +717,7 @@ sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个�
 + 扫描数组 *height* 并更新答案：
   - 累加 *result += min(Left_Max[i],Right_Max[i]) - height[i]*
   
-2.动态规划的实现（**注意利用备忘录！！**）
+3.动态规划的实现（**注意利用备忘录！！**）
 
 ```C++
 int trap(vector<int>& height) {
@@ -742,6 +742,45 @@ int trap(vector<int>& height) {
          return result;
     }  
 ```
+4.单调递减栈算法
++ [关注图解](https://leetcode-cn.com/problems/trapping-rain-water/solution/trapping-rain-water-by-ikaruga/)
++ 单调递减栈
+  - 当后面的柱子高度比前面的低时，是无法接雨水的
+  - 当找到一根比前面高的柱子，就可以计算接到的雨水
+  - 所以使用单调递减栈，对更低的柱子入栈
++ 更低的柱子以为这后面如果能找到高柱子，这里就能接到雨水，所以入栈把它保存起来。平地相当于高度 0 的柱子，没有什么特别影响。当出现高于栈顶的柱子时
+  - 说明可以对前面的柱子结算了
+  - 计算已经到手的雨水，然后出栈前面更低的柱子
++ 计算雨水的时候需要注意的是
+  - 雨水区域的右边 r 指的自然是当前索引 i
+  - 底部是栈顶 st.top() ，因为遇到了更高的右边，所以它即将出栈，使用 cur 来记录它，并让它出栈
+  - 左边 l 就是新的栈顶 st.top()
+  - 雨水的区域全部确定了，水坑的高度就是左右两边更低的一边减去底部，宽度是在左右中间
+  - 使用乘法即可计算面积
++ 实现
+```C++
+int trap(vector<int>& height)
+{
+    int ans = 0;
+    stack<int> st;
+    for (int i = 0; i < height.size(); i++)
+    {
+        while (!st.empty() && height[st.top()] < height[i])
+        {
+            int cur = st.top();
+            st.pop();
+            if (st.empty()) break;
+            int l = st.top();
+            int r = i;
+            int h = min(height[r], height[l]) - height[cur];
+            ans += (r - l - 1) * h;
+        }
+        st.push(i);
+    }
+    return ans;
+}
+```
+
 
 ## 编辑两个单词的距离
 
