@@ -4,10 +4,11 @@
 + 动态规划
   - [No.5 最长回文子串](#最长回文子串)
   - [No.39 组合总数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总数)//需要列举完全背包问题每种情况/面试题08.11.硬币的细化、回溯算法+剪枝
-  - [No.42 接雨水问题](#接雨水问题)
+  - [No.42 接雨水问题](#接雨水问题)//动态规划解法、单调栈解法！！
   - [No.45 跳跃游戏II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#跳跃游戏II)//贪心算法！
   - [No.53 最大子序和](#最大子序和)
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
+  - [No.84 柱状图中最大的矩形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#柱状图中最大的矩形)//朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
@@ -107,6 +108,7 @@ No.69 x的平方根（二分查找、牛顿迭代算法）
 No.72 编辑两个单词的距离 
 No.75 颜色分类（快速排序、荷兰旗）
 No.76 最小覆盖子串（比较难的滑动窗口算法！）
+No.84 柱状图中最大的矩形(朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题)
 NO.95 不同的二叉搜索树II 
 No.96 不同的二叉搜索树（动态规划）
 No.102 二叉树的层序遍历（BFS、vector初始化和赋值的新方法）
