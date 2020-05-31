@@ -19,6 +19,7 @@
 - [No.27 二叉树的镜像](#二叉树的镜像)//递归算法
 - [No.29 顺时针打印矩阵](#顺时针打印矩阵)//需要非常细致的分类讨论
 - [No.30 包含min函数的栈](#包含min函数的栈)//双栈，注意使用辅助栈
+- [No.31 栈的压入、弹出序列](#栈的压入、弹出序列)//模拟栈的压入和弹出，那个while判断是核心！！！
 
 # 题目
 
@@ -1231,4 +1232,40 @@ public:
  * int param_3 = obj->top();
  * int param_4 = obj->min();
  */
+```
+## 栈的压入、弹出序列
+1.题目
+```
+输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如，序列 {1,2,3,4,5} 是某栈的压栈序列，序列 {4,5,3,2,1} 是该压栈序列对应的一个弹出序列，但 {4,3,5,1,2} 就不可能是该压栈序列的弹出序列。
+
+输入：pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+输出：true
+解释：我们可以按以下顺序执行：
+push(1), push(2), push(3), push(4), pop() -> 4,
+push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+
+输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
+输出：false
+解释：1 不能在 2 之前弹出。
+```
+2.实现
+```C++
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        stack<int> simulation;
+        int ptr = 0;
+        for(auto num:pushed){
+            simulation.push(num);
+            //这个while是核心，可以在pushed栈顶和poped当前指针元素一致时，一直弹出
+            while(!simulation.empty() && simulation.top()==popped[ptr]){
+                simulation.pop();
+                ptr++;
+            }
+        }
+        if(ptr == popped.size()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 ```
