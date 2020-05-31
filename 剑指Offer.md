@@ -18,6 +18,7 @@
 - [No.26 树的子结构](#树的子结构)//巧妙的使用两种递归（就不使用回溯算法了）
 - [No.27 二叉树的镜像](#二叉树的镜像)//递归算法
 - [No.29 顺时针打印矩阵](#顺时针打印矩阵)//需要非常细致的分类讨论
+- [No.30 包含min函数的栈](#包含min函数的栈)//双栈，注意使用辅助栈
 
 # 题目
 
@@ -1172,4 +1173,62 @@ public:
         return res;
     }
 ```
+## 包含min函数的栈
+1.题目
+```
+定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
 
+MinStack minStack = new MinStack();
+minStack.push(-2);
+minStack.push(0);
+minStack.push(-3);
+minStack.min();   --> 返回 -3.
+minStack.pop();
+minStack.top();      --> 返回 0.
+minStack.min();   --> 返回 -2.
+```
+2.实现
+```C++
+class MinStack {
+public:
+    stack<int> res;
+    stack<int> mini;
+
+    /** initialize your data structure here. */
+    MinStack() {
+        mini.push(INT_MAX);
+    }
+    
+    void push(int x) {
+        res.push(x);
+        if(x<mini.top()){
+            mini.push(x);
+        }
+        else{
+            mini.push(mini.top());
+        }
+    }
+    
+    void pop() {
+        res.pop();
+        mini.pop();
+    }
+    
+    int top() {
+        return res.top();
+    }
+    
+    int min() {
+        return mini.top();
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(x);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->min();
+ */
+```
