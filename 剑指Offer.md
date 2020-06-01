@@ -20,6 +20,7 @@
 - [No.29 顺时针打印矩阵](#顺时针打印矩阵)//需要非常细致的分类讨论
 - [No.30 包含min函数的栈](#包含min函数的栈)//双栈，注意使用辅助栈
 - [No.31 栈的压入、弹出序列](#栈的压入、弹出序列)//模拟栈的压入和弹出，那个while判断是核心！！！
+- [No.32-I 从上到下打印链表](#从上到下打印链表)//广度优先、队列
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 
 # 题目
@@ -1297,5 +1298,41 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
             t=t->next;
         }
         return mp[head];
+    }
+```
+## 从上到下打印链表
+1.题目
+```
+从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。
+例如:
+给定二叉树: [3,9,20,null,null,15,7],
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回：
+[3,9,20,15,7]
+```
+2.实现
+```C++
+    queue<TreeNode*> res;
+    vector<int> levelOrder(TreeNode* root) {
+        if(root == NULL) return{};
+        vector<int> ans;
+        res.push(root);
+        while(!res.empty()){
+            auto node = res.front();
+            res.pop();
+            ans.push_back(node->val);
+            if(node->left){
+                res.push(node->left);
+            }
+            if(node->right){
+                res.push(node->right);
+            }
+        }
+        return ans;
     }
 ```
