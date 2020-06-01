@@ -20,6 +20,7 @@
 - [No.29 顺时针打印矩阵](#顺时针打印矩阵)//需要非常细致的分类讨论
 - [No.30 包含min函数的栈](#包含min函数的栈)//双栈，注意使用辅助栈
 - [No.31 栈的压入、弹出序列](#栈的压入、弹出序列)//模拟栈的压入和弹出，那个while判断是核心！！！
+- [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 
 # 题目
 
@@ -1267,5 +1268,34 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
         else{
             return false;
         }
+    }
+```
+## 复杂链表的复制
+
+1.
+```
+请实现 copyRandomList 函数，复制一个复杂链表。在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，还有一个 random 指针指向链表中的任意节点或者 null。
+```
+2.利用hashmap的实现
+```C++
+        Node* copyRandomList(Node* head) {
+        if(head==NULL)  return head;
+        unordered_map<Node*,Node*>mp;
+        Node *t=head;
+        while(t!=NULL){
+            mp[t]=new Node(t->val);
+            t=t->next;
+        }
+        t=head;
+        while(t!=NULL){
+            if(t->next){
+                mp[t]->next=mp[t->next];
+            }
+            if(t->random){
+                mp[t]->random=mp[t->random];
+            }
+            t=t->next;
+        }
+        return mp[head];
     }
 ```
