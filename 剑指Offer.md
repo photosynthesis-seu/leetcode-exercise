@@ -22,6 +22,7 @@
 - [No.31 栈的压入、弹出序列](#栈的压入、弹出序列)//模拟栈的压入和弹出，那个while判断是核心！！！
 - [No.32-I 从上到下打印链表](#从上到下打印链表)//广度优先、队列
 - [No.32-II 从上到下打印链表II](#从上到下打印链表II)//带计数的队列
+- [No.32-III 从上到下打印链表III](#从上到下打印链表III)//带计数与flag的队列！
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 
@@ -1461,7 +1462,7 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
     }
 ```
 ## 从上到下打印链表III
-1.
+1.题目
 ```
 实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。
 
@@ -1479,4 +1480,35 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
   [20,9],
   [15,7]
 ]
+```
+2.实现
+```C++
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        if(root == NULL) return {};
+        vector<vector<int>> ans;
+        queue<TreeNode*> res;
+        bool flag = false;
+        res.push(root);
+        while(!res.empty()){
+            int length = res.size();
+            vector<int> temp;
+            for(int i=0;i<length;i++){
+                auto node = res.front();
+                res.pop();
+                temp.push_back(node->val);
+                if(node->left){
+                    res.push(node->left);
+                }
+                if(node->right){
+                    res.push(node->right);
+                }
+            }
+            if(flag){
+                reverse(temp.begin(),temp.end());
+            }
+            flag = !flag;
+            ans.push_back(temp);
+        }
+        return ans;
+    }
 ```
