@@ -23,6 +23,7 @@
 - [No.32-I 从上到下打印链表](#从上到下打印链表)//广度优先、队列
 - [No.32-II 从上到下打印链表II](#从上到下打印链表II)//带计数的队列
 - [No.32-III 从上到下打印链表III](#从上到下打印链表III)//带计数与flag的队列！
+- [No.33 二叉搜索树的后序遍历树](#二叉搜索树的后序遍历树)//根据后序遍历的性质构建递归函数
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 
@@ -1512,3 +1513,47 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
         return ans;
     }
 ```
+## 二叉搜索树的后序遍历树
+
+1.
+```
+
+```
+
+2.分析
++ 终止条件： 当 left≥root ，说明此子树节点数量 ≤1 ，无需判别正确性，因此直接返回 true ；
++ 递推工作：
+  - 划分左右子树： 遍历后序遍历的 [left,root] 区间元素，寻找第一个大于根节点 的节点，索引记为 right 。此时，可划分出左子树区间[left,right−1] 、右子树区间 [right,root−1] 、根节点索引 root 。
+  - 判断是否为二叉搜索树：
+    - 左子树区间 [left,right−1] 内的所有节点都应 < postorder[root] 。而划分左右子树的步骤已经保证左子树区间的正确性，因此只需要判断右子树区间即可。
+    - 右子树区间 [right,root−1] 内的所有节点都应 > postorder[root] 。实现方式为遍历，当遇到 ≤postorder[root] 的节点则跳出；则可通过 right==root? 判断是否为二叉搜索树。
+  - 返回值： 所有子树都需正确才可判定正确，因此使用 与逻辑符 && 连接。
+    - right==root ： 判断 此树 是否正确。
+    - helper(left,right−1)： 判断 此树的左子树 是否正确。
+    - helper(right,root−1) ： 判断 此树的右子树 是否正确。
++ 实现
+```C++
+   bool verifyPostorder(vector<int>& postorder) {
+        int len = postorder.size();
+        return helper(postorder,0,len-1);
+    }
+    //left,right,root代表目前二叉搜索树的根节点的数组下标以及根节点左、右子树根节点的数组下标
+    bool helper(vector<int>& postorder, int left, int root){
+        if(left>=root) return true;//注意递归函数的跳出条件
+        int temp = left;//不能直接用left,否则之后使用递归函数时left的值就会跑偏了！！right同理
+        while(postorder[temp]<postorder[root]){
+            temp++;
+        }
+        int right = temp;//找到第一个比根节点值大的数的下标，就是它的右子树的根节点下标
+        while(postorder[temp]>postorder[root]){
+            temp++;
+        }
+        if(temp == root && helper(postorder,left,right-1) && helper(postorder,right,root-1)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+```
+
