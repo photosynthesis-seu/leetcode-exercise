@@ -81,6 +81,7 @@
   - [No.206 反转链表](#反转链表)
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
+  - [No.876 链表的中间节点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#链表的中间节点)//使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进
   - [面试题57 - II. 和为s的连续正数序列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为s的连续正数序列)//简单凝练的滑窗算法
 ```
 已做题目：
@@ -153,6 +154,7 @@ No.680 验证回文字符串II(双指针、贪心算法，暴力reverse会超时
 No.733 图像渲染(类似岛屿问题，DFS) No.793 阶乘函数后K个零（二分查找，腾讯面试题变种）
 No.820 单词的压缩编码（字典树，unorded_set,unordered_map）
 No.836 矩形重叠（IOU，一维化投影！）
+No.876 链表的中间节点（使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进）
 难-No.887 鸡蛋掉落
 No.912 排序数组（各类排序的知识！）
 No.945 使数组唯一的最小增量(很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归)
