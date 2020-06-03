@@ -24,6 +24,7 @@
 - [No.32-II 从上到下打印链表II](#从上到下打印链表II)//带计数的队列
 - [No.32-III 从上到下打印链表III](#从上到下打印链表III)//带计数与flag的队列！
 - [No.33 二叉搜索树的后序遍历树](#二叉搜索树的后序遍历树)//根据后序遍历的性质构建递归函数
+- [No.34 二叉树中和为某一值的路径](#二叉树中和为某一值的路径)//回溯算法，BFS广度优先遍历
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 
@@ -1569,4 +1570,53 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
         }
     }
 ```
+## 二叉树中和为某一值的路径
+1.题目
+```
+输入一棵二叉树和一个整数，打印出二叉树中节点值的和为输入整数的所有路径。从树的根节点开始往下一直到叶节点所经过的节点形成一条路径。
+给定如下二叉树，以及目标和 sum = 22，
 
+              5
+             / \
+            4   8
+           /   / \
+          11  13  4
+         /  \    / \
+        7    2  5   1
+返回:
+
+[
+   [5,4,11,2],
+   [5,8,4,5]
+]
+```
+2.实现
+```C++
+    vector<vector<int>> ans;
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        if(root == NULL) return {};
+        vector<int> res;
+        int now = 0;
+        helper(root,res,now,sum);
+        return ans;
+    }
+    void helper(TreeNode* root, vector<int>& res, int now, int sum){
+        res.push_back(root->val);
+        now +=  root->val;
+        if(now == sum && root->left == NULL && root->right == NULL){
+            ans.push_back(res);
+        }
+        // else if(now>sum){
+        //     res.pop_back();
+        //     return;
+        // }这一段不能加，因为测试用例中节点可能为负数！！
+        if(root->left){
+            helper(root->left,res,now,sum);
+        }
+        if(root->right){
+            helper(root->right,res,now,sum);
+        }
+        res.pop_back();
+        return;
+    }
+```
