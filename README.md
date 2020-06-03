@@ -20,6 +20,7 @@
   - [No.435 无重叠区域](#无重叠区间)
   - [No.516 最长回文子序列](#最长回文子序列)
   - [No.542 01矩阵](#01矩阵)
+  - [No.837 新21点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#)新21点)//比较难想到的动态规划，题解说的比较详细
   - [No.887 鸡蛋掉落](#鸡蛋掉落)
   - [No.877 石头游戏](#石头游戏)
   - [No.974 和可被K整除的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和可被K整除的子数组)//使用哈希表的前缀和、类似动态规划、unordered_map
@@ -154,6 +155,7 @@ No.680 验证回文字符串II(双指针、贪心算法，暴力reverse会超时
 No.733 图像渲染(类似岛屿问题，DFS) No.793 阶乘函数后K个零（二分查找，腾讯面试题变种）
 No.820 单词的压缩编码（字典树，unorded_set,unordered_map）
 No.836 矩形重叠（IOU，一维化投影！）
+No.837 新21点(动态规划!给题解跪了)
 No.876 链表的中间节点（使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进）
 难-No.887 鸡蛋掉落
 No.912 排序数组（各类排序的知识！）
