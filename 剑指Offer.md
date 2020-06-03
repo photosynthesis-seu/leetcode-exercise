@@ -1669,6 +1669,15 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 
 序列化为 "[1,2,3,null,null,4,5]"
 ```
+2.sstream,fstream,iostream相关
++ 一些知识点：
+  - sstream包括istringstream和ostringstream
+  - stoi需要包含头文件#include<string>;atoi需要包含头文件#include<sctdlib>
+  - stoi(string)参数是一string类型，当字符串不合法时，会报错;atoi(char*)参数是char*类型，即c字符串，当字符串非法时,他会从字符串开始寻找正负号小数点或者数字，遇到非法字符时停下
+
++ (1)iostream处理控制台IO；(2)fstream处理命名文件IO；(3)stringstream完成内存string的IO.[具体见这篇文章](https://blog.csdn.net/scpw99/article/details/81127851)
++ [stringstream简介](https://blog.csdn.net/zhenguo26/article/details/80716075)
+
 3.实现
 ```C++
 /**
