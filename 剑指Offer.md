@@ -26,6 +26,7 @@
 - [No.33 二叉搜索树的后序遍历树](#二叉搜索树的后序遍历树)//根据后序遍历的性质构建递归函数
 - [No.34 二叉树中和为某一值的路径](#二叉树中和为某一值的路径)//回溯算法，BFS广度优先遍历
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
+- [No.36 二叉搜索树与双向链表](#二叉搜索树与双向链表)//DFS,双向链表的初始化表头(要在递归里面)！
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 
 # 题目
@@ -1618,5 +1619,38 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
         }
         res.pop_back();
         return;
+    }
+```
+## 二叉搜索树与双向链表
+1.分析
+```
+输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。
+我们希望将这个二叉搜索树转化为双向循环链表。链表中的每个节点都有一个前驱和后继指针。对于双向循环链表，第一个节点的前驱是最后一个节点，最后一个节点的后继是第一个节点。
+```
+2.实现
+```C++
+    Node* treeToDoublyList(Node* root) {
+        if(root == NULL) return NULL;
+        Node* head = NULL;//用来存储头结点
+        Node* pre = NULL;//pre指针用来存放当前访问节点的上一个节点，结束时位于链表末尾
+        helper(root,head,pre);
+        head->left = pre;//头节点的左指针指向末尾
+        pre->right = head;//尾节点的右指针指向头
+        return head;
+    }
+    void helper(Node* root, Node*& head, Node*& pre){//利用中序遍历访问二叉树的同时构建双向链表
+        if(root == NULL) return;
+        helper(root->left,head,pre);
+        //一定要在这里初始化头指针和pre指针，因为只有在这里会中序递归到第一个左叶子节点作为链表头
+        if(head == NULL){
+            head = root;
+            pre = root;
+        }
+        else{
+            root->left = pre;
+            pre->right = root;
+            pre = root;
+        }
+        helper(root->right,head,pre);
     }
 ```
