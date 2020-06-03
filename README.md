@@ -20,7 +20,7 @@
   - [No.435 无重叠区域](#无重叠区间)
   - [No.516 最长回文子序列](#最长回文子序列)
   - [No.542 01矩阵](#01矩阵)
-  - [No.837 新21点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#)新21点)//比较难想到的动态规划，题解说的比较详细
+  - [No.837 新21点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#新21点)//比较难想到的动态规划，题解说的比较详细
   - [No.887 鸡蛋掉落](#鸡蛋掉落)
   - [No.877 石头游戏](#石头游戏)
   - [No.974 和可被K整除的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和可被K整除的子数组)//使用哈希表的前缀和、类似动态规划、unordered_map
