@@ -80,6 +80,7 @@
   - [No.146 LRU缓存机制](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#LRU缓存机制)//哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
+  - [No.238 除自身以外数组的乘积](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#除自身以外数组的乘积)//双数组的前后缀和，以及巧妙地动态优化！！
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
   - [No.876 链表的中间节点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#链表的中间节点)//使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进
@@ -134,6 +135,7 @@ No.210 课程表II(全新的知识！拓扑排序和有向图、BFS(入度)、DF
 No.213 打家劫舍II（分两中情况判别的打家劫舍）
 No.221 最大正方形（典型的动态规划，需要关注暴力解法）
 No.225 用队列实现栈 No.232 用栈实现队列(注意循环的判断条件，如果修改栈，就不要用栈的大小判断，很关键！)
+No.238 除自身以外数组的乘积(双数组的前后缀和，以及巧妙地动态优化！！)
 No.287 寻找重复数（类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间）
 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）
 No.324 摆动排序
