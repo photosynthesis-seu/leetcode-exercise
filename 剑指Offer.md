@@ -28,6 +28,7 @@
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 - [No.36 二叉搜索树与双向链表](#二叉搜索树与双向链表)//DFS,双向链表的初始化表头(要在递归里面)！
 - [No.37 序列化二叉树](#序列化二叉树)//队列,ostringstream,istringstream,stoi()函数
+- [No.39 数组中出现次数超过一半的数字]//摩尔投票法，排序法，以及hash表查找法
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 
 # 题目
@@ -1732,4 +1733,45 @@ public:
         return vec[0];
     }
 };
+```
+## 数组中出现次数超过一半的数字
+1.题目
+```
+数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。
+你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+
+输入: [1, 2, 3, 2, 2, 2, 5, 4, 2]
+输出: 2
+```
+2.实现
+```C++
+    int majorityElement(vector<int>& nums) {
+        //方法一：排序遍历
+    //     int len = nums.size();
+    //     sort(nums.begin(),nums.end());
+    //     for(int i=0;i<(len+1)/2;i++){
+    //         if(nums[i] == nums[i+len/2] ){
+    //             return nums[i];
+    //         }
+    //     }
+    //     return 0;
+        //方法二：hash表
+    // unordered_map<int,int> res;
+    // int len = nums.size();
+    // for(auto num:nums){
+    //     if(++res[num]>len/2){
+    //         return num;
+    //     }
+    // }
+    // return 0;
+        //方法三：摩尔投票法
+        int vote_sum = 1;
+        int most = nums[0];
+        for(int i=1;i<nums.size();i++){
+            if(vote_sum == 0) most = nums[i];
+            if(nums[i] == most) vote_sum += 1;
+            if(nums[i] != most) vote_sum += -1;
+        }
+        return most;
+    }
 ```
