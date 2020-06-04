@@ -32,6 +32,7 @@
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 - [No.41 数据流中的中位数](#数据流中的中位数)//优先队列、大顶堆与小顶堆（困难！）
 - [No.42 连续子数组的最大和](#连续子数组的最大和)//简单的动态规划
+- [No.43 1~n整数中1出现的次数](#1~n整数中1出现的次数)//严谨的分情况讨论，一定要从低位向高位遍历
 
 # 题目
 
@@ -1863,5 +1864,42 @@ class MedianFinder {
             ans = max(ans,cur);
         }
         return ans;
+    }
+```
+## 1~n整数中1出现的次数
+1.题目
+```
+输入一个整数 n ，求1～n这n个整数的十进制表示中1出现的次数。
+例如，输入12，1～12这些整数中包含1 的数字有1、10、11和12，1一共出现了5次。
+
+输入：n = 12
+输出：5
+输入：n = 13
+输出：6
+```
+2.分析
++ [详见这篇分析](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/c-cong-ge-wei-bian-li-dao-zui-gao-wei-yi-ci-qiu-ji/)
++ [以及这篇题解](https://leetcode-cn.com/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/)
++ 实现
+```C++
+    //一定要从低位向高位遍历，不能从高位向低位遍历
+    int countDigitOne(int n) {
+       int count = 0;
+       long i = 1;//指向遍历的位数，如i=1即个位，i=10即十位，...，因为n可以有31位，所以10^31用long存储
+       while(n/i!=0){
+           //n/i控制遍历的次数，将所有的位数都遍历完毕
+            long high = n/(10*i);//将当前位之前的所有高位都存在high中
+            long cur = (n/i)%10;//将当前位记录在cur中，即我们每次都需要统计当前位上1出现的次数
+            long low = n-(n/i)*i;
+            if(cur == 0){
+                count += high * i;
+            } else if(cur == 1){
+                count += high * i + low + 1;
+            } else {
+                count += high * i + i;
+            }
+            i = i * 10;//准备遍历下一位
+       }
+       return count;
     }
 ```
