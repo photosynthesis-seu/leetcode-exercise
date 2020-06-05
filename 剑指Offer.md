@@ -34,6 +34,7 @@
 - [No.42 连续子数组的最大和](#连续子数组的最大和)//简单的动态规划
 - [No.43 1~n整数中1出现的次数](#1~n整数中1出现的次数)//严谨的分情况讨论，一定要从低位向高位遍历
 - [No.44 数字序列中某一位的数字](#数字序列中某一位的数字)//分类讨论，找数学规律细致实现，使用to_string会超时
+- [No.45 把数组排成最小的数](#把数组排成最小的数)//重载sort函数，此题关键在于数学思路要明确，实现不难
 
 # 题目
 
@@ -1942,5 +1943,37 @@ class MedianFinder {
         int mod=n%base;
         if(mod==0) return (res-1)%10;
         else return res/(int)pow(10,base-mod)%10;
+    }
+```
+## 把数组排成最小的数
+1.题目
+```
+输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+
+输入: [10,2]
+输出: "102"
+
+输入: [3,30,34,5,9]
+输出: "3033459"
+```
+2.分析
++ [见这篇解析](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/)
++ 实现
+```C++
+    static bool cmp1(string& str1,string& str2){
+        return str1+str2 < str2+str1;
+    }
+    string minNumber(vector<int>& nums) {
+        vector<string> res;
+        string ans;
+        for(auto num:nums){
+            res.push_back(to_string(num));
+        }
+        //sort(res.begin(),res.end(),cmp1);这两种重载sort函数的方法都可以
+        sort(res.begin(),res.end(),[](string& str1,string& str2){return str1+str2 < str2+str1;});
+        for(auto str:res){
+            ans += str;
+        }
+        return ans;
     }
 ```
