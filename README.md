@@ -1882,6 +1882,7 @@ priority_queue	不支持迭代器
 
   ```
 [具体可以参考这篇文章](https://blog.csdn.net/qq_28114615/article/details/86495567)
+[以及这篇重载sort函数](https://www.cnblogs.com/AlvinZH/p/6784862.html?utm_source=itdadao&utm_medium=referral)
 
 3.哨兵节点
 
