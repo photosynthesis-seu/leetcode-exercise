@@ -33,6 +33,7 @@
 - [No.41 数据流中的中位数](#数据流中的中位数)//优先队列、大顶堆与小顶堆（困难！）
 - [No.42 连续子数组的最大和](#连续子数组的最大和)//简单的动态规划
 - [No.43 1~n整数中1出现的次数](#1~n整数中1出现的次数)//严谨的分情况讨论，一定要从低位向高位遍历
+- [No.44 数字序列中某一位的数字](#数字序列中某一位的数字)//分类讨论，找数学规律细致实现，使用to_string会超时
 
 # 题目
 
@@ -1901,5 +1902,45 @@ class MedianFinder {
             i = i * 10;//准备遍历下一位
        }
        return count;
+    }
+```
+## 数字序列中某一位的数字
+1.题目
+```
+数字以0123456789101112131415…的格式序列化到一个字符序列中。在这个序列中，第5位（从下标0开始计数）是5，第13位是1，第19位是4，等等。
+请写一个函数，求任意第n位对应的数字。
+
+输入：n = 3
+输出：3
+
+输入：n = 11
+输出：0
+```
+2.分析
++ [见这篇文章](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/zhe-shi-yi-dao-shu-xue-ti-ge-zhao-gui-lu-by-z1m/)
++ 实现
+```C++
+    // 测试用例一半会超时
+    // int findNthDigit(int n) {
+    //     string res;
+    //     int i =0;
+    //     while(res.size()<n+1){
+    //         res += to_string(i);
+    //         i++;
+    //     }
+    //     int ans = res[n] - '0';
+    //     return ans;
+    // }
+        int findNthDigit(int n) {
+        if(n<10) return n;
+        int base=1;
+        while(n>9*pow(10,base-1)*base){
+            n-=9*pow(10,base-1)*base;
+            base++;
+        }//计算n在哪个位数区间
+        int res=pow(10,base-1)+n/base;
+        int mod=n%base;
+        if(mod==0) return (res-1)%10;
+        else return res/(int)pow(10,base-mod)%10;
     }
 ```
