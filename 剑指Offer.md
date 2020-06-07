@@ -39,6 +39,7 @@
 - [No.47 礼物的最大价值](#礼物的最大价值)//典型的二维动态规划
 - [No.48 最长不含重复字符的子字符串](#最长不含重复字符的子字符串)//双指针算法->多种算法进行优化、进阶
 - [No.49 丑数](#丑数)//带有数学技巧的动态规划,有关公因数的题目均可以参考！
+- [No.50 第一个只出现一次的字符](#第一个只出现一次的字符)//hash表O(2N)->O(N)
 
 # 题目
 
@@ -2169,4 +2170,48 @@ class MedianFinder {
 		}
 		return dp[n - 1];
 	}
+```
+## 第一个只出现一次的字符
+1.题目
+```
+在字符串 s 中找出第一个只出现一次的字符。如果没有，返回一个单空格。 s 只包含小写字母。
+
+s = "abaccdeff"
+返回 "b"
+s = "" 
+返回 " "
+```
+2.实现
++ [这篇解答很好](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof/solution/c-zhong-gui-zhong-ju-de-92msjie-fa-ha-xi-by-gary_c/)
++ 实现
+```C++
+class Solution {
+public:
+    char firstUniqChar(string s) {
+        unordered_map<char, int> mm;
+        for (char& ch : s) ++mm[ch];
+        for (char& ch : s) if (mm[ch] == 1) return ch;
+        return ' ';
+    }
+};
+class Solution {
+public:
+    char firstUniqChar(string s) {
+        unordered_map<char, int> mm;
+        int t[26] = { INT_MAX };
+        for (int i = 0; i < s.size(); ++i) {
+            ++mm[s[i]];
+            t[s[i] - 'a'] = i;
+        }
+
+        char ans = ' ';
+        int mint = INT_MAX;
+        for(auto& p:mm) 
+            if (p.second == 1 && t[p.first - 'a'] < mint) {
+                ans = p.first;
+                mint = t[p.first - 'a'];
+            }
+        return ans;
+    }
+};
 ```
