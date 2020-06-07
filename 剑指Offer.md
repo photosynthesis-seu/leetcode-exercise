@@ -38,6 +38,7 @@
 - [No.46 把数字翻译成字符串](#把数字翻译成字符串)//经典的动态规划，空间复杂度从O（N）优化到O（1），一定要关注
 - [No.47 礼物的最大价值](#礼物的最大价值)//典型的二维动态规划
 - [No.48 最长不含重复字符的子字符串](#最长不含重复字符的子字符串)//双指针算法->多种算法进行优化、进阶
+- [No.49 丑数](#丑数)//带有数学技巧的动态规划,有关公因数的题目均可以参考！
 
 # 题目
 
@@ -2140,4 +2141,32 @@ class MedianFinder {
         return res;
     }
 ```
+## 丑数
+1.题目
+```
+我们把只包含因子 2、3 和 5 的数称作丑数（Ugly Number）。求按从小到大的顺序的第 n 个丑数。
 
+输入: n = 10
+输出: 12
+解释: 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 是前 10 个丑数。
+```
+2.分析
++ [这篇解答说的一清二楚！](https://leetcode-cn.com/problems/chou-shu-lcof/solution/chou-shu-ii-qing-xi-de-tui-dao-si-lu-by-mrsate/)
++ 实现
+```C++
+	int nthUglyNumber(int n) {
+		vector<int> dp(n, 0);
+		dp[0] = 1;
+		int p2 = 0, p3 = 0, p5 = 0;
+		for (int i = 1; i < n; i++){
+			dp[i] = min(min(dp[p2] * 2, dp[p3] * 3), dp[p5] * 5);
+			if (dp[i] == dp[p2] * 2) 
+                p2++;
+			if (dp[i] == dp[p3] * 3) 
+                p3++;
+			if (dp[i] == dp[p5] * 5) 
+                p5++;
+		}
+		return dp[n - 1];
+	}
+```
