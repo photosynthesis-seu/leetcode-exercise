@@ -36,7 +36,8 @@
 - [No.44 数字序列中某一位的数字](#数字序列中某一位的数字)//分类讨论，找数学规律细致实现，使用to_string会超时
 - [No.45 把数组排成最小的数](#把数组排成最小的数)//重载sort函数，此题关键在于数学思路要明确，实现不难
 - [No.46 把数字翻译成字符串](#把数字翻译成字符串)//经典的动态规划，空间复杂度从O（N）优化到O（1），一定要关注
-- [No.47 礼物的最大价值]（#礼物的最大价值）//典型的二维动态规划
+- [No.47 礼物的最大价值](#礼物的最大价值)//典型的二维动态规划
+- [No.48 最长不含重复字符的子字符串](#最长不含重复字符的子字符串)//双指针算法->多种算法进行优化、进阶
 
 # 题目
 
@@ -2068,3 +2069,75 @@ class MedianFinder {
         return dp[rows-1][cols-1];
     }
 ```
+## 最长不含重复字符的子字符串
+1.题目
+```
+请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
+
+示例 1:
+输入: "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+示例 2:
+输入: "bbbbb"
+输出: 1
+解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+```
+2.分析
++ [这篇解析非常好](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/c-san-chong-jie-fa-by-yizhe-shi-2/)
++ 移动左右指针，我们其实可以更大步的移动左指针，一旦检测到重复字符，左指针可以直接跳到重复部分，这是很自然的，不重复子串肯定不会把重复部分包含进去。
+而检测是否重复其实不必要使用set了，因为一共有127个字符，所以直接开辟128长度的数组即可。首先把每个字符的对应值设为 -1。每次把 m[s[i]] 设置为 i，是为了能够让左指针及时跳到重复部分。在 w 处检测到重复，所以left跳到第一个 w 处，然后中最后一个 w 处又检测到重复，所以 left 跳到第二个 w 处。之所以跳到前一个重复的位置，是因为 [i,j] 之间的长度为 j - i + 1，所以就没跳到重复位置的右边，当然都是可以的。
++ 实现
+```c++
+    // 使用unordered_set的一种双指针算法
+    // int lengthOfLongestSubstring(string s) {
+    //     unordered_set<char> mem;
+    //     int left=0,right=0;
+    //     int len = s.size();
+    //     int res=0;
+    //     for(;right<len;right++){
+    //         if(mem.find(s[right]) == mem.end()){
+    //             mem.insert(s[right]);
+    //             res = max(res,right-left+1);
+    //         }
+    //         else{
+    //             while(s[left] != s[right]){
+    //                 mem.erase(s[left]);
+    //                 left++;
+    //             }
+    //             left++;
+    //         }
+    //     }
+    //     return res;
+    // }
+
+    //   也是使用unordered_set的双指针算法，比第一种算法看起来更直观一些
+    //     int lengthOfLongestSubstring(string s) {
+    //     unordered_set<char> mem;
+    //     int left=0,right=0;
+    //     int len = s.size();
+    //     int res=0;
+    //     for(;right<len;right++){
+    //         while(mem.find(s[right]) != mem.end()){
+    //             mem.erase(s[left]);
+    //             left++;
+    //         }
+    //         mem.insert(s[right]);
+    //         res = max(res,right-left+1);
+    //     }
+    //     return res;
+    // }
+
+    //一种最极致的优化算法
+        int lengthOfLongestSubstring(string s) {
+        vector<int> m(128, -1);
+        int res = 0, left = -1;
+        for(int i = 0; i < s.size(); ++i) {
+            left = max(left, m[s[i]]);
+            m[s[i]] = i;
+            res = max(res, i - left);
+        }
+        return res;
+    }
+```
+
