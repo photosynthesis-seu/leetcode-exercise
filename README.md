@@ -38,6 +38,7 @@
   - [No.98 验证二叉搜索树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证二叉搜索树)//递归，helper(root, ower,upper)，中序遍历
   - [No.102 二叉树的层序遍历](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的层序遍历)//BFS、vector初始化和赋值的新方法
   - [No.124 二叉树中的最大路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树中的最大路径和)//带返回值的dfs，返回选择路径最大值
+  - [No.126 单词接龙II]((https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#单词接龙II)//很难的BFS搜索！
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
   - [No.200 岛屿数量](#岛屿数量)//经典遍历岛屿DFS、经典动态规划、BFS题目
@@ -121,6 +122,7 @@ No.102 二叉树的层序遍历（BFS、vector初始化和赋值的新方法）
 No.105 从前序与中序遍历序列构造二叉树 
 No.124 二叉树中的最大路径和(带返回值的dfs)
 No.125 验证回文串（isdigit/islower/isupper函数）
+No.126 单词接龙II（非常难的BFS广度优先搜索）
 No.128 最长连续序列（哈希表做法unordered_set、并查集做法、关键在于一定要确定连续序列的筛选条件！）
 No.136 只出现一次的数字(异或算法，类似面试题56-I 数组中数字出现的次数)
 No.146 LRU缓存机制（哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map）
