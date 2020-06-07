@@ -36,6 +36,7 @@
 - [No.44 数字序列中某一位的数字](#数字序列中某一位的数字)//分类讨论，找数学规律细致实现，使用to_string会超时
 - [No.45 把数组排成最小的数](#把数组排成最小的数)//重载sort函数，此题关键在于数学思路要明确，实现不难
 - [No.46 把数字翻译成字符串](#把数字翻译成字符串)//经典的动态规划，空间复杂度从O（N）优化到O（1），一定要关注
+- [No.47 礼物的最大价值]（#礼物的最大价值）//典型的二维动态规划
 
 # 题目
 
@@ -2027,5 +2028,43 @@ class MedianFinder {
             y = x;
        }
        return b;
+    }
+```
+## 礼物的最大价值
+1.题目
+```
+在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
+
+输入: 
+[
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+]
+输出: 12
+解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物
+```
+2.实现
+```C++
+    int maxValue(vector<vector<int>>& grid) {
+        int rows = grid.size();
+        int cols = grid[0].size();
+        vector<vector<int>> dp(rows,vector<int>(cols));
+        dp[0][0] = grid[0][0];
+        for(int i=1;i<cols;i++){
+            dp[0][i] = grid[0][i]+dp[0][i-1];
+        }
+        for(int j=1;j<rows;j++){
+            dp[j][0] = grid[j][0]+dp[j-1][0];
+        }
+        for(int i=1;i<rows;i++){
+            for(int j=1;j<cols;j++){
+                // if(i==0&&j==0) continue;
+                // if(i==0) dp[i][j] = grid[i][j] + dp[i][j-1];
+                // if(j==0) dp[i][j] = grid[i][j] = dp[i-1][j];
+                dp[i][j] = max(dp[i-1][j],dp[i][j-1])+grid[i][j];
+            }
+        }
+        return dp[rows-1][cols-1];
     }
 ```
