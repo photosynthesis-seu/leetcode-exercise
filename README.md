@@ -38,7 +38,7 @@
   - [No.98 验证二叉搜索树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证二叉搜索树)//递归，helper(root, ower,upper)，中序遍历
   - [No.102 二叉树的层序遍历](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的层序遍历)//BFS、vector初始化和赋值的新方法
   - [No.124 二叉树中的最大路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树中的最大路径和)//带返回值的dfs，返回选择路径最大值
-  - [No.126 单词接龙II]((https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#单词接龙II)//很难的BFS搜索！
+  - [No.126 单词接龙II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#单词接龙II)//很难的BFS搜索！
   - [No.199 二叉树的右视图](#二叉树的右视图)//DFS、BFS；i++的问题！
   - [No.105 从前序与中序遍历序列构造二叉树](#从前序与中序遍历序列构造二叉树)
   - [No.200 岛屿数量](#岛屿数量)//经典遍历岛屿DFS、经典动态规划、BFS题目
