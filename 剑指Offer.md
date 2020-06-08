@@ -41,6 +41,7 @@
 - [No.49 丑数](#丑数)//带有数学技巧的动态规划,有关公因数的题目均可以参考！
 - [No.50 第一个只出现一次的字符](#第一个只出现一次的字符)//hash表O(2N)->O(N)
 - [No.52 两个链表的第一个公共节点](#两个链表的第一个公共节点)//神奇的双指针，有点类似最小公倍数
+- [No.53-I 在排序数组中查找数字I](#在排序数组中查找数字I)//两种二分查找，一定注意边界判断！
 
 # 题目
 
@@ -2254,4 +2255,67 @@ public:
         return node1;
     }
 };
+```
+## 在排序数组中查找数字I
+
+1.题目
+```
+统计一个数字在排序数组中出现的次数。
+
+输入: nums = [5,7,7,8,8,10], target = 8
+输出: 2
+
+输入: nums = [5,7,7,8,8,10], target = 6
+输出: 0
+```
+2.实现
+```C++
+    // int search(vector<int>& nums, int target) {
+    //     if(nums.size()==1) return nums[0]==target? 1:0;
+    //     int left=0,right=nums.size()-1;
+    //     int res = helper(nums,left,right,target)-helper(nums,left,right,target-1);
+    //     return res;
+    // }
+    // int helper(vector<int>& nums, int left, int right, int target){
+    //     while(left<=right){
+    //         int mid = left + (right-left)/2;
+    //         if(nums[mid]>target){
+    //             right = right-1;
+    //         }
+    //         else{
+    //             left = mid+1;
+    //         }
+    //     }
+    //     return left;
+    // }
+        int search(vector<int>& nums, int target) {
+        int len = nums.size();
+        if(len == 0) return 0;
+        int left=0,right=len-1;
+        int l,r;
+        int res=0;
+        while(left<right){
+            int mid = (left+right)/2;
+            if(nums[mid]<target){
+                left = mid+1;
+            }
+            else{
+                right = mid;
+            }
+        }
+        if(nums[left]!=target)return 0;
+        l = left;
+        right = len-1;
+        while(left<right){
+            int mid = (left+right+1)/2;
+            if(nums[mid]>target){
+                right = mid-1;
+            }
+            else{
+                left = mid;
+            }
+        }
+        r = left;
+        return r-l+1;
+    }
 ```
