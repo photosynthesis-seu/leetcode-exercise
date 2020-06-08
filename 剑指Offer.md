@@ -40,6 +40,7 @@
 - [No.48 最长不含重复字符的子字符串](#最长不含重复字符的子字符串)//双指针算法->多种算法进行优化、进阶
 - [No.49 丑数](#丑数)//带有数学技巧的动态规划,有关公因数的题目均可以参考！
 - [No.50 第一个只出现一次的字符](#第一个只出现一次的字符)//hash表O(2N)->O(N)
+- [No.52 两个链表的第一个公共节点](#两个链表的第一个公共节点)//神奇的双指针，有点类似最小公倍数
 
 # 题目
 
@@ -2212,6 +2213,45 @@ public:
                 mint = t[p.first - 'a'];
             }
         return ans;
+    }
+};
+```
+## 两个链表的第一个公共节点
+
+1.题目
+```
+输入两个链表，找出它们的第一个公共节点。
+
+输入：intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+输出：Reference of the node with value = 2
+输入解释：相交节点的值为 2 （注意，如果两个列表相交则不能为 0）。从各自的表头开始算起，链表 A 为 [0,9,1,2,4]，链表 B 为 [3,2,4]。在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+```
+2.分析
++ 两个链表长度分别为L1+C、L2+C， C为公共部分的长度，第一个人走了L1+C步后，回到第二个人起点走L2步；第2个人走了L2+C步后，回到第一个人起点走L1步。 当两个人走的步数都为L1+L2+C时就两个家伙就相爱了
++ **必须用if(node1)而不是if(node1->next)，这样如果链表不相交，他们会同时指向NULL**
++ **可以理解为两条链表最后都指向了同一个 null （None）节点，代替了不相交的特殊情况。 非常的巧妙。**
++ 实现
+```C++
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* node1 = headA;
+        ListNode* node2 = headB;
+        while(node1 != node2){
+            if(node1){//必须用if(node1)而不是if(node1->next)，这样如果链表不相交，他们会同时指向NULL
+                node1 = node1->next;
+            }
+            else{
+                node1 = headB;
+            }
+            if(node2){
+                node2 = node2->next;
+            }
+            else{
+                node2 = headA;
+            }
+        }
+        return node1;
     }
 };
 ```
