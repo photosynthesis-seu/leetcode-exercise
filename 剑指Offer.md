@@ -43,6 +43,7 @@
 - [No.52 两个链表的第一个公共节点](#两个链表的第一个公共节点)//神奇的双指针，有点类似最小公倍数
 - [No.53-I 在排序数组中查找数字I](#在排序数组中查找数字I)//两种二分查找，一定注意边界判断！
 - [No.53-II 0～n-1中缺失的数字](#0～n-1中缺失的数字)//这道题的二分查找非常凶险！为了避免对特殊情况判断，实现细节很不同，慎用！
+- [No.54 二叉搜索树的第k大节点](#二叉搜索树的第k大节点)//使用中序遍历
 
 # 题目
 
@@ -2355,4 +2356,46 @@ public:
         }
         return left;
     }
+```
+## 二叉搜索树的第k大节点
+
+1.题目
+```
+给定一棵二叉搜索树，请找出其中第k大的节点。
+
+输入: root = [3,1,4,null,2], k = 1
+   3
+  / \
+ 1   4
+  \
+   2
+输出: 4
+```
+2.实现
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> res;
+    int kthLargest(TreeNode* root, int k) {
+        helper(root);
+        int len = res.size();
+        int ans = res[len-k];
+        return ans;
+    }
+    void helper(TreeNode* root){
+        if(root == NULL) return;
+        helper(root->left);
+        res.push_back(root->val);
+        helper(root->right);
+    }
+};
 ```
