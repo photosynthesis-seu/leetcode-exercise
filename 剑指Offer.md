@@ -46,6 +46,7 @@
 - [No.54 二叉搜索树的第k大节点](#二叉搜索树的第k大节点)//使用中序遍历
 - [No.55-I 二叉树的深度](#二叉树的深度)//BFS算法（使用计数队列统计层数）、DFS算法（回溯算法）
 - [No.56-II 数组中数字出现的次数II](#数组中数字出现的次数II)//位运算算法，一定需要掌握
+- [No.57 和为s的两个数字](#和为s的两个数字)//hash表算法和双指针算法都需要了解！
 
 # 题目
 
@@ -2522,6 +2523,56 @@ public:
             if(cnt % 3 == 1) ans ^= (1 << i);
         }
         return ans;
+    }
+};
+```
+## 和为s的两个数字
+
+1.题目
+```
+输入一个递增排序的数组和一个数字s，在数组中查找两个数，使得它们的和正好是s。如果有多对数字的和等于s，则输出任意一对即可。
+
+输入：nums = [2,7,11,15], target = 9
+输出：[2,7] 或者 [7,2]
+
+输入：nums = [10,26,30,31,47,60], target = 40
+输出：[10,30] 或者 [30,10]
+```
+2.实现
+```C++
+//双指针算法
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size()-1;
+        while(left<right){
+            if(nums[left]+nums[right]<target){
+                left++;
+            }
+            else if(nums[left]+nums[right]>target){
+                right--;
+            }
+            else{
+                return {nums[left],nums[right]};
+            }
+        }
+        return {};
+    }
+};
+//hash表算法
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numbers;
+        for(int i = 0; i < nums.size(); i ++){
+            numbers[nums[i]] = 1;
+        }
+        for(int i = 0; i < nums.size(); i ++){
+            if(numbers[target - nums[i]]) 
+                return {nums[i], target - nums[i]};
+        }
+        return {};
     }
 };
 ```
