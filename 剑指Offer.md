@@ -45,6 +45,7 @@
 - [No.53-II 0～n-1中缺失的数字](#0～n-1中缺失的数字)//这道题的二分查找非常凶险！为了避免对特殊情况判断，实现细节很不同，慎用！
 - [No.54 二叉搜索树的第k大节点](#二叉搜索树的第k大节点)//使用中序遍历
 - [No.55-I 二叉树的深度](#二叉树的深度)//BFS算法（使用计数队列统计层数）、DFS算法（回溯算法）
+- [No.56-II 数组中数字出现的次数II](#数组中数字出现的次数II)//位运算算法，一定需要掌握
 
 # 题目
 
@@ -2470,6 +2471,55 @@ public:
                 if (node->right) q.push(node->right);
             }
             ans ++;
+        }
+        return ans;
+    }
+};
+```
+## 数组中数字出现的次数II
+
+1.题目
+```
+在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。
+
+输入：nums = [3,4,3,3]
+输出：4
+```
+2.分析
++ 如果某个数字出现3次，那么这个3个数字的和肯定能被3整除，则其对应二进制位的每一位的和也能被3整除
++ 统计数组中每个数字的二进制中每一位的和，判断该和是否能被3整除。
++ 若可以，则只出现一次的数字的二进制数中那一位为0，否则为1
++ 实现
+```C++
+// 哈希表算法
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_map<int, int> mp;
+        for(int n : nums) mp[n] ++;
+        int ans;
+        for(auto pr : mp){
+            if(pr.second == 1){
+                ans = pr.first;
+                break;
+            }
+        }
+        return ans;
+    }
+};
+// 位运算算法
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans = 0;
+        for(int i = 0; i < 32; ++i){
+            int cnt = 0;
+            for(int n : nums){
+                // n & 1 << i 的值大于0即为真
+                if(n & (1 << i)) cnt++;
+            }
+            // 构造只出现一次的那个数字，采用异或的方法生成二进制中的每一位
+            if(cnt % 3 == 1) ans ^= (1 << i);
         }
         return ans;
     }
