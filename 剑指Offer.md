@@ -47,6 +47,7 @@
 - [No.55-I 二叉树的深度](#二叉树的深度)//BFS算法（使用计数队列统计层数）、DFS算法（回溯算法）
 - [No.56-II 数组中数字出现的次数II](#数组中数字出现的次数II)//位运算算法，一定需要掌握
 - [No.57 和为s的两个数字](#和为s的两个数字)//hash表算法和双指针算法都需要了解！
+- [No.58-I 翻转单词顺序](#翻转单词顺序)//istringstream和stack的配合使用！
 
 # 题目
 
@@ -2573,6 +2574,38 @@ public:
                 return {nums[i], target - nums[i]};
         }
         return {};
+    }
+};
+```
+## 翻转单词顺序
+
+1.题目
+```
+输入一个英文句子，翻转句子中单词的顺序，但单词内字符的顺序不变。为简单起见，标点符号和普通字母一样处理。例如输入字符串"I am a student. "，则输出"student. a am I"。
+
+输入: "the sky is blue"
+输出: "blue is sky the"
+
+输入: "  hello world!  "
+输出: "world! hello"
+解释: 输入字符串可以在前面或者后面包含多余的空格，但是反转后的字符不能包括。
+```
+2.实现
+```C++
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<string> stk;
+        string res,str;
+        istringstream ss(s);
+        while (ss >> str){
+            stk.push(str), stk.push(" ");
+        }
+        if (!stk.empty()) stk.pop();
+        while (!stk.empty()) {
+            res += stk.top(), stk.pop();
+        }
+        return res;
     }
 };
 ```
