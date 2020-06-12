@@ -48,6 +48,7 @@
 - [No.56-II 数组中数字出现的次数II](#数组中数字出现的次数II)//位运算算法，一定需要掌握
 - [No.57 和为s的两个数字](#和为s的两个数字)//hash表算法和双指针算法都需要了解！
 - [No.58-I 翻转单词顺序](#翻转单词顺序)//istringstream和stack的配合使用！
+- [No.58-II 左旋转字符串](#左旋转字符串)//三种切片的方法
 
 # 题目
 
@@ -2606,6 +2607,57 @@ public:
             res += stk.top(), stk.pop();
         }
         return res;
+    }
+};
+```
+## 左旋转字符串
+
+1.题目
+```
+字符串的左旋转操作是把字符串前面的若干个字符转移到字符串的尾部。请定义一个函数实现字符串左旋转操作的功能。比如，输入字符串"abcdefg"和数字2，该函数将返回左旋转两位得到的结果"cdefgab"。
+
+输入: s = "abcdefg", k = 2
+输出: "cdefgab"
+```
+2.实现
+```C++
+//遍历法
+class Solution {
+public:
+    string reverseLeftWords(string s, int n) {
+        string ans = "";
+        for (int i = n; i < s.size(); ++i)
+            string += s[i];
+        for (int i = 0; i < n; ++i)
+            string += s[i];
+        return ans;
+    }
+};
+//切片法（经典）
+class Solution {
+public:
+    string reverseLeftWords(string s, int n) {
+        return (s + s).substr(n, s.size());
+    }
+};
+//要求不使用额外空间的原地翻转
+class Solution {
+public:
+    string reverse(string &s,int i,int j) {
+        while (i < j) {
+            swap(s[i], s[j]);
+            i++;
+            j--;
+        }
+        return s;
+    }
+    string reverseLeftWords(string s, int n) {
+        int size = (int)s.size();
+        if (size <= 1) return s;
+        reverse(s, 0, n-1);
+        reverse(s, n, size-1);
+        reverse(s, 0, size-1);
+        return s;
     }
 };
 ```
