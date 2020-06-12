@@ -50,6 +50,7 @@
 - [No.58-I 翻转单词顺序](#翻转单词顺序)//istringstream和stack的配合使用！
 - [No.58-II 左旋转字符串](#左旋转字符串)//三种切片的方法，substr(star,lenght):起始下标和子串长度
 - [No.59-I 滑动窗口的最大值](#滑动窗口的最大值)//难题！优先队列解法、单调队列解法（使用双端队列实现）
+- [No.59-II 队列的最大值](#队列的最大值)//队列与双端队列的实现，还是单调队列！！
 
 # 题目
 
@@ -2764,3 +2765,66 @@ vector<int> maxSlidingWindow(vector<int>& nums, int k) {
     return res;
 }
 ```
+## 队列的最大值
+
+1.题目
+```
+请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
+若队列为空，pop_front 和 max_value 需要返回 -1
+
+输入: 
+["MaxQueue","push_back","push_back","max_value","pop_front","max_value"]
+[[],[1],[2],[],[],[]]
+输出: [null,null,null,2,1,2]
+```
+2.分析
++ [官方解答很好](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-ii-dui-lie-de-zui-da-zhi-by-leetcod/)
++ 从队列尾部插入元素时，我们可以提前取出队列中所有比这个元素小的元素，使得队列中只保留对结果有影响的数字。这样的方法等价于要求维持队列单调递减，即要保证每个元素的前面都没有比它小的元素。
++ 那么如何高效实现一个始终递减的队列呢？我们只需要在插入每一个元素 value 时，从队列尾部依次取出比当前元素 value 小的元素，直到遇到一个比当前元素大的元素 value' 即可。
+  - 上面的过程保证了只要在元素 value 被插入之前队列递减，那么在 value 被插入之后队列依然递减。
+  - 而队列的初始状态（空队列）符合单调递减的定义。
+  - 由数学归纳法可知队列将会始终保持单调递减。
++ 上面的过程需要从队列尾部取出元素，因此需要使用双端队列来实现。另外我们也需要一个辅助队列来记录所有被插入的值，以确定 pop_front 函数的返回值。
++ 实现
+```C++
+class MaxQueue {
+    queue<int> every_num;
+    deque<int> max_num;
+public:
+    MaxQueue() {
+    }
+    
+    int max_value() {
+        if (every_num.empty())
+            return -1;
+        return max_num.front();
+    }
+    
+    void push_back(int value) {
+        while (!max_num.empty() && max_num.back() < value) {
+            max_num.pop_back();
+        }
+        max_num.push_back(value);
+        every_num.push(value);
+    }
+    
+    int pop_front() {
+        if (every_num.empty())
+            return -1;
+        int ans = every_num.front();
+        if (ans == max_num.front()) {
+            max_num.pop_front();
+        }
+        every_num.pop();
+        return ans;
+    }
+};
+/**
+ * Your MaxQueue object will be instantiated and called as such:
+ * MaxQueue* obj = new MaxQueue();
+ * int param_1 = obj->max_value();
+ * obj->push_back(value);
+ * int param_3 = obj->pop_front();
+ */
+```
+
