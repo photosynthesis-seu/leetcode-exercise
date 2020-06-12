@@ -48,7 +48,7 @@
 - [No.56-II 数组中数字出现的次数II](#数组中数字出现的次数II)//位运算算法，一定需要掌握
 - [No.57 和为s的两个数字](#和为s的两个数字)//hash表算法和双指针算法都需要了解！
 - [No.58-I 翻转单词顺序](#翻转单词顺序)//istringstream和stack的配合使用！
-- [No.58-II 左旋转字符串](#左旋转字符串)//三种切片的方法
+- [No.58-II 左旋转字符串](#左旋转字符串)//三种切片的方法，substr(star,lenght):起始下标和子串长度
 
 # 题目
 
@@ -2638,6 +2638,18 @@ class Solution {
 public:
     string reverseLeftWords(string s, int n) {
         return (s + s).substr(n, s.size());
+    }
+};
+//使用substr的切片法
+class Solution {
+public:
+    string reverseLeftWords(string s, int n) {
+        string ans;
+        int len = s.size();
+        if(len == 0) return "";
+        if(len == 1) return s;
+        ans = s.substr(n,len-n) + s.substr(0,n);
+        return ans;
     }
 };
 //要求不使用额外空间的原地翻转
