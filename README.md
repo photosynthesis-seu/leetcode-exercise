@@ -73,7 +73,7 @@
   - [滑窗算法简短凝练的介绍](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/shi-yao-shi-hua-dong-chuang-kou-yi-ji-ru-he-yong-h/)
   - [No.3 无重复字符的最长子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#无重复字符的最长子串)//双指针、滑窗算法，动态规划，unordered_set
   - [No.11 盛最多水的容器](#盛最多水的容器)
-  - [No.15 三数之和](#三数之和)
+  - [No.15 三数之和](#三数之和)//双指针+排序、使用条件判断或者set去重！
   - [No.21 合并两个有序链表](#合并两个有序链表)//迭代、构造新链表的技巧
   - [No.25 k个一组翻转链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#k个一组翻转链表)//难：两个全局指针，两个局部指针、反转链表
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
@@ -739,6 +739,87 @@ int sum = accumulate(res.begin(),res.end(),0);
 4.vector中sort函数可以实现排序
 
 sort(std::begin(numbers), std::end(numbers), std::greater<>());没有第三个参数默认升序排列
+
+5.实现
+```C++
+class Solution {
+public:
+    vector<vector<int> > threeSum(vector<int>& nums) {
+        vector<vector<int> > ret;
+        vector<int > vtemp;
+        int len = nums.size();
+        sort(nums.begin(),nums.end());//sort the input
+        for(int i=0;i<len-2;i++){
+            //find the tripe for each nums[i]
+            // j1 and j2 log the index of the other two numbers
+            if(i ==0 ||(i>0 && nums[i] != nums[i-1])){
+                int p1 = i+1, p2 = len-1; // set two pointers
+                while(p1 < p2){
+                    if(nums[p1] + nums[p2] < -nums[i]){
+                        p1++;
+                    }else if(nums[p1] + nums[p2] == -nums[i]){
+                        if(p1 == i+1){
+                            vector<int > vtemp{nums[i], nums[p1], nums[p2]};
+                            ret.push_back(vtemp);
+                            vtemp.clear();
+
+                        }else if(nums[p1] != nums[p1-1]){
+                            vector<int > vtemp{nums[i], nums[p1], nums[p2]};
+                            ret.push_back(vtemp);
+                            vtemp.clear();
+
+                        }
+                        p1++,p2--;
+                    }else{
+                         p2--;
+                    }
+                }
+            }
+
+
+        }
+        return ret;
+
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int len = nums.size();
+        if(len<=2) return {};
+        set<vector<int>> ans;
+        vector<vector<int>> res;
+        vector<int> temp;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<len-2;i++){
+            if(nums[i]>0) break;
+            int left = i+1;
+            int right = len-1;
+            while(left<right){
+                if(nums[left]+nums[right] == -nums[i]){
+                    temp.push_back(nums[i]);
+                    temp.push_back(nums[left]);
+                    temp.push_back(nums[right]);
+                    ans.insert(temp);
+                    temp.clear();
+                    left++;
+                    right--;
+                }
+                else if(nums[left]+nums[right]< -nums[i]){
+                    left++;
+                }
+                else{
+                    right--;
+                }
+            }
+            
+        }
+        res.assign(ans.begin(),ans.end());
+        return res;
+    }
+};
+```
 
 ## 接雨水问题
 
