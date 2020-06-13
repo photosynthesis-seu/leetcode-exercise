@@ -51,6 +51,7 @@
 - [No.58-II 左旋转字符串](#左旋转字符串)//三种切片的方法，substr(star,lenght):起始下标和子串长度
 - [No.59-I 滑动窗口的最大值](#滑动窗口的最大值)//难题！优先队列解法、单调队列解法（使用双端队列实现）
 - [No.59-II 队列的最大值](#队列的最大值)//队列与双端队列的实现，还是单调队列！！
+- [No.60 n个骰子的点数](#n个骰子的点数)//标准的动态规划和压缩数组的优化算法、类似背包问题
 
 # 题目
 
@@ -2827,4 +2828,72 @@ public:
  * int param_3 = obj->pop_front();
  */
 ```
+## n个骰子的点数
 
+1.题目
+```
+把n个骰子扔在地上，所有骰子朝上一面的点数之和为s。输入n，打印出s的所有可能的值出现的概率。
+你需要用一个浮点数数组返回答案，其中第 i 个元素代表这 n 个骰子所能掷出的点数集合中第 i 小的那个的概率。
+
+输入: 1
+输出: [0.16667,0.16667,0.16667,0.16667,0.16667,0.16667]
+```
+2.分析
++ 很典型的背包问题
++ [具体见这篇分析](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/solution/nge-tou-zi-de-dian-shu-dong-tai-gui-hua-ji-qi-yo-3/)
++ 两种实现
+```C++
+class Solution {
+public:
+    vector<double> twoSum(int n) {
+        int all_times = pow(6,n);
+        //dp[i][j]表示扔i个骰子点数之和为j出现的次数(假设扔6^n次，每种情况出现一次)
+        vector<vector<int>> dp(15,vector<int>(70,0));
+        vector<double> ans;
+        for(int i=1;i<=6;i++){
+            dp[1][i] = 1;
+        }
+        for(int i=2;i<=n;i++){
+            for(int j=i;j<=6*i;j++){
+                for(int cur=1;cur<=6;cur++){
+                    if(j-cur<=0) break;
+                    dp[i][j] += dp[i-1][j-cur];
+                }
+            }
+        }
+        for(int i=n;i<=6*n;i++){
+            ans.push_back((1.0*dp[n][i])/all_times);
+        }
+        return ans;
+    }
+};
+
+//优化空间后的一维数组
+class Solution {
+public:
+    vector<double> twoSum(int n) {
+        int dp[70];
+        memset(dp, 0, sizeof(dp));
+        for (int i = 1; i <= 6; i ++) {
+            dp[i] = 1;
+        }
+        for (int i = 2; i <= n; i ++) {
+            for (int j = 6*i; j >= i; j --) {
+                dp[j] = 0;
+                for (int cur = 1; cur <= 6; cur ++) {
+                    if (j - cur < i-1) {
+                        break;
+                    }
+                    dp[j] += dp[j-cur];
+                }
+            }
+        }
+        int all = pow(6, n);
+        vector<double> ret;
+        for (int i = n; i <= 6 * n; i ++) {
+            ret.push_back(dp[i] * 1.0 / all);
+        }
+        return ret;
+    }
+};
+```
