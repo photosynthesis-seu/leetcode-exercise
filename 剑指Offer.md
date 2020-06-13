@@ -2695,7 +2695,7 @@ public:
 ```
 2.分析
 
-+[这篇对于单调队列的分析很好](https://leetcode-cn.com/problems/sliding-window-maximum/solution/dan-diao-dui-lie-by-labuladong/)
++ [这篇对于单调队列的分析很好](https://leetcode-cn.com/problems/sliding-window-maximum/solution/dan-diao-dui-lie-by-labuladong/)
 + 实现
 ```C++
 // 优先队列做法
