@@ -52,6 +52,7 @@
 - [No.59-I 滑动窗口的最大值](#滑动窗口的最大值)//难题！优先队列解法、单调队列解法（使用双端队列实现）
 - [No.59-II 队列的最大值](#队列的最大值)//队列与双端队列的实现，还是单调队列！！
 - [No.60 n个骰子的点数](#n个骰子的点数)//标准的动态规划和压缩数组的优化算法、类似背包问题
+- [No.61 扑克牌中的顺子](#扑克牌中的顺子)//数学思想，hash表
 
 # 题目
 
@@ -2894,6 +2895,47 @@ public:
             ret.push_back(dp[i] * 1.0 / all);
         }
         return ret;
+    }
+};
+```
+## 扑克牌中的顺子
+
+1.题目
+```
+从扑克牌中随机抽5张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。
+
+输入: [1,2,3,4,5]
+输出: True
+
+输入: [0,0,1,2,5]
+输出: True
+```
+2.分析
++ [数学思想见解析](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/solution/mian-shi-ti-61-bu-ke-pai-zhong-de-shun-zi-ji-he-se/)
++ 根据题意，此 55 张牌是顺子的 充分条件 如下：
+  - 除大小王外，所有牌无重复 ；
+  - 设此 5 张牌中最大的牌为 max ，最小的牌为 min （大小王除外），则需满足：max - min < 5
++ 实现
+```C++
+class Solution {
+public:
+    bool isStraight(vector<int>& nums) {
+        set<int> res;
+        int min_num = 14;
+        int max_num = 0;
+        for(auto num:nums){
+            if(num == 0) continue;
+            if(res.count(num)) return false;
+            max_num = max(max_num,num);
+            min_num = min(min_num,num);
+            res.insert(num);
+        }
+        if(max_num-min_num<5){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 };
 ```
