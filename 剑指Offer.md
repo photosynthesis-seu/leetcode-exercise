@@ -2951,7 +2951,7 @@ public:
 输出: 3
 ```
 2.分析
-+
++ [这篇讲解很好](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/javajie-jue-yue-se-fu-huan-wen-ti-gao-su-ni-wei-sh/)
 + 实现
 ```C++
 //环形链表法，算法超时
