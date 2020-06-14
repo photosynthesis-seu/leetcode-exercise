@@ -434,37 +434,6 @@ RCU：即read-copy-update，在修改数据时，首先需要读取数据，然�
 2）系统调用举例：
 
 对文件进行写操作，程序向打开的文件写入字符串“hello world”，open和write都是系统调用。如下：
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
