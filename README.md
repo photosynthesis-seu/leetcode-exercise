@@ -69,6 +69,7 @@
   - [No.287 寻找重复数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#寻找重复数)//类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
+  - [No.1300 转变数组后最接近目标值的数组和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#转变数组后最接近目标值的数组和)//难！二分查找->lower_bound(arr.begin(), arr.end(), mid)的使用、数学解法
 + 双指针算法/滑窗算法
   - [滑窗算法简短凝练的介绍](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/solution/shi-yao-shi-hua-dong-chuang-kou-yi-ji-ru-he-yong-h/)
   - [No.3 无重复字符的最长子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#无重复字符的最长子串)//双指针、滑窗算法，动态规划，unordered_set
@@ -176,6 +177,7 @@ No.1111 有效括号的嵌套深度
 No.1143 最长公共子序列 
 No.1162 地图分析
 No.1248 统计优美子数组(vector初始化以及边界处理)
+No.1300 转变数组后最接近目标值的数组和(二分查找->lower_bound(arr.begin(), arr.end(), mid)的使用、数学解法)
 No.1371 每个元音包含偶数次的最长子字符串(前缀和、压缩字符，使用位运算实现、~位运算符的使用)
 No.1431 拥有最多糖果的孩子（寻找vector中最大最小元素的神奇函数*max_element,*min_element）
 
