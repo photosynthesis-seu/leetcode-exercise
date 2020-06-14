@@ -53,6 +53,7 @@
 - [No.59-II 队列的最大值](#队列的最大值)//队列与双端队列的实现，还是单调队列！！
 - [No.60 n个骰子的点数](#n个骰子的点数)//标准的动态规划和压缩数组的优化算法、类似背包问题
 - [No.61 扑克牌中的顺子](#扑克牌中的顺子)//数学思想，hash表
+- [No.62 圆圈中最后剩下的数字](#圆圈中最后剩下的数字)//环形链表超时，约瑟夫环问题
 
 # 题目
 
@@ -2936,6 +2937,59 @@ public:
         else{
             return false;
         }
+    }
+};
+```
+## 圆圈中最后剩下的数字
+
+1.题目
+```
+0,1,,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字。求出这个圆圈里剩下的最后一个数字。
+例如，0、1、2、3、4这5个数字组成一个圆圈，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。
+
+输入: n = 5, m = 3
+输出: 3
+```
+2.分析
++
++ 实现
+```C++
+//环形链表法，算法超时
+class Solution {
+public:
+    int lastRemaining(int n, int m) {
+        list<int> nums;
+        int res;
+        for(int i=0;i<n;i++){
+            nums.push_back(i);
+        }
+        list<int>::iterator cur = nums.begin();
+        while(!nums.empty()){
+            for(int i=1;i<m;i++){
+                cur++;
+                if(cur == nums.end()){
+                    cur = nums.begin();
+                }
+            }
+            res = *cur;//把所有元素放到链表中，一个个走，然后删除。直到删除完为止，拿到最后一个删除的元素
+            cur = nums.erase(cur); // list erase 操作返回后序的迭代器
+            if(cur == nums.end()){
+                cur = nums.begin();
+            }
+        }
+        return res;
+    }
+};
+
+//数学算法实现
+class Solution {
+public:
+    int lastRemaining(int n, int m) {
+        int ret = 0;
+        for (int i = 2; i <= n; i++) {
+            ret = (ret + m) % i;
+        }
+        return ret;
     }
 };
 ```
