@@ -1,0 +1,922 @@
+<!DOCTYPE html><html><head>    <meta charset="utf-8"/>    <meta http-equiv="Content-Language" content="zh-CN">    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>    <meta name="referrer" content="always"/>    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>    <title>God is a Coder.. - OSCHINA</title>            <meta name="keywords" content="开源,OSC,开源软件,开源硬件,开源网站,开源社区,java开源,perl开源,python开源,ruby开源,php开源,开源项目,开源代码"/>                <meta name="description" content="OSCHINA.NET 是目前领先的中文开源技术社区。我们传播开源的理念，推广开源项目，为 IT 开发者提供了一个发现、使用、并交流开源技术的平台"/>        <link rel="stylesheet" type="text/css" href="https://static.oschina.net/new-osc/js/utils/semantic-ui/semantic.min.css?t=1542621653000"/>                <link type="text/css" rel="stylesheet" href="https://static.oschina.net/new-osc/dist/css/space.8cc9f728.css">        <script type="text/javascript">window.__STATIC_DOMAIN = "https://static.oschina.net";</script>    <script src="https://static.oschina.net/new-osc/js/utils/jquery.min.js"></script>    <link rel="shortcut icon" type="image/x-icon" href="https://static.oschina.net/new-osc/img/favicon.ico"/>    <link rel="alternate" type="application/rss+xml" title="最新开源项目" href="https://www.oschina.net/project/rss"/>    <link rel="alternate" type="application/rss+xml" title="最新开源资讯" href="https://www.oschina.net/news/rss"/>    <link rel="alternate" type="application/rss+xml" title="最新问题列表" href="https://www.oschina.net/question/rss"/>    <link rel="alternate" type="application/rss+xml" title="最新翻译列表" href="https://www.oschina.net/translate/rss"/>    <link rel="alternate" type="application/rss+xml" title="最新博客列表" href="https://www.oschina.net/blog/rss"/>    <link rel="alternate" type="application/rss+xml" title="推荐博客列表" href="https://www.oschina.net/blog/rss?show=more"/>    <link rel="alternate" type="application/rss+xml" title="推荐软件列表" href="https://www.oschina.net/project/rss?show=recomms"/>    <link rel="alternate" type="application/rss+xml" title="最新代码分享列表" href="https://www.oschina.net/code/rss"/>    <link rel="alternate" type="application/rss+xml" title="OSCHINA - 源码列表" href="https://www.oschina.net/code/source_rss"/></head><body>        <val data-name="space_user_url" data-value="https://my.oschina.net/hosee"></val>      <val data-name="g_user_url" data-value=""></val>      <val data-name="api_prefix" data-value="/action"></val>      <val data-name="g_user_code" data-value=""></val>     <val data-name="g_user_id" data-value=""></val>     <val data-name="g_user" data-value=""></val>     <val data-name="login_page" data-value="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fhosee"></val>                         <val data-name="weixinAppId" data-value=""></val>        <val data-name="weixinTimestamp" data-value=""></val>        <val data-name="weixinNonceStr" data-value=""></val>        <val data-name="weixinSignature" data-value=""></val>        <val data-name="weixinShareUrl" data-value=""></val>                                         <val data-name="is_detail_page" data-value="false"></val>                <div class="ui left inverted sidebar vertical menu" id="mobileNavSidebar">        <a href="https://www.oschina.net/project" class="item project">开源软件</a>        <a href="https://www.oschina.net/question" class="item question">问答</a>        <a href="https://www.oschina.net/tweets" class="item tweet">动弹</a>        <a href="https://www.oschina.net/blog" class="item blog">博客</a>        <a href="https://www.oschina.net/translate" class="item translate">翻译</a>        <a href="https://www.oschina.net/news" class="item news">资讯</a>        <a href="https://gitee.com/?from=osc-index" class="item gitee" target="_blank">码云</a>        <a href="https://zb.oschina.net/projects/list.html" class="item" target="_blank">众包</a>        <a href="https://www.oschina.net/event/ych" class="item meetup">源创会</a>        <a href="https://www.oschina.net/event" class="item">活动</a>        <a href="https://job.oschina.net/" class="item" target="_blank">求职/招聘</a>        <a href="https://www.oschina.net/question/topic/masteronline" class="item">高手问答</a>        <a href="https://www.oschina.net/question/topic/osc-interview" class="item">开源访谈</a>        <a href="https://my.oschina.net/editorial-story" class="item">周刊</a>        <a href="https://www.oschina.net/company" class="item">公司开源导航页</a>    </div>        <div class="ui right inverted sidebar vertical menu" id="mobileUserSidebar">                    <a class="item" href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fhosee">登录</a>            <a class="item" href="https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fmy.oschina.net%2Fhosee">注册</a>            </div>                <div class="pusher ">                <div class="ui secondary inverted fixed menu" id="headerNavMenu">            <a class="item logo" href="https://www.oschina.net" title="OSCHINA"><img src="https://static.oschina.net/new-osc/img/logo_new.svg" alt="OSCHINA"></a>                                    <form action="https://www.oschina.net/search" class="item search-item">                <div class="ui icon input">                    <input type="hidden" name="scope" value="all">                    <input placeholder="大家都在搜...." id="keyword" name="q" size="24" value="" type="text"/>                    <i class="search link icon"></i>                </div>                <div class="results"></div>            </form>            <div class="item download-item">                <a class="ui primary button" id="btnDownloadApp" href="https://www.oschina.net/app" target="_blank">下载APP</a>            </div>            <div class="ui popup top left transition hidden" id="btnDownloadAppContent">                <h3 class="header">OSCHINA App —— <br/>关注技术领域的头条文章</h3>                <p>聚合全网技术文章，根据你的阅读喜好进行个性推荐</p>                <img width="200" src='https://static.oschina.net/new-osc/img/osc_app_download_qrcode.png?t=1451964198000' alt="下载APP"/>            </div>            <div class="ui secondary text menu" id="menuList">                <a href="https://www.oschina.net/project" class="item project">开源软件</a>                <a href="https://www.oschina.net/question" class="item question">问答</a>                <a href="https://www.oschina.net/tweets" class="item tweet">动弹</a>                <a href="https://www.oschina.net/blog" class="item blog">博客</a>                <a href="https://www.oschina.net/translate" class="item translate">翻译</a>                <a href="https://www.oschina.net/news" class="item news">资讯</a>                <a href="https://gitee.com/?from=osc-index" class="item gitee" target="_blank">码云<span class="floating ui red label giteetip">代码托管</span></a>                <a href="https://zb.oschina.net/projects/list.html" class="item" target="_blank">众包</a>                <a href="https://www.oschina.net/event" class="item event">活动</a>            </div>            <div class="ui dropdown item" id="moreMenu">                更多 <i class="dropdown icon"></i>                <div class="menu">                    <a href="https://www.oschina.net/event/ych" class="item meetup"><i class="world icon"></i>源创会</a>                    <a href="https://job.oschina.net/" class="item" target="_blank"><i class="address card outline icon"></i>求职/招聘</a>                    <a href="https://www.oschina.net/question/topic/masteronline" class="item"><i class="spy icon"></i>高手问答</a>                    <a href="https://www.oschina.net/question/topic/osc-interview" class="item"><i class="coffee icon"></i>开源访谈</a>                    <a href="https://my.oschina.net/editorial-story" class="item"><i class="calendar outline icon"></i>周刊</a>                    <a href="https://www.oschina.net/company" class="item"><i class="building outline icon"></i>公司开源导航页</a>                </div>            </div>            <div class="right menu">                                    <a class="item" href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fhosee">登录</a>                    <a class="item" href="https://www.oschina.net/home/reg?goto_page=https%3A%2F%2Fmy.oschina.net%2Fhosee">注册</a>                            </div>        </div>                <div class="ui secondary inverted fixed menu" id="mobileHeaderNavMenu">            <a class="icon item toggle-mobile-nav-sidebar">                <i class="large content icon"></i>            </a>            <div class="logo back-to-top-toggle"><img src="https://static.oschina.net/new-osc/img/logo_new.svg" alt="OSCHINA"></div>            <a class="icon item toggle-mobile-user-sidebar">                                    <i class="large user outline icon"></i>                            </a>        </div>                <div id="mainScreen">            <div class="ui container">                
+
+
+<val data-name="g_space_title" data-value="God is a Coder.."></val> 
+
+                        
+
+
+
+<x-foo-define data-define="space-home-index"></x-foo-define> 
+<div class="ui grid space-home">
+    <div class="row">
+                <div class="five wide computer five wide tablet sixteen wide mobile column">
+            
+<val data-name="gitee_contributions_url"
+     data-value="https://gitee.com/contributions.js?email=74A82BE56F1FB63619BD67126EE693E01B6EF279179BAA1B"></val>
+
+<div class="space-sidebar">
+            <div class="ui basic center aligned segment sidebar-section user-info">
+        <div class="avatar-wrap">
+            <a class="ui small circular image avatar" href="https://my.oschina.net/hosee">
+                                                        <div class="osc-avatar large-portrait _120x120" title="Hosee" data-user-id="2243330">
+                <img src="https://static.oschina.net/uploads/user/1121/2243330_200.jpeg?t=1430735969000" alt="Hosee" title="Hosee"/>
+            </div>
+                        </a>
+                            <div class="gender ui large teal circular label">
+                    <i class="mars icon"></i>
+                </div>
+                    </div>
+        <div class="ui header">
+            <h3>Hosee</h3>
+                                        <div class="sub header user-signature">想想未来~</div>
+                    </div>
+                <div class="ui mini images medals">
+                                </div>
+                    <div class="ui three tiny statistics user-statistics">
+                <a class="statistic" href="https://www.oschina.net/question/2918182_2268983" target="_blank">
+                    <div class="value">
+                        189
+                    </div>
+                    <div class="label">
+                        积分
+                    </div>
+                </a>
+                <a class="statistic" href="https://my.oschina.net/hosee/followers">
+                    <div class="value" data-user-id="2243330" data-followers-count="599" data-format="true">
+                        599
+                    </div>
+                    <div class="label">
+                        粉丝
+                    </div>
+                </a>
+                <a class="statistic" href="https://my.oschina.net/hosee/following">
+                    <div class="value" data-user-id="2243330" data-following-count="5" data-format="true">
+                        5
+                    </div>
+                    <div class="label">
+                        关注
+                    </div>
+                </a>
+            </div>
+                        <div class="item action clearfix">
+                                                                                <a class="ui green button follow-btn" data-user-id="2243330" data-follow-status="1"><i class="heart outline icon"></i><span class="text">关注</span></a>
+                                                <a class="ui green basic button send-message-btn" data-user-id="2243330"
+                   data-user-name="Hosee"><i class="envelope outline icon"></i>私信</a>
+                                <div class="ui basic dropdown more dropdown-more">
+                    <div class="ui icon green basic button menu-btn"><i class="bars icon"></i></div>
+                    <div class="menu">
+                                                <a class="item" href="https://www.oschina.net/question/ask?user=2243330" target="_blank"><i class="comment outline icon"></i>提问</a>
+                                                                                                                                                <a class="item" user-block data-id="2243330" data-status="0"><i class="ban icon"></i><span class="text">加灰</span></a>
+                                                                            <a class="item ban" ban-report data-id="2243330" data-obj-type="32" data-url="https://my.oschina.net/hosee">
+                            <i class="flag icon"></i>举报
+                        </a>
+                    </div>
+                </div>
+                    </div>
+    </div>
+                                        <div class="ui basic segment sidebar-section">
+    <h3 class="header">技能雷达</h3>
+    <div class="ui list">
+                            <div class="item">
+                <b>专长领域：</b>
+                                                            WEB开发,                                                                                 服务器端开发,                                                                                 DBA/数据库                                                </div>
+                            <div class="item">
+                <b>开发平台：</b>
+                                                            Java EE,                                                                                 Java SE,                                                                                 Android,                                                                                 Python,                                                                                 Linux/Unix                                                </div>
+            </div>
+    <div class="content panel-skills-radar">
+        <div class="skills-radar">
+            <div class="radar-wrap" radar data-user-id="2243330" data-skills-num="5" data-detail-url="https://my.oschina.net/hosee/radar" data-container=".panel-skills-radar" data-empty-show>
+                <div class="radar-map"></div>
+            </div>
+        </div>
+    </div>
+</div>                <div class="ui basic gitee-contributions segment sidebar-section">
+    <h3 class="header">码云贡献 <i class="question circle icon popup-gitee-help-toggle"></i></h3>
+    <div class="ui popup popup-gitee-help">
+        <p><b>码云</b> (<a href="https://gitee.com" target="_blank">gitee.com</a>) 是 OSCHINA 推出的代码托管平台，支持 Git 和 SVN，提供免费的私有仓库托管。目前已有超过 300 万的开发者选择码云。</p>
+        <p><b>码云贡献</b> 反映用户在码云上评论、Fork、Star、Push等操作的次数。</p>
+        <p class="register-gitee"><a class="ui small button green" href="https://gitee.com" target="_blank">免费开通码云</a></p>
+    </div>
+    <div class="content">
+        <a class="git-pendant">
+            <div class="contribution-box clearfix">
+                <div class="vertical">
+                    <div class="box">1</div>
+                    <div class="box">2</div>
+                    <div class="box">3</div>
+                    <div class="box">4</div>
+                    <div class="box">5</div>
+                    <div class="box">6</div>
+                    <div class="box">7</div>
+                </div>
+            </div>
+            <div class="gitee-statistics">
+                <p>连击 <span class="hit-count"></span> 天</p>
+                <p class="text-muted">
+                    <span>fork: <span class="fork-count"></span></span>
+                    <span>star: <span class="star-count"></span></span>
+                </p>
+            </div>
+        </a>
+    </div>
+</div>                                    <div class="ui basic segment sidebar-section">
+                <h3 class="header">统计</h3>
+                <div class="ui list">
+                    <div class="item">今日访问：55</div>
+                    <div class="item">昨日访问：218</div>
+                    <div class="item">本周访问：346</div>
+                    <div class="item">本月访问：1463</div>
+                    <div class="item">所有访问：209663</div>
+                    <div class="item">加入时间：2014/09/22 15:18</div>
+                    <div class="item">最近登录：02/25 11:35</div>
+                </div>
+            </div>
+                            </div>
+
+        </div>
+
+                <div class="eleven wide computer eleven wide tablet sixteen wide mobile column">
+                        <div class="ui inverted dimmer space-index-container-loader">
+                <div class="ui text loader">加载中</div>
+            </div>
+                        <div class="space-index-container" >
+                
+  
+
+
+<div class="hidden-scroll global-mb ">     <div class="ui green pointing secondary big menu space-tab">
+        <input type="hidden" name="currentTab" value="newest">
+        <div class="ui dropdown item active blog-dropdown">
+            <input name="catalogId" type="hidden" value="0">
+            <div class="text">全部博文</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+                <a href="?tab=newest&catalogId=0" class="item" data-value="0">
+                                                            <span class="description">135</span>
+                    <span class="text">全部博文</span>
+                </a>
+                                                                                        <a href="?tab=newest&catalogId=3299739" class="item" data-value="3299739">
+                                <span class="description">12</span>
+                                <span class="text" title="Web开发">Web开发</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=5691378" class="item" data-value="5691378">
+                                <span class="description">0</span>
+                                <span class="text" title="中间件">中间件</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=5645719" class="item" data-value="5645719">
+                                <span class="description">5</span>
+                                <span class="text" title="前端开发">前端开发</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3593556" class="item" data-value="3593556">
+                                <span class="description">5</span>
+                                <span class="text" title="分布式">分布式</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3555520" class="item" data-value="3555520">
+                                <span class="description">2</span>
+                                <span class="text" title="操作系统">操作系统</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3515808" class="item" data-value="3515808">
+                                <span class="description">3</span>
+                                <span class="text" title="设计模式">设计模式</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3506742" class="item" data-value="3506742">
+                                <span class="description">1</span>
+                                <span class="text" title="组成原理">组成原理</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3498231" class="item" data-value="3498231">
+                                <span class="description">2</span>
+                                <span class="text" title="Spark">Spark</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3490713" class="item" data-value="3490713">
+                                <span class="description">1</span>
+                                <span class="text" title="网络">网络</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3413877" class="item" data-value="3413877">
+                                <span class="description">2</span>
+                                <span class="text" title="数学">数学</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3380012" class="item" data-value="3380012">
+                                <span class="description">2</span>
+                                <span class="text" title="笔试面试找工作">笔试面试找工作</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3299741" class="item" data-value="3299741">
+                                <span class="description">56</span>
+                                <span class="text" title="Java">Java</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3299742" class="item" data-value="3299742">
+                                <span class="description">12</span>
+                                <span class="text" title="数据库">数据库</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3307767" class="item" data-value="3307767">
+                                <span class="description">5</span>
+                                <span class="text" title="Linux">Linux</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3336814" class="item" data-value="3336814">
+                                <span class="description">13</span>
+                                <span class="text" title="机器学习">机器学习</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3348176" class="item" data-value="3348176">
+                                <span class="description">3</span>
+                                <span class="text" title="数据结构">数据结构</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3366339" class="item" data-value="3366339">
+                                <span class="description">1</span>
+                                <span class="text" title="python">python</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=5699847" class="item" data-value="5699847">
+                                <span class="description">1</span>
+                                <span class="text" title="Storm">Storm</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=3299740" class="item" data-value="3299740">
+                                <span class="description">9</span>
+                                <span class="text" title="算法">算法</span>
+                            </a>
+                                                                                                <a href="?tab=newest&catalogId=5693069" class="item" data-value="5693069">
+                                <span class="description">0</span>
+                                <span class="text" title="其他">其他</span>
+                            </a>
+                                                                        </div>
+        </div>
+        <a href="?tab=popular" class=" item">热门博文</a>
+        <a href="?tab=activity" class=" item">动态</a>
+        <a href="?tab=tweet" class=" item">动弹</a>
+        <div class="ui secondary right large menu search-form-wrap">
+            <form class="item search-form">
+                <div class="ui icon small input">
+                                                                                                                                    <input type="text" placeholder="搜索Hosee的博客" name="q"
+                           value=""/>
+                    <i class="search link icon"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="ui basic segment article-list" id="newestBlogList">
+    
+
+                   
+
+
+
+
+
+
+    <div class="ui relaxed divided items list-container space-list-container">
+                                    <div class="item blog-item" data-id="2961259">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/2961259" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                FutureTask源码分析
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">问题 本文通过源码阐述两个问题 WaitNode是干嘛的 为什么JDK1.7中FutureTask放弃了使用了AQS 其他源码请查看其他Blog WaitNode Treiber stack Treiber Stack在 R. Kent Treiber在1986年的论文...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Java">Java</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=CAS">CAS</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2018/11/26 16:55</div>
+                                <div class="item"><i class="eye icon"></i> 110</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/2961259#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/2961259" target="_blank">
+                            <img src="https://oscimg.oschina.net/oscnet/2452fd38aaac04c97eca67edf88251975d0.jpg" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="2907259">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/2907259" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                volatile再总结
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">之前转载过一篇关于volatile的文章（为什么volatile能保证可见性）。 回顾以后，发现有几个问题还没有解释清楚，这篇文章将更细的谈一下关于volatile的问题。相关内容引用，请查看Reference...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Java">Java</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2018/11/22 17:06</div>
+                                <div class="item"><i class="eye icon"></i> 72</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/2907259#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/2907259" target="_blank">
+                            <img src="http://zhizus.com/images/1535257737593.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="2878328">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/2878328" target="_blank">
+                                                                                                                                                                                                        JAVA锁的膨胀过程
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">首先简单说下先偏向锁、轻量级锁、重量级锁三者各自的应用场景： 偏向锁：只有一个线程进入临界区； 轻量级锁：多个线程交替进入临界区； 重量级锁：多个线程同时进入临界区。 锁膨胀过程： ...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Java">Java</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2018/11/19 18:20</div>
+                                <div class="item"><i class="eye icon"></i> 513</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/2878328#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/2878328" target="_blank">
+                            <img src="https://oscimg.oschina.net/oscnet/2bcc8161c52eb100d2c7c4c96c70d3c5823.jpg" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1799900">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1799900" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                谈谈协程
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">总结网上的资料以及加上自己的一点看法</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=协程">协程</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299739" class="catalog-name-link">Web开发</a></div>
+                                                                <div class="item">2018/04/23 18:28</div>
+                                <div class="item"><i class="eye icon"></i> 248</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1799900#comments" target="_blank"><i class="comment outline icon"></i> 1</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1797234">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1797234" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                DB大量出现select @@session.tx_read_only
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">在一次捞取Top SQL中，发现DB大量执行select @@session.tx_read_only，几乎每一条DML语句前，都会有这么一个sql。但是应用层并没有做特殊处理，那么这个SQL语句有什么作用？是谁执行了它？ ...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299742" class="catalog-name-link">数据库</a></div>
+                                                                <div class="item">2018/04/18 13:30</div>
+                                <div class="item"><i class="eye icon"></i> 564</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1797234#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/1797234" target="_blank">
+                            <img src="https://static.oschina.net/uploads/space/2018/0418/132522_ANnF_2243330.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1786130">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1786130" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                谈谈JDK8中的字符串拼接
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">字符串拼接问题应该是每个Java程序员都熟知的事情了，几乎每个Java程序员都读过关于StringBuffer/StringBuilder来拼接字符串。 在大多数的教程中，也许你会看到用+号拼接字符串会生成多个Str...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=StringBuilder">StringBuilder</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=StringBuffer">StringBuffer</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Java">Java</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2018/03/28 11:57</div>
+                                <div class="item"><i class="eye icon"></i> 472</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1786130#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1648072">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1648072" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                        <div class="ui orange label horizontal" data-tooltip="推荐">荐</div>
+                                                                                                                    快排的最差情况以及快排平均复杂度的计算
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">最近突然讨论了这两个问题，有点忘记了，记录了一下网上的比较好的说法，参见Reference 快排的相关知识请参考排序总结 快排的最差情况以及如何避免 首先，快排的最差情况什么时候发生？ 1. 已...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=快速排序">快速排序</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=主定理">主定理</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299740" class="catalog-name-link">算法</a></div>
+                                                                <div class="item">2018/03/20 20:18</div>
+                                <div class="item"><i class="eye icon"></i> 2.2K</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1648072#comments" target="_blank"><i class="comment outline icon"></i> 1</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/1648072" target="_blank">
+                            <img src="https://static.oschina.net/uploads/space/2018/0320/201558_4bL9_2243330.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1626153">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1626153" target="_blank">
+                                                                                                                                                                                                        对于微分的一些理解更新
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">一个复杂的函数，自变量有微小的变化量，比如0.003，求函数的变化量是多少，也就是求函数的微分，微分就是微小的部分，微小的变化量；复杂函数意味着里面可能有等很难计算的函数，所以通过导...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=微分">微分</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3413877" class="catalog-name-link">数学</a></div>
+                                                                <div class="item">2018/02/28 14:24</div>
+                                <div class="item"><i class="eye icon"></i> 119</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1626153#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1609526">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1609526" target="_blank">
+                                                                                                                                                                                                        Spring事务配置及事务的传播性与隔离级别详解
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">正文 spring是目前最常用的java框架，结合自己使用和网上资料，整理了一份关于事务方面的笔记，供自己以后参考。 Spring事务配置 通过注解配置 1.在Spring配置文件引入&lt;tx:&gt; &lt;beans xmlns=&quot;h...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299739" class="catalog-name-link">Web开发</a></div>
+                                                                <div class="item">2018/01/19 11:39</div>
+                                <div class="item"><i class="eye icon"></i> 283</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1609526#comments" target="_blank"><i class="comment outline icon"></i> 1</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/1609526" target="_blank">
+                            <img src="https://static.oschina.net/uploads/space/2018/0119/113434_cCQY_2243330.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1564050">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1564050" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                再来谈谈多线程和多进程
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">知识整理： 再整理下多线程和多进程的理解，两者的基本概念就不谈了，记住基本的： 线程是CPU调度的基本单位，进程是资源拥有的基本单位 进程的创建对于不同的操作系统是不同的： 对于 Wind...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=线程">线程</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=进程">进程</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=多线程">多线程</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=多进程">多进程</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3555520" class="catalog-name-link">操作系统</a></div>
+                                                                <div class="item">2017/11/07 21:51</div>
+                                <div class="item"><i class="eye icon"></i> 425</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1564050#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1552825">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1552825" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                React的组件协同使用
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">React将代码进行组件化，使得开发人员不用太过于关注UI层面的实现细节，考虑最多的也就是组件与组件之间的数据通信了。那么，在React开发中，有哪些场景的组件协同？又如何去实现组件的协同使...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=react">react</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=组件通信">组件通信</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Mixin">Mixin</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=LinkedStateMixin">LinkedStateMixin</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=5645719" class="catalog-name-link">前端开发</a></div>
+                                                                <div class="item">2017/10/18 16:24</div>
+                                <div class="item"><i class="eye icon"></i> 69</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1552825#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/1552825" target="_blank">
+                            <img src="https://static.oschina.net/uploads/space/2017/1018/115323_wYxm_2243330.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1550128">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1550128" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                Holt Winter时间序列模型
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">指数平滑 一次指数平滑 一次指数平滑法是一种特殊的加权平均法，对本期观察值和本期预测值赋予不同的权重，求得下一期预测值的方法。这种方法既不需要存储全部历史数据，也不需要存储一组数据...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=指数平滑">指数平滑</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Holt Winter">Holt Winter</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=时间序列">时间序列</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299740" class="catalog-name-link">算法</a></div>
+                                                                <div class="item">2017/10/13 11:52</div>
+                                <div class="item"><i class="eye icon"></i> 1K</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1550128#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/1550128" target="_blank">
+                            <img src="https://static.oschina.net/uploads/space/2017/1012/203103_FNaJ_2243330.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1541219">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1541219" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                HttpClient以及Json传递的一些坑
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">背景： 记录一下使用中关于HttpClient以及Json传递的坑。 HTTPS: 普通方式： public class Test {
+    public static void main(String[] args) throws Exception {
+
+        URI uri = new...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=HttpClient">HttpClient</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=@RequestBody">@RequestBody</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=HTTPS">HTTPS</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299739" class="catalog-name-link">Web开发</a></div>
+                                                                <div class="item">2017/09/21 16:17</div>
+                                <div class="item"><i class="eye icon"></i> 321</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1541219#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1540481">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1540481" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                一次将字符串处理优雅的记录
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">背景： 在做一个适配器项目，其中一个api是将下游的List&lt;String&gt;，转成String(,分隔)传给上游。 我就开始按照往常的做法那样。 for(String:List&lt;String&gt;) 去遍历然后StringBuffer.append(s)....</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=删除最后一个字符">删除最后一个字符</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=guava">guava</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Joiner">Joiner</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Splitter">Splitter</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2017/09/20 14:59</div>
+                                <div class="item"><i class="eye icon"></i> 258</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1540481#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1535782">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1535782" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                SQL如何优雅地结合insert和update
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">背景 构造1条记录，插入到数据库；当数据库已经存在同一主键的数据，则执行update操作，如果不存在，则执行insert操作。 用update、和insert语句可以满足要求，但是需要先查询数据库中有没有...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=SQL">SQL</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=insert on duplicate">insert on duplicate</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=replace into">replace into</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=insert">insert</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=update">update</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299742" class="catalog-name-link">数据库</a></div>
+                                                                <div class="item">2017/09/12 12:12</div>
+                                <div class="item"><i class="eye icon"></i> 617</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1535782#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1529903">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1529903" target="_blank">
+                                                                                                                                                                                                        Storm中Worker、Executor、Task关系
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">Storm在集群上运行一个Topology时，主要通过以下3个实体来完成Topology的执行工作： Worker（进程） Executor（线程） Task 下图简要描述了这3者之间的关系： 1个worker进程执行的是1个topol...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=5699847" class="catalog-name-link">Storm</a></div>
+                                                                <div class="item">2017/09/06 14:22</div>
+                                <div class="item"><i class="eye icon"></i> 80</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1529903#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                            <div class="images">
+                        <a class="ui small image" href="https://my.oschina.net/hosee/blog/1529903" target="_blank">
+                            <img src="http://images.cnitblog.com/blog/555086/201308/26155248-612c3bedcff940ffb72df29ea4f2386d.png" alt="" data-img-render>
+                        </a>
+                    </div>
+                                    </div>
+                                                <div class="item blog-item" data-id="1507336">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1507336" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                记一次Spring Maven打包的坑
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">背景： 一个将kafka数据入库的项目，由于偷懒，直接想改动现成的Spring-ibait项目。 做完dao层后，要将项目打成一个jar包，然后部署到服务器上运行。 项目使用Maven来管理依赖。 问题： 在网...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Offending resource">Offending resource</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Invalid signature">Invalid signature</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299739" class="catalog-name-link">Web开发</a></div>
+                                                                <div class="item">2017/08/13 14:11</div>
+                                <div class="item"><i class="eye icon"></i> 286</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1507336#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1488876">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1488876" target="_blank">
+                                                                                                                    <div class="ui teal label horizontal" data-tooltip="原创">原</div>
+                                                                                                                                                Java HashMap遍历方式性能探讨
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">关于HashMap的实现这里就不展开了，具体可以参考JDK7与JDK8中HashMap的实现 JDK8之前，可以使用keySet或者entrySet来遍历HashMap，JDK8中引入了map.foreach来进行遍历。 原因： keySet其实是...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=keySet">keySet</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=entrySet">entrySet</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=HashMap">HashMap</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Map.foreach">Map.foreach</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=lambda">lambda</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2017/07/26 12:57</div>
+                                <div class="item"><i class="eye icon"></i> 569</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1488876#comments" target="_blank"><i class="comment outline icon"></i> 1</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1488732">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1488732" target="_blank">
+                                                                                                                                                                                                        Window.sessionStorage&localStorage
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">Window.sessionStorage sessionStorage 属性允许你访问一个 session Storage 对象。它与 localStorage 相似。 不同之处：在于 localStorage 里面存储的数据没有过期时间设置，而存储在 sess...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=5645719" class="catalog-name-link">前端开发</a></div>
+                                                                <div class="item">2017/07/26 11:16</div>
+                                <div class="item"><i class="eye icon"></i> 27</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1488732#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                                                <div class="item blog-item" data-id="1486734">
+                    <div class="content">
+                        <a class="header" href="https://my.oschina.net/hosee/blog/1486734" target="_blank">
+                                                                                                                                                                                                        mark一个subList的坑
+                                                    </a>
+                        <div class="description">
+                            <p class="line-clamp">我们经常使用subString方法来对String对象进行分割处理，同时我们也可以使用subList、subMap、subSet来对List、Map、Set进行分割处理，但是这个分割存在某些瑕疵。 一、subList返回仅仅只是一...</p>
+                        </div>
+                        <div class="extra">
+                                                        <div class="ui horizontal list">
+                                <div class="item">
+                                    <a class="ui horizontal label" href="https://my.oschina.net/hosee?q=subList">subList</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Concurrent">Concurrent</a><a class="ui horizontal label" href="https://my.oschina.net/hosee?q=Modification">Modification</a>                                </div>
+                            </div>
+                                                        <div>
+                            <div class="ui horizontal small list">
+                                                                                                    <div class="item"><a href="https://my.oschina.net/hosee?tab=newest&catalogId=3299741" class="catalog-name-link">Java</a></div>
+                                                                <div class="item">2017/07/25 10:48</div>
+                                <div class="item"><i class="eye icon"></i> 143</div>
+                                <div class="item"><a href="https://my.oschina.net/hosee/blog/1486734#comments" target="_blank"><i class="comment outline icon"></i> 0</a></div>
+                                                            </div>
+                            </div>
+                        </div>
+                    </div>
+                                                        </div>
+                        </div>
+    <div class="page-load-status">
+        <p class="infinite-scroll-request">
+            <i class="ui active small inline loader"></i>
+        </p>
+        <p class="infinite-scroll-last">没有更多内容</p>
+        <p class="infinite-scroll-error">加载失败，请刷新页面</p>
+    </div>
+    <a class="ui fluid button load-more-button" style="display: none">加载更多</a>
+                    <p class="pagination">
+            <a class="pagination__next" style="display: none" href="https://my.oschina.net/hosee/widgets/_space_index_newest_blog?catalogId=0&q=&p=2&type=ajax">下一页</a>
+        </p>
+    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui mini delete-blog modal">
+    <div class="header">删除文章</div>
+    <div class="content">
+        <p>文章删除后无法恢复，确定取消删除此文章吗？</p>
+    </div>
+    <div class="actions">
+        <div class="ui cancel button">取消</div>
+        <div class="ui red ok button">确定</div>
+    </div>
+</div>
+
+<div class="ui mini delete-tweet modal">
+    <div class="header">删除动弹</div>
+    <div class="content">
+        <p>动弹删除后，数据将无法恢复</p>
+    </div>
+    <div class="actions">
+        <div class="ui cancel button">取消</div>
+        <div class="ui red ok button">确定</div>
+    </div>
+</div>
+
+<div class="ui mini delete-tweet-comment modal">
+    <div class="header">删除一条评论</div>
+    <div class="content">
+        <p>评论删除后，数据将无法恢复</p>
+    </div>
+    <div class="actions">
+        <div class="ui cancel button">取消</div>
+        <div class="ui red ok button">确定</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/action/view/space?id=2243330"></script>
+            </div>        </div>                <div id="footer" class="ui vertical footer segment mb-hide">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="eight wide mobile four wide tablet four wide computer column">
+                <h4 class="ui header">OSCHINA 社区</h4>
+                <div class="ui link list">
+                    <a class="item" href="https://www.oschina.net/home/aboutosc" target="_blank">关于我们</a>
+                    <a class="item" href="https://www.oschina.net/home/aboutosc" target="_blank">联系我们</a>
+                    <a class="item" href="https://www.oschina.net/home/aboutosc#partners#" target="_blank">合作伙伴</a>
+                    <a class="item" href="https://www.oschina.net/openapi" target="_blank">Open API</a>
+                </div>
+            </div>
+            <div class="eight wide mobile four wide tablet four wide computer column">
+                <h4 class="ui header">在线工具</h4>
+                <div class="ui link list">
+                    <a class="item" href="https://gitee.com/?from=osc-bottom" target="_blank">码云 Gitee.com</a>
+                    <a class="item" href="https://gitee.com/enterprises?from=osc-bottom" target="_blank">企业研发管理</a>
+                    <a class="item" href="https://copycat.gitee.com/?from=osc-bottom" target="_blank">CopyCat-代码克隆检测</a>
+                    <a class="item" href="https://tool.oschina.net" target="_blank">实用在线工具</a>
+                </div>
+            </div>
+            <div class="center aligned eight wide mobile two wide tablet two wide computer column">
+                <h4 class="ui header">微信公众号</h4>
+                <img src="https://static.oschina.net/new-osc/img/wechat_qrcode.jpg?t=1484694603000" alt="微信公众号"/>
+            </div>
+            <div class="center aligned eight wide mobile six wide tablet six wide computer column">
+                <h3 class="ui header">OSCHINA APP</h3>
+                <p>聚合全网技术文章，根据你的阅读喜好进行个性推荐</p>
+                <a href="https://www.oschina.net/app" target="_blank" class="ui large primary button">下载 APP</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="copyright">
+    <div class="ui container">
+        <div class="ui clearing basic segment">
+            <div class="ui left floated horizontal link list">
+                <div class="item">©OSCHINA(OSChina.NET)</div>
+                <div class="item mb-hide">工信部</div>
+                <a class="item mb-hide" href="http://www.copu.org.cn/" target="_blank" title="开源软件推进联盟">开源软件推进联盟</a>
+                <div class="item mb-hide">指定官方社区</div>
+            </div>
+            <div class="ui right floated horizontal link list">
+                <div class="item mb-hide">深圳市奥思网络科技有限公司版权所有</div>
+                <a href="http://beian.miit.gov.cn/" target="_blank" class="item">粤ICP备12009483号-3</a>
+            </div>
+        </div>
+    </div>
+</div>    </div>                                                        <div class="back-to-top back-to-top-toggle">        <div class="icon"><img src="https://static.oschina.net/new-osc/img/icon/back-to-top.svg" alt="返回顶部"></div>        <div class="text">顶部</div>    </div>        <script src="https://static.oschina.net/new-osc/js/utils/semantic-ui/semantic.min.js?t=1535098170000"></script>    <script src="https://static.oschina.net/new-osc/js/utils/jweixin-1.2.0.js"></script>                <script type="text/javascript" src="https://static.oschina.net/new-osc/dist/js/space.519ff3dd.js"></script>                
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https'){
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else{
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a411c4d1664dd70048ee98afe7b28f0b";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+                
+
+    </body></html>
+<!-- Generated by oschina (init:1[ms],page:184[ms],ip:125.71.229.174) //-->
