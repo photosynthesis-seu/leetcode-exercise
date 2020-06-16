@@ -27,7 +27,7 @@
 - [No.34 二叉树中和为某一值的路径](#二叉树中和为某一值的路径)//回溯算法，BFS广度优先遍历
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 - [No.36 二叉搜索树与双向链表](#二叉搜索树与双向链表)//DFS,双向链表的初始化表头(要在递归里面)！
-- [No.37 序列化二叉树](#序列化二叉树)//队列,ostringstream,istringstream,stoi()函数
+- [No.37 序列化二叉树](#序列化二叉树)//队列,ostringstream,istringstream,stoi()函数，重点题目！把一个数组或者字符串转化为二叉树的典型方法！！！
 - [No.39 数组中出现次数超过一半的数字](#数组中出现次数超过一半的数字)//摩尔投票法，排序法，以及hash表查找法
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 - [No.41 数据流中的中位数](#数据流中的中位数)//优先队列、大顶堆与小顶堆（困难！）
@@ -1698,10 +1698,12 @@ push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 + 一些知识点：
   - sstream包括istringstream和ostringstream
   - stoi需要包含头文件#include<string>;atoi需要包含头文件#include<sctdlib>
-  - stoi(string)参数是一string类型，当字符串不合法时，会报错;atoi(char*)参数是char*类型，即c字符串，当字符串非法时,他会从字符串开始寻找正负号小数点或者数字，遇到非法字符时停下
+  - stoi(string)参数是一string类型，当字符串不合法时，会报错;
+  - atoi(char*)参数是char*类型，即c字符串，当字符串非法时,他会从字符串开始寻找正负号小数点或者数字，遇到非法字符时停下.例如“123HD23330”通过调用atoi返回值为123，而stoi则会直接报错
 
 + (1)iostream处理控制台IO；(2)fstream处理命名文件IO；(3)stringstream完成内存string的IO.[具体见这篇文章](https://blog.csdn.net/scpw99/article/details/81127851)
 + [stringstream简介](https://blog.csdn.net/zhenguo26/article/details/80716075)
++ [使用sstream读取字符串中的数字](https://blog.csdn.net/zdlnlhmj/article/details/79462770?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase)
 
 3.实现
 ```C++
