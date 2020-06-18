@@ -55,6 +55,7 @@
 - [No.61 扑克牌中的顺子](#扑克牌中的顺子)//数学思想，hash表
 - [No.62 圆圈中最后剩下的数字](#圆圈中最后剩下的数字)//环形链表超时，约瑟夫环问题
 - [No.65 不用加减乘除做加法](#不用加减乘除做加法)//位运算与异或的结合
+- [No.66 构建乘积数组](#构建乘积数组)//一种经典方法，从左到右，从右到左来回遍历；一遍用一个数组，一遍用一个整数
 
 # 题目
 
@@ -3041,4 +3042,35 @@ int add(int a, int b) {
     }
     return a;
 }
+```
+## 构建乘积数组
+
+1.题目
+```
+给定一个数组 A[0,1,…,n-1]，请构建一个数组 B[0,1,…,n-1]，其中 B 中的元素 B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-1]。不能使用除法。
+
+输入: [1,2,3,4,5]
+输出: [120,60,40,30,24]
+```
+2.分析
++ 实现（直接看代码）
+```C++
+class Solution {
+public:
+    vector<int> constructArr(vector<int>& a) {
+        int len = a.size();
+        if(len==1 || len==0) return a;
+        vector<int> ans(len);
+        ans[0] = 1;
+        for(int i=1;i<len;i++){
+            ans[i] = ans[i-1]*a[i-1];
+        }
+        int right=1;
+        for(int i=len-2;i>=0;i--){
+            right = right*a[i+1];
+            ans[i] = ans[i]*right;
+        }
+        return ans;
+    }
+};
 ```
