@@ -57,6 +57,7 @@
 - [No.65 不用加减乘除做加法](#不用加减乘除做加法)//位运算与异或的结合
 - [No.66 构建乘积数组](#构建乘积数组)//一种经典方法，从左到右，从右到左来回遍历；一遍用一个数组，一遍用一个整数
 - [No.67 把字符串转换成整数](#把字符串转换成整数)//需要细致考虑所有情况，有限状态机，istringstream
+- [No.68-I 二叉搜索树的最近公共祖先](#二叉搜索树的最近公共祖先)//充分利用二叉搜索树的性质
 
 # 题目
 
@@ -3126,3 +3127,48 @@ public:
     }
 };
 ```
+##  二叉搜索树的最近公共祖先
+1.题目
+```
+建议看原题题目
+
+给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
+
+百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+
+例如，给定如下二叉搜索树:  root = [6,2,8,0,4,7,9,null,null,3,5]
+
+输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+输出: 6 
+解释: 节点 2 和节点 8 的最近公共祖先是 6。
+```
+2.分析
++ 由于是二叉搜索树，那么边界条件就是，p、q 分别在 root 的两边(一个大于root一个小于root)，或者 p、q 等于 root，那么 root 就是 p、q 的公共祖先。
++ 当 p、q 都小于 root，根据二叉搜索树的特征，那么 p、q 的祖先一定在 root 的左子树上，所以接下来遍历左子树就行。
++ 同理，当 p、q 都大于 root，只需要遍历 root 的右子树即可。
++ 实现
+```C++
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == NULL || (root->left == NULL && root->right == NULL))return NULL;
+        while(root) {
+            if((root->val > p->val && root->val < q->val) || (root->val < p->val && root->val > q->val) || root->val == p->val || root->val == q->val) return root;
+
+            if(root->val > p->val && root->val > q->val) root = root->left;
+            if(root->val < p->val && root->val < q->val) root = root->right;
+        }
+        return root;
+    }
+};
+```
+
