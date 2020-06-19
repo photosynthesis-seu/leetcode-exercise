@@ -56,6 +56,7 @@
 - [No.62 圆圈中最后剩下的数字](#圆圈中最后剩下的数字)//环形链表超时，约瑟夫环问题
 - [No.65 不用加减乘除做加法](#不用加减乘除做加法)//位运算与异或的结合
 - [No.66 构建乘积数组](#构建乘积数组)//一种经典方法，从左到右，从右到左来回遍历；一遍用一个数组，一遍用一个整数
+- [No.67 把字符串转换成整数](#把字符串转换成整数)//需要细致考虑所有情况，有限状态机，istringstream
 
 # 题目
 
@@ -3071,6 +3072,57 @@ public:
             ans[i] = ans[i]*right;
         }
         return ans;
+    }
+};
+```
+## 把字符串转换成整数
+
+1.题目
+```
+写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。
+
+首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。
+当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。
+该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。
+
+注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。
+在任何情况下，若函数不能进行有效的转换时，请返回 0。
+
+说明：
+假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，请返回  INT_MAX (231 − 1) 或 INT_MIN (−231) 。
+```
+2.分析
+```C++
+class Solution {
+public:
+    int strToInt(string str) {
+        int i = 0, flag = 1;
+        long res = 0; //默认flag = 1，正数
+        while (str[i] == ' ') i ++;
+        if (str[i] == '-') flag = -1;
+        if (str[i] == '-' || str[i] == '+') i ++;
+        for (; i < str.size() && isdigit(str[i]); i ++)  {
+            res = res * 10 + (str[i] - '0');
+            if (res >= INT_MAX && flag == 1) return  INT_MAX;
+            if (res > INT_MAX && flag == -1) return  INT_MIN;
+        } 
+        return flag * res;
+    }
+};
+
+class Solution {
+public:
+    int myAtoi(string str) {
+       int num=0;
+    istringstream str_1(str);
+    //while (num==0)
+        str_1 >> num;
+    if (num > INT_MAX)
+        return INT_MAX;
+    else if (num < INT_MIN)
+        return INT_MIN;
+    else
+        return num;
     }
 };
 ```
