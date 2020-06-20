@@ -3186,4 +3186,43 @@ public:
 解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
 ```
 2.分析
++ 两种实现方法
+```C++
+//方法一
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(root == NULL||root->val == p->val||root->val == q->val) return root;//立即返回或终止的条件
+        TreeNode* left = lowestCommonAncestor(root->left,p,q);//递归左子树
+        TreeNode* right = lowestCommonAncestor(root->right,p,q);//递归右子树
+        if(left == NULL&&right == NULL) return NULL;//返回情况1
+        if(left == NULL) return right;//返回情况3
+        if(right == NULL) return left;//返回情况4
+        return root;//返回情况2
+    }
+//方法二
+    unordered_map<int, TreeNode*> fa;
+    unordered_map<int, bool> vis;
+    void dfs(TreeNode* root){//算是后序遍历，并记录父节点吧
+        if (root->left != nullptr) {
+            fa[root->left->val] = root;
+            dfs(root->left);
+        }
+        if (root->right != nullptr) {
+            fa[root->right->val] = root;
+            dfs(root->right);
+        }
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        fa[root->val] = nullptr;
+        dfs(root);
+        while (p != nullptr) {//从p开始往上找父节点（父节点、父节点的父节点....）
+            vis[p->val] = true;
+            p = fa[p->val];
+        }
+        while (q != nullptr) {//把q找的父节点与p的作对比，一直对比，直到找到公共祖先
+            if (vis[q->val]) return q;
+            q = fa[q->val];
+        }
+        return nullptr;
+    }
+```
 
