@@ -54,6 +54,7 @@
 - [No.60 n个骰子的点数](#n个骰子的点数)//标准的动态规划和压缩数组的优化算法、类似背包问题
 - [No.61 扑克牌中的顺子](#扑克牌中的顺子)//数学思想，hash表
 - [No.62 圆圈中最后剩下的数字](#圆圈中最后剩下的数字)//环形链表超时，约瑟夫环问题
+- [No.63 股票的最大利润](#股票的最大利润)//系列动态规划问题，一定要重视
 - [No.65 不用加减乘除做加法](#不用加减乘除做加法)//位运算与异或的结合
 - [No.66 构建乘积数组](#构建乘积数组)//一种经典方法，从左到右，从右到左来回遍历；一遍用一个数组，一遍用一个整数
 - [No.67 把字符串转换成整数](#把字符串转换成整数)//需要细致考虑所有情况，有限状态机，istringstream
@@ -3225,4 +3226,44 @@ public:
         return nullptr;
     }
 ```
+## 股票的最大利润
 
+1.题目
+```
+假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
+
+输入: [7,1,5,3,6,4]
+输出: 5
+解释: 在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。
+     注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。
+```
+2.分析
++ [建议看解析](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%9B%A2%E7%81%AD%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98.md)
++ 实现
+```C++
+class Solution {
+public:
+    // int maxProfit(vector<int>& prices) {
+    //     int len = prices.size();
+    //     if(len == 0||len == 1) return 0;
+    //     vector<vector<int>> dp(len,vector<int>(2));
+    //     dp[0][0] = 0;
+    //     dp[0][1] = -prices[0];
+    //     for(int i=1;i<len;i++){
+    //         dp[i][0] = max(dp[i-1][0],dp[i-1][1]+prices[i]);
+    //         dp[i][1] = max(dp[i-1][1],-prices[i]);
+    //     }
+    //     return dp[len-1][0];
+    // }
+    int maxProfit(vector<int>& prices) {
+        int len = prices.size();
+        if(len == 0||len == 1) return 0;
+        int dp_i_0 = 0, dp_i_1 = -prices[0];
+        for(int i=1;i<len;i++){
+            dp_i_0 = max(dp_i_0,dp_i_1+prices[i]);
+            dp_i_1 = max(dp_i_1,-prices[i]);
+        }
+        return dp_i_0;
+    }
+};
+```
