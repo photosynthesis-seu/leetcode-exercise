@@ -75,6 +75,7 @@
   - [No.3 无重复字符的最长子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#无重复字符的最长子串)//双指针、滑窗算法，动态规划，unordered_set
   - [No.11 盛最多水的容器](#盛最多水的容器)
   - [No.15 三数之和](#三数之和)//双指针+排序、使用条件判断或者set去重！
+  - [No.16 最接近的三数之和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最接近的三数之和)//类似于三数之和，使用排序+双指针进行逼近目标值
   - [No.21 合并两个有序链表](#合并两个有序链表)//迭代、构造新链表的技巧
   - [No.25 k个一组翻转链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#k个一组翻转链表)//难：两个全局指针，两个局部指针、反转链表
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
@@ -98,7 +99,8 @@ No.7 整数反转
 No.8 字符串转整数 
 No.9 回文整数的判断
 No.11 盛最多水的容器 
-No.15 三数之和 
+No.15 三数之和(双指针+排序算法，固定一个值)
+No.16 最接近的三数之和(类似于三数之和，使用排序+双指针进行逼近目标值)
 No.21 合并两个有序链表 
 No.22 括号的生成 
 No.23 合并k个链表（哨兵节点、优先队列） 
