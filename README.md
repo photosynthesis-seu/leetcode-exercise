@@ -11,6 +11,7 @@
   - [No.84 柱状图中最大的矩形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#柱状图中最大的矩形)//朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
+  - [No.139 单词拆分](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#单词拆分)//典型的动态规划，一定要注意基本方法之后的优化算法！！！
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
   - [No.198 打家劫舍](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍)//经典的动态规划类型问题，有详细教程！
   - [No.213 打家劫舍II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍II)//分两种情况判别的打家劫舍
@@ -129,6 +130,7 @@ No.125 验证回文串（isdigit/islower/isupper函数）
 No.126 单词接龙II（非常难的BFS广度优先搜索）
 No.128 最长连续序列（哈希表做法unordered_set、并查集做法、关键在于一定要确定连续序列的筛选条件！）
 No.136 只出现一次的数字(异或算法，类似面试题56-I 数组中数字出现的次数)
+No.139 单词拆分（典型的动态规划，一定要学会优化算法！！！）
 No.146 LRU缓存机制（哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map）
 No.152 乘积最大子数组（动态规划、同时使用两个一维dp数组）
 No.155 最小栈（使用栈容器的辅助栈方法、使用链表的方法）
