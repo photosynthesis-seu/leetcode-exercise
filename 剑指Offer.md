@@ -1,5 +1,6 @@
 # 目录
 - [No.3 数组中的重复数字](#数组中的重复数字)
+- [No.4 二维数组中的查找](二维数组中的查找)//从左下角开始查找（注意这种方法的逻辑原理）
 - [No.6 从尾到头打印链表](#从尾到头打印链表)//双指针反转链表、辅助栈、巧妙的递归函数
 - [No.7 重建二叉树](#重建二叉树)//前序遍历、中序遍历、递归函数DFS
 - [No.11 旋转数组的最小数字](#旋转数组的最小数字)//二分查找、双指针算法、特殊情况判断
@@ -110,6 +111,51 @@ public:
     }
 };
 ```
+## 二维数组中的查找
+1.题目
+```
+在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+现有矩阵 matrix 如下：
+
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+```
+2.实现
+```C++
+class Solution {
+public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+                if (matrix.size() == 0){
+            return false;
+        }
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int row = m - 1;
+        int col = 0;
+        while (row >=0 && col < n){
+            if(matrix[row][col] < target){
+                col += 1;
+            }
+            else if(matrix[row][col] > target){
+                row -= 1;
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
+    }
+};
+```
+
+
+
 ## 从尾到头打印链表
 
 1.题目
