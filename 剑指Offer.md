@@ -30,6 +30,7 @@
 - [No.35 复杂链表的复制](#复杂链表的复制)//深拷贝与浅拷贝的区别
 - [No.36 二叉搜索树与双向链表](#二叉搜索树与双向链表)//DFS,双向链表的初始化表头(要在递归里面)！
 - [No.37 序列化二叉树](#序列化二叉树)//队列,ostringstream,istringstream,stoi()函数，重点题目！把一个数组或者字符串转化为二叉树的典型方法！！！
+- [No.38 字符串的排列](#字符串的排列)//回溯算法
 - [No.39 数组中出现次数超过一半的数字](#数组中出现次数超过一半的数字)//摩尔投票法，排序法，以及hash表查找法
 - [No.40 最小的k个数](#最小的k个数)//大根堆、快速排序与归并排序算法的排坑（注意归并排序的返回条件）
 - [No.41 数据流中的中位数](#数据流中的中位数)//优先队列、大顶堆与小顶堆（困难！）
@@ -3373,6 +3374,44 @@ public:
             dp_i_1 = max(dp_i_1,-prices[i]);
         }
         return dp_i_0;
+    }
+};
+```
+## 字符串的排列
+1.题目
+```
+输入一个字符串，打印出该字符串中字符的所有排列。
+
+你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。
+
+输入：s = "abc"
+输出：["abc","acb","bac","bca","cab","cba"]
+```
+2.实现
+```C++
+class Solution {
+public:
+     vector<string> permutation(string s) {
+        vector<string> result;//最终输出结果
+        set<string> res;//使用set的性质去除重复字符串排列
+        if(s == "" || s.length()== 1 ){
+            result.push_back(s);
+            return result;
+        }
+        paixu(s,0,res);//回溯算法，递归函数（路径+可选择列表）
+        result = vector<string>(res.begin(),res.end());
+        return result;
+    }
+    void paixu(string s,int start, set<string> &res){
+        if(start == s.size()){
+            res.insert(s);//注意这里不能用push_back
+            return;//虽然是void类型，return不要忘记
+        }
+        for(int i = start; i<s.size(); i++){
+            swap(s[i],s[start]);
+            paixu(s,start+1,res);
+            swap(s[i],s[start]);
+        }
     }
 };
 ```
