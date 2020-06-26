@@ -3,6 +3,7 @@
 - [No.4 二维数组中的查找](二维数组中的查找)//从左下角开始查找（注意这种方法的逻辑原理）
 - [No.6 从尾到头打印链表](#从尾到头打印链表)//双指针反转链表、辅助栈、巧妙的递归函数
 - [No.7 重建二叉树](#重建二叉树)//前序遍历、中序遍历、递归函数DFS
+- [No.9 用两个栈实现队列](#用两个栈实现队列)//一个栈进入后全部转移到另一个辅助栈
 - [No.11 旋转数组的最小数字](#旋转数组的最小数字)//二分查找、双指针算法、特殊情况判断
 - [No.12 矩阵中的路径](#阵中的路径)//dfs算法+典型模板、回溯算法、有点动态规划那味
 - [No.14 剪绳子I](#剪绳子I)//关注严格的数学原理推导、动态规划
@@ -295,6 +296,68 @@ public:
     }
 };
 ```
+## 用两个栈实现队列
+1.题目
+```
+用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )
+
+输入：
+["CQueue","appendTail","deleteHead","deleteHead"]
+[[],[3],[],[]]
+输出：[null,null,3,-1]
+```
+2.实现
+```C++
+class CQueue {
+public:
+    stack<int> stack1;
+    stack<int> stack2;
+    CQueue() {}
+    
+    void appendTail(int value) {
+        stack1.push(value);
+    }
+    
+    int deleteHead() {
+        if(stack1.empty()&&stack2.empty())return -1;
+        if(stack2.empty()){
+            while(!stack1.empty()){
+                stack2.push(stack1.top());  
+                stack1.pop();
+            }
+        }
+        int res=stack2.top();
+        stack2.pop();
+        return res;
+    }
+
+    //     if (stack1.empty()) return -1; 
+    //     while (!stack1.empty()){ // 1 -> 2
+    //         int tmp = stack1.top();
+    //         stack1.pop();
+    //         stack2.push(tmp);
+    //     }
+    //     // delete head
+    //     int res = stack2.top();
+    //     stack2.pop();
+    //     while (!stack2.empty()){ // 1 <- 2
+    //         int temp = stack2.top();
+    //         stack2.pop();
+    //         stack1.push(temp);
+    //     }
+    //     return res;
+    // }
+};
+
+/**
+ * Your CQueue object will be instantiated and called as such:
+ * CQueue* obj = new CQueue();
+ * obj->appendTail(value);
+ * int param_2 = obj->deleteHead();
+ */
+```
+
+
 ## 旋转数组的最小数字
 
 **关键在于二分查找时，若边界相等怎么特判！**
