@@ -43,6 +43,7 @@
 - [No.48 最长不含重复字符的子字符串](#最长不含重复字符的子字符串)//双指针算法->多种算法进行优化、进阶
 - [No.49 丑数](#丑数)//带有数学技巧的动态规划,有关公因数的题目均可以参考！
 - [No.50 第一个只出现一次的字符](#第一个只出现一次的字符)//hash表O(2N)->O(N)
+- [No.51 数组中的逆序对](#数组中的逆序对)//归并算法
 - [No.52 两个链表的第一个公共节点](#两个链表的第一个公共节点)//神奇的双指针，有点类似最小公倍数
 - [No.53-I 在排序数组中查找数字I](#在排序数组中查找数字I)//两种二分查找，一定注意边界判断！
 - [No.53-II 0～n-1中缺失的数字](#0～n-1中缺失的数字)//这道题的二分查找非常凶险！为了避免对特殊情况判断，实现细节很不同，慎用！
@@ -3412,6 +3413,56 @@ public:
             paixu(s,start+1,res);
             swap(s[i],s[start]);
         }
+    }
+};
+```
+## 数组中的逆序对
+1.题目
+```
+在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。
+
+输入: [7,5,6,4]
+输出: 5
+```
+2.实现
+```C+
+class Solution {
+public:
+    int mergeSort(vector<int>& nums, vector<int>& tmp, int l, int r) {
+        if (l >= r) {
+            return 0;
+        }
+
+        int mid = (l + r) / 2;
+        int inv_count = mergeSort(nums, tmp, l, mid) + mergeSort(nums, tmp, mid + 1, r);
+        int i = l, j = mid + 1, pos = l;
+        while (i <= mid && j <= r) {
+            if (nums[i] <= nums[j]) {
+                tmp[pos] = nums[i];
+                ++i;
+                inv_count += (j - (mid + 1));
+            }
+            else {
+                tmp[pos] = nums[j];
+                ++j;
+            }
+            ++pos;
+        }
+        for (int k = i; k <= mid; ++k) {
+            tmp[pos++] = nums[k];
+            inv_count += (j - (mid + 1));
+        }
+        for (int k = j; k <= r; ++k) {
+            tmp[pos++] = nums[k];
+        }
+        copy(tmp.begin() + l, tmp.begin() + r + 1, nums.begin() + l);
+        return inv_count;
+    }
+
+    int reversePairs(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> tmp(n);
+        return mergeSort(nums, tmp, 0, n - 1);
     }
 };
 ```
