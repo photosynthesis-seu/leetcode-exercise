@@ -3425,7 +3425,7 @@ public:
 输出: 5
 ```
 2.实现
-```C+
+```C++
 class Solution {
 public:
     int mergeSort(vector<int>& nums, vector<int>& tmp, int l, int r) {
