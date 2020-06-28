@@ -89,6 +89,7 @@
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
   - [No.876 链表的中间节点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#链表的中间节点)//使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进
+  - [No.1004 最大连续1的个数III](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%AB%98%E9%A2%91%E9%A2%98.md#%E6%9C%80%E5%A4%A7%E8%BF%9E%E7%BB%AD1%E7%9A%84%E4%B8%AA%E6%95%B0III)//典型的两个while嵌套的双指针
   - [面试题57 - II. 和为s的连续正数序列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为s的连续正数序列)//简单凝练的滑窗算法
 ```
 已做题目：
@@ -179,6 +180,7 @@ No.983 最低票价（从后向前的动态规划，unordered_set，正确初始
 No.990 等式方程的可满足性（并查集）
 No.992 排序数组（各种排序算法！）
 No.994 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
+No.1004 最大连续1的个数III//典型的两个while嵌套的双指针
 No.1071 字符串的最大公因子(枚举、辗转相除，c++自带的求最大公约数的函数__gcd())
 No.1111 有效括号的嵌套深度 
 No.1143 最长公共子序列 
