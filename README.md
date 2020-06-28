@@ -84,6 +84,7 @@
   - [No.146 LRU缓存机制](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#LRU缓存机制)//哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
+  - [No.209 长度最小的数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#长度最小的数组)//(双指针！类似于No.1004)
   - [No.238 除自身以外数组的乘积](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#除自身以外数组的乘积)//双数组的前后缀和，以及巧妙地动态优化！！
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
@@ -140,6 +141,7 @@ No.199 二叉树的右视图(DFS、BFS；i++的问题！)
 No.200 岛屿数量（经典遍历岛屿DFS、经典动态规划、BFS题目！）
 No.202 快乐数（数学技巧，unordered_set的使用）
 No.206 反转链表 NO.215 数组中第k个最大元素 
+No.209 长度最小的子数组(双指针！类似于No.1004)
 No.210 课程表II(全新的知识！拓扑排序和有向图、BFS(入度)、DFS)
 No.213 打家劫舍II（分两中情况判别的打家劫舍）
 No.221 最大正方形（典型的动态规划，需要关注暴力解法）
