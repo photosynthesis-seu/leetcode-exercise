@@ -68,6 +68,7 @@
   - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.287 寻找重复数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#寻找重复数)//类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间
+  - [No.378 有序矩阵中第k小的元素](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#有序矩阵中第k小的元素)//二分查找是不好判断mid的值是否满足条件
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
   - [No.1300 转变数组后最接近目标值的数组和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#转变数组后最接近目标值的数组和)//难！二分查找->lower_bound(arr.begin(), arr.end(), mid)的使用、数学解法
@@ -154,6 +155,7 @@ No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态
 No.324 摆动排序
 No.355 设计推特 
 No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数）
+No.378 有序矩阵中第k小的元素(暴力求解、小顶堆的归并排序—类似合并k个链表-注意怎么定义priority_queue的比较函数、二分查找！-注意怎么判断二分查找的正确性)
 No.394 字符串解码（辅助数字栈、字符串栈，腾讯面试题目，两个栈之间巧妙地协作，编译原理？）
 NO.409 最长回文串（简单数学做法，关注int变量未初始化直接+=会出问题！！）
 No.435 无重叠区域（动态规划）
