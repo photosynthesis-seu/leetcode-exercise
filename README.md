@@ -3,7 +3,7 @@
 # C++题目总结
 + 动态规划
   - [No.5 最长回文子串](#最长回文子串)
-  - [No.32 最长有效括号](#最长有效括号)//比较难的动态规划
+  - [No.32 最长有效括号](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最长有效括号)//比较难的动态规划
   - [No.39 组合总数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总数)//需要列举完全背包问题每种情况/面试题08.11.硬币的细化、回溯算法+剪枝
   - [No.42 接雨水问题](#接雨水问题)//动态规划解法、单调递减栈解法！！
   - [No.45 跳跃游戏II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#跳跃游戏II)//贪心算法！
