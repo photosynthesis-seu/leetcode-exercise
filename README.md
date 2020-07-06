@@ -8,6 +8,7 @@
   - [No.42 接雨水问题](#接雨水问题)//动态规划解法、单调递减栈解法！！
   - [No.45 跳跃游戏II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#跳跃游戏II)//贪心算法！
   - [No.53 最大子序和](#最大子序和)
+  - [No.63 不同路径II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#不同路径II)//二维矩阵中带障碍物的典型动态规划，递推公式一定要会
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
   - [No.84 柱状图中最大的矩形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#柱状图中最大的矩形)//朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
@@ -126,6 +127,7 @@ No.53 最大子序和
 No.55 跳跃游戏 
 No.56 合并区间 
 No.61 旋转链表(双指针)
+No.63 不同路径II(二维矩阵中带障碍物的典型动态规划，递推公式一定要会)
 No.64 求1+2+…+n(使用递归替代for,以及利用&&运算符的短路效应)
 No.67 二进制求和(位运算或二进制运算仿真)
 No.69 x的平方根（二分查找、牛顿迭代算法）
