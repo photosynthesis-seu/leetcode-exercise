@@ -15,6 +15,7 @@
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
   - [No.139 单词拆分](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#单词拆分)//典型的动态规划，一定要注意基本方法之后的优化算法！！！
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
+  - [No.174 地下城游戏](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#地下城游戏)//从后向前的动态规划！很经典的从后向前遍历的题目
   - [No.198 打家劫舍](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍)//经典的动态规划类型问题，有详细教程！
   - [No.213 打家劫舍II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍II)//分两种情况判别的打家劫舍
   - [No.221 最大正方形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最大正方形)//典型的动态规划，需要关注暴力解法
