@@ -93,6 +93,7 @@
   - [No.206 反转链表](#反转链表)
   - [No.209 长度最小的数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#长度最小的数组)//(双指针！类似于No.1004)
   - [No.238 除自身以外数组的乘积](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#除自身以外数组的乘积)//双数组的前后缀和，以及巧妙地动态优化！！
+  - [No.350 两个数组的交集II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#两个数组的交集II)//使用map计数，双指针
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
   - [No.876 链表的中间节点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#链表的中间节点)//使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进
@@ -171,6 +172,7 @@ No.238 除自身以外数组的乘积(双数组的前后缀和，以及巧妙地
 No.287 寻找重复数（类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间）
 No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）
 No.324 摆动排序
+No.350 两个数组的交集II(使用map计数，双指针)
 No.355 设计推特 
 No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数）
 No.378 有序矩阵中第k小的元素(暴力求解、小顶堆的归并排序—类似合并k个链表-注意怎么定义priority_queue的比较函数、二分查找！-注意怎么判断二分查找的正确性)
