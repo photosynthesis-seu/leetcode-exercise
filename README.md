@@ -12,7 +12,7 @@
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
   - [No.84 柱状图中最大的矩形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#柱状图中最大的矩形)//朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
-  - [No.96 不同的二叉搜索树](#不同的二叉搜索树)
+  - [No.96 不同的二叉搜索树](#不同的二叉搜索树)//从小到大的动态规划，不要想着一步到位
   - [No.120 三角形最小路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#三角形最小路径和)//DFS超时，自上而下和自下而上的动态规划
   - [No.139 单词拆分](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#单词拆分)//典型的动态规划，一定要注意基本方法之后的优化算法！！！
   - [No.152 乘积最大子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#乘积最大子数组)//动态规划、同时使用两个一维dp数组
