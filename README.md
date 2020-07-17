@@ -73,7 +73,7 @@
   - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
 + 查找算法
   - [No.4 寻找两个数组的中位数](#寻找两个数组的中位数)//经典、比较复杂的二分查找！
-  - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找
+  - [No.35 搜索插入位置](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#搜索插入位置)//带特判的二分查找，或者使用ans=n保存越界结果
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.287 寻找重复数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#寻找重复数)//类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间
   - [No.378 有序矩阵中第k小的元素](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#有序矩阵中第k小的元素)//二分查找是不好判断mid的值是否满足条件
