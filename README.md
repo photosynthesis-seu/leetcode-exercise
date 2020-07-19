@@ -22,6 +22,7 @@
   - [No.213 打家劫舍II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#打家劫舍II)//分两种情况判别的打家劫舍
   - [No.221 最大正方形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最大正方形)//典型的动态规划，需要关注暴力解法
   - [No.300 最长递增子序列](#最长递增子序列)
+  - [No.312 戳气球](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#戳气球)//自后向前的逆向思维，可动态规划
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
   - [No.435 无重叠区域](#无重叠区间)
   - [No.516 最长回文子序列](#最长回文子序列)
@@ -174,8 +175,12 @@ No.225 用队列实现栈 No.232 用栈实现队列(注意循环的判断条件�
 No.236 二叉树的最近公共祖先（递归的后序遍历算法、哈希表存储父节点、以及一种很朴素容易想到但是个别用例超时的算法！）
 No.238 除自身以外数组的乘积(双数组的前后缀和，以及巧妙地动态优化！！)
 No.287 寻找重复数（类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间）
-No.300 最长递增子序列（经典动态规划）No.322 零钱兑换（动态规划）
+No.300 最长递增子序列（经典动态规划）
+No.312 戳气球(自后向前的逆向思维，可动态规划)
+No.315 计算右侧小于当前元素的个数(归并算法+vector<pair<int,int>>索引容器) 
+No.322 零钱兑换（典型动态规划）
 No.324 摆动排序
+No.337 打家劫舍III（二叉树的打家劫舍、DFS算法）
 No.350 两个数组的交集II(使用map计数，双指针)
 No.355 设计推特 
 No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数）
