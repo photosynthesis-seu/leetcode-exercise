@@ -93,6 +93,7 @@
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
   - [No.76 最小覆盖子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最小覆盖子串)//比较难的滑动窗口算法！
   - [No.146 LRU缓存机制](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#LRU缓存机制)//哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map
+  - [No.167 两数之和II输入有序数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#两数之和II输入有序数组)//二分查找与双指针
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
   - [No.206 反转链表](#反转链表)
   - [No.209 长度最小的数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#长度最小的数组)//(双指针！类似于No.1004)
