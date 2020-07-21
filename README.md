@@ -11,7 +11,7 @@
   - [No.63 不同路径II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#不同路径II)//二维矩阵中带障碍物的典型动态规划，递推公式一定要会
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
   - [No.84 柱状图中最大的矩形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#柱状图中最大的矩形)//朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题
-  - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)
+  - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)//96题的进阶，注意递归时要在最内层的for中new Treenode
   - [No.96 不同的二叉搜索树](#不同的二叉搜索树)//从小到大的动态规划，不要想着一步到位
   - [No.97 交错字符串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#交错字符串)//要注意这道题双指针不行！！以及使用滚动数组优化
   - [No.120 三角形最小路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#三角形最小路径和)//DFS超时，自上而下和自下而上的动态规划
