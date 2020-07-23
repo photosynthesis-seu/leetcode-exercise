@@ -9,6 +9,7 @@
   - [No.45 跳跃游戏II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#跳跃游戏II)//贪心算法！
   - [No.53 最大子序和](#最大子序和)
   - [No.63 不同路径II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#不同路径II)//二维矩阵中带障碍物的典型动态规划，递推公式一定要会
+  - [No.64 最小路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最小路径和)//简单的动态规划
   - [No.72 编辑两单词距离](#编辑两个单词的距离)
   - [No.84 柱状图中最大的矩形](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#柱状图中最大的矩形)//朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题
   - [No.95 不同二叉树搜索II](#不同二叉树搜索树II)//96题的进阶，注意递归时要在最内层的for中new Treenode
