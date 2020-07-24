@@ -49,6 +49,7 @@
 - [No.53-II 0～n-1中缺失的数字](#0～n-1中缺失的数字)//这道题的二分查找非常凶险！为了避免对特殊情况判断，实现细节很不同，慎用！
 - [No.54 二叉搜索树的第k大节点](#二叉搜索树的第k大节点)//使用中序遍历
 - [No.55-I 二叉树的深度](#二叉树的深度)//BFS算法（使用计数队列统计层数）、DFS算法（回溯算法）
+- [No.55-II 平衡二叉树](#平衡二叉树)//利用递归函数的反腐计算左右子树高度，然后判断两者之差是否小于1
 - [No.56-II 数组中数字出现的次数II](#数组中数字出现的次数II)//位运算算法，一定需要掌握
 - [No.57 和为s的两个数字](#和为s的两个数字)//hash表算法和双指针算法都需要了解！
 - [No.58-I 翻转单词顺序](#翻转单词顺序)//istringstream和stack的配合使用！
@@ -3488,5 +3489,62 @@ public:
         n && (n += sumNums(n-1));
         return n;
     }
+};
+```
+## 平衡二叉树
+1.题目
+```
+输入一棵二叉树的根节点，判断该树是不是平衡二叉树。如果某二叉树中任意节点的左右子树的深度相差不超过1，那么它就是一棵平衡二叉树。
+
+给定二叉树 [3,9,20,null,null,15,7]
+
+    3
+   / \
+  9  20
+    /  \
+   15   7
+返回 true 。
+```
+2.实现
+```C++
+// class Solution {
+// public:
+//     int depth_min = INT_MAX,depth_max = 0;
+//     bool isBalanced(TreeNode* root) {
+//         helper(root,0);
+//         int res = depth_max-depth_min;
+//         return res<=1;
+//     }
+
+
+//     void helper(TreeNode* root, int depth){
+//         if(root == NULL){ 
+//             return;
+//         }
+//         depth++;
+//         if(root->left == NULL && root->right == NULL){
+//             depth_min = min(depth_min,depth);
+//         }
+//         depth_max = max(depth_max,depth);
+//         helper(root->left,depth);
+//         helper(root->right,depth);
+//         depth--;
+//         return;
+//     }
+// };
+class Solution {
+public:
+	bool isBalanced(TreeNode* root) {
+		if (root == NULL) return true;//如果该子树为空，则一定是平衡的（因为没有左右子树）
+		if (abs(getHeight(root->left) - getHeight(root->right)) > 1) return false;
+		return isBalanced(root->left)&& isBalanced(root->right);
+	}
+	int getHeight(TreeNode* root)
+	{
+		if (root == NULL) return 0;
+		int leftHeight = getHeight(root->left);
+		int rightHeight = getHeight(root->right);
+		return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+	}
 };
 ```
