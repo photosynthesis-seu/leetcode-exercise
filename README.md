@@ -25,6 +25,7 @@
   - [No.300 最长递增子序列](#最长递增子序列)
   - [No.312 戳气球](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#戳气球)//自后向前的逆向思维，可动态规划
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
+  - [No.410 分割数组的最大值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#分割数组的最大值)//三重循环，一个辅助数组的动态规划
   - [No.435 无重叠区域](#无重叠区间)
   - [No.516 最长回文子序列](#最长回文子序列)
   - [No.542 01矩阵](#01矩阵)
@@ -80,6 +81,7 @@
   - [No.69 x的平方根](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#x的平方根)//二分查找、牛顿迭代算法
   - [No.287 寻找重复数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#寻找重复数)//类似剑指offer3、注意空间要求O(1),使用二分查找、注意此时用数字而不是下标二分、满足特殊情况用时间换空间
   - [No.378 有序矩阵中第k小的元素](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#有序矩阵中第k小的元素)//二分查找是不好判断mid的值是否满足条件
+  - [No.410 分割数组的最大值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#分割数组的最大值)//比较难的二分查找+贪心算法
   - [No.793 阶乘函数后K个零](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#阶乘函数后K个零)//二分查找，腾讯面试题变种
   - [No.1095 山脉数组中查找目标值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#山脉数组中查找目标值)//二分查找
   - [No.1300 转变数组后最接近目标值的数组和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#转变数组后最接近目标值的数组和)//难！二分查找->lower_bound(arr.begin(), arr.end(), mid)的使用、数学解法
@@ -189,6 +191,7 @@ No.365 水壶问题（BFS/DFS、数学问题、lambda表达式、unordered_set�
 No.378 有序矩阵中第k小的元素(暴力求解、小顶堆的归并排序—类似合并k个链表-注意怎么定义priority_queue的比较函数、二分查找！-注意怎么判断二分查找的正确性)
 No.394 字符串解码（辅助数字栈、字符串栈，腾讯面试题目，两个栈之间巧妙地协作，编译原理？）
 NO.409 最长回文串（简单数学做法，关注int变量未初始化直接+=会出问题！！）
+No.410 分割数组的最大值(很难的动态规划，双指针+贪心算法！！)
 No.435 无重叠区域（动态规划）
 No.445 两数相加II（初始化一个链表的正确打开方式、栈实现高位先进，低位先出）
 No.460-LFU缓存 
@@ -217,7 +220,10 @@ No.990 等式方程的可满足性（并查集）
 No.992 排序数组（各种排序算法！）
 No.994 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
 No.1004 最大连续1的个数III//典型的两个while嵌套的双指针
+No.1025 除数博弈(有必胜策略)
+No.1028 从先序遍历还原二叉树(又是单调栈！！！使用栈的巧妙迭代)
 No.1071 字符串的最大公因子(枚举、辗转相除，c++自带的求最大公约数的函数__gcd())
+No.1095 山脉数组中查找目标值（二分查找）
 No.1111 有效括号的嵌套深度 
 No.1143 最长公共子序列 
 No.1162 地图分析
