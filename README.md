@@ -25,6 +25,7 @@
   - [No.300 最长递增子序列](#最长递增子序列)
   - [No.312 戳气球](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#戳气球)//自后向前的逆向思维，可动态规划
   - [No.322 零钱兑换](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#零钱兑换)
+  - [No.329 矩阵中的最长递增路径](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#矩阵中的最长递增路径)//带备忘录的较复杂的动态规划
   - [No.410 分割数组的最大值](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#分割数组的最大值)//三重循环，一个辅助数组的动态规划
   - [No.435 无重叠区域](#无重叠区间)
   - [No.516 最长回文子序列](#最长回文子序列)
@@ -184,6 +185,7 @@ No.312 戳气球(自后向前的逆向思维，可动态规划)
 No.315 计算右侧小于当前元素的个数(归并算法+vector<pair<int,int>>索引容器) 
 No.322 零钱兑换（典型动态规划）
 No.324 摆动排序
+No.329 矩阵中的最长递增路径(带备忘录的动态规划算法)
 No.337 打家劫舍III（二叉树的打家劫舍、DFS算法）
 No.350 两个数组的交集II(使用map计数，双指针)
 No.355 设计推特 
