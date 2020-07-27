@@ -103,6 +103,7 @@
   - [No.209 长度最小的数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#长度最小的数组)//(双指针！类似于No.1004)
   - [No.238 除自身以外数组的乘积](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#除自身以外数组的乘积)//双数组的前后缀和，以及巧妙地动态优化！！
   - [No.350 两个数组的交集II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#两个数组的交集II)//使用map计数，双指针
+  - [No.392 判断子序列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#判断子序列)
   - [No.560 和为k的子数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#和为k的子数组)//双指针思想，巧妙的前缀和，哈希表unordered_map的应用
   - [No.680 验证回文字符串II](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证回文字符串II)//双指针、贪心算法，暴力reverse会超时
   - [No.876 链表的中间节点](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#链表的中间节点)//使用数组保存链表->遍历两遍链表->快慢双指针方法层层递进
