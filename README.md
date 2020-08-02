@@ -96,6 +96,7 @@
   - [No.25 k个一组翻转链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#k个一组翻转链表)//难：两个全局指针，两个局部指针、反转链表
   - [No.30 串联所有单词的子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#串联所有单词的子串)//滑窗算法，unordered_map,比较复杂
   - [No.76 最小覆盖子串](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#最小覆盖子串)//比较难的滑动窗口算法！
+  - [No.114 二叉树展开为链表](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树展开为链表)//(有较为容易想到的前序遍历+vector存储，以及非常难的三指针原地翻转)
   - [No.146 LRU缓存机制](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#LRU缓存机制)//哈希表，双向链表，自定义双向链表添加头结点、移动至头结点等等，带自定义结构体-双向链表的Unordered_map
   - [No.167 两数之和II输入有序数组](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#两数之和II输入有序数组)//二分查找与双指针
   - [No.202 快乐数](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#快乐数)//数学技巧、unordered_map、快慢指针
@@ -156,6 +157,7 @@ No.102 二叉树的层序遍历（BFS、vector初始化和赋值的新方法）
 No.105 从前序与中序遍历序列构造二叉树 
 No.108 将有序数组转换为二叉搜索树(递归就行了)
 No.112 路径总和(递归算法，BFS)
+No.114 二叉树展开为链表(有较为容易想到的前序遍历+vector存储，以及非常难的三指针原地翻转)
 No.120 三角形最小路径和(DFS超时，自上而下和自下而上的动态规划)
 No.124 二叉树中的最大路径和(带返回值的dfs)
 No.125 验证回文串（isdigit/islower/isupper函数）
