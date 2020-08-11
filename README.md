@@ -2794,7 +2794,7 @@ int getMaxRepetitions(string s1, int n1, string s2, int n2) {
         return ans / n2;
     }
 ```
-## 无重叠区
+## 无重叠区间
 
 1.题目
 ```
