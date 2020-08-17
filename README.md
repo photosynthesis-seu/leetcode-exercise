@@ -49,6 +49,7 @@
   - [No.55 跳跃游戏](#跳跃游戏)
   - [No.98 验证二叉搜索树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证二叉搜索树)//递归，helper(root, ower,upper)，中序遍历
   - [No.102 二叉树的层序遍历](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的层序遍历)//BFS、vector初始化和赋值的新方法
+  - [No.110 平衡二叉树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#平衡二叉树)
   - [No.112 路径总和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#路径总和)//BFS、递归算法
   - [No.120 三角形最小路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#三角形最小路径和)//DFS超时，自上而下和自下而上的动态规划
   - [No.124 二叉树中的最大路径和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树中的最大路径和)//带返回值的dfs，返回选择路径最大值
