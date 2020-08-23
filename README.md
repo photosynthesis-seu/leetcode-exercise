@@ -68,6 +68,7 @@
   - [No.542 01矩阵](#01矩阵)
   - [No.543 二叉树的直径](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的直径)//典型的dfs，算是后序遍历，关注怎么选择返回二叉树左右子树的路径
   - [No.572 另一个树的子树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#另一个树的子树)//典型的dfs+递归（考虑前、中序遍历问题）、KMP字符串匹配算法
+  - [No.679 二十四点游戏](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二十四点游戏)//DFS深度遍历每一种情况
   - [No.733 图像渲染](#图像渲染)//类似岛屿问题
   - [No.945 使数组唯一的最小增量](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#使数组唯一的最小增量)//很有思维性的一题，sort排序、计数排序、线性探测+路径压缩+递归
   - [No.994 腐烂的橘子](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#腐烂的橘子)// 腐烂的橘子（典型题目！两种多源BFS的算法（两种算法的实现都很有技巧且很多细节不同，都要会）、按位取反、if的执行条件、带点动态规划那味）
