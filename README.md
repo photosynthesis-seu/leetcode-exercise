@@ -64,6 +64,7 @@
   - [No.365 水壶问题](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#水壶问题)//BFS/DFS、数学问题、lambda表达式、unordered_set重载hash函数
   - [No.394 字符串解码](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#字符串解码)//辅助数字栈、字符串栈，腾讯面试题目，两个栈之间巧妙地协作，编译原理？
   - [No.463 岛屿的周长](#岛屿的周长)//分类判断、DFS
+  - [No.491 递增子序列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#递增子序列)/注意回溯算法的剪枝！！
   - [No.529 扫雷游戏](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#扫雷游戏)//复杂的BFS、DFS
   - [No.542 01矩阵](#01矩阵)
   - [No.543 二叉树的直径](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的直径)//典型的dfs，算是后序遍历，关注怎么选择返回二叉树左右子树的路径
@@ -213,6 +214,7 @@ No.459 重复的子字符串（根据长度遍历）
 No.460-LFU缓存 
 No.463 岛屿的周长（分类判断、DFS） 
 No.466 统计重复个数（unordered_map） 
+No.491 递增子序列（注意回溯算法的剪枝！！）
 No.516 最长回文子序列 
 No.529 扫雷游戏(比较复杂的BFS和DFS)
 No.542 01矩阵分解
