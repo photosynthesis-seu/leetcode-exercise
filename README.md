@@ -47,6 +47,7 @@
   - [No.40 组合总和](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#组合总和)//回溯算法+巧妙的剪枝
   - [No.46 全排列](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#全排列)//回溯算法，使用栈存放访问记录
   - [No.55 跳跃游戏](#跳跃游戏)
+  - [No.79 单词搜索](#单词搜索)//带备忘录的深度优先递归算法
   - [No.98 验证二叉搜索树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#验证二叉搜索树)//递归，helper(root, ower,upper)，中序遍历
   - [No.102 二叉树的层序遍历](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#二叉树的层序遍历)//BFS、vector初始化和赋值的新方法
   - [No.110 平衡二叉树](https://github.com/photosynthesis-seu/leetcode-exercise/blob/master/%E9%99%84%E5%BD%952.md#平衡二叉树)
@@ -155,6 +156,7 @@ No.69 x的平方根（二分查找、牛顿迭代算法）
 No.72 编辑两个单词的距离 
 No.75 颜色分类（快速排序、荷兰旗）
 No.76 最小覆盖子串（比较难的滑动窗口算法！）
+No.79 单词搜索(深度优先搜索递归)
 No.84 柱状图中最大的矩形(朴素的暴力解法，单调栈与哨兵节点！，参考No.42接雨水问题)
 NO.95 不同的二叉搜索树II 
 No.96 不同的二叉搜索树（动态规划）
@@ -3232,6 +3234,67 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
   - 我们可以对二叉树进行层次遍历，那么对于每层来说，最右边的结点一定是最后被遍历到的。二叉树的层次遍历可以用广度优先搜索实现。
   - **因为使用队列对每一层遍历实现，因此在每一层的队列中，最后一个成员就是右视图能看到的结点**
   - 实现
+
+## 单词搜索
+1.题目
+```
+给定一个二维网格和一个单词，找出该单词是否存在于网格中。
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。
+ 
+board =
+[
+  ['A','B','C','E'],
+  ['S','F','C','S'],
+  ['A','D','E','E']
+]
+给定 word = "ABCCED", 返回 true
+给定 word = "SEE", 返回 true
+给定 word = "ABCB", 返回 false
+```
+2.实现
+```C++
+class Solution {
+public:
+    bool check(vector<vector<char>>& board, vector<vector<int>>& visited, int i, int j, string& s, int k) {
+        if (board[i][j] != s[k]) {
+            return false;
+        } else if (k == s.length() - 1) {
+            return true;
+        }
+        visited[i][j] = true;
+        vector<pair<int, int>> directions{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        bool result = false;
+        for (const auto& dir: directions) {
+            int newi = i + dir.first, newj = j + dir.second;
+            if (newi >= 0 && newi < board.size() && newj >= 0 && newj < board[0].size()) {
+                if (!visited[newi][newj]) {
+                    bool flag = check(board, visited, newi, newj, s, k + 1);
+                    if (flag) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+        }
+        visited[i][j] = false;
+        return result;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        int h = board.size(), w = board[0].size();
+        vector<vector<int>> visited(h, vector<int>(w));
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                bool flag = check(board, visited, i, j, word, 0);
+                if (flag) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
+```
 
 ## 从前序与中序遍历序列构造二叉树
 1.题目
